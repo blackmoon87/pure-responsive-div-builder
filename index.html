@@ -175,6 +175,13 @@
       <div class="stage__frame" id="stage-frame" data-device="desktop">
         <div class="stage__header">
           <span class="stage__badge" id="viewport-badge">Desktop (1280px Viewport)</span>
+          <div class="stage__ruler">
+            <input type="range" id="vp-range" min="320" max="1600" step="1" value="1280"
+                   title="Drag to preview any viewport width — including the gaps between breakpoints">
+            <input type="number" id="vp-width" min="200" max="2560" step="1" value="1280">
+            <span class="stage__ruler-unit">px</span>
+            <button type="button" class="btn-vp-reset" id="vp-reset" title="Snap back to the preset width">Reset</button>
+          </div>
           <span class="stage__info">Click any &lt;div&gt; to configure responsive rules</span>
         </div>
         <div class="canvas" id="canvas" dir="ltr"></div>
@@ -229,10 +236,7 @@
     </div>
 
     <div class="modal-foot">
-      <div class="modal-foot__info">
-        <span>✓ 100% Pure DIV hierarchy</span>
-        <span>✓ Full Desktop, Tablet (≤992px) & Mobile (≤576px) Media Queries</span>
-      </div>
+      <div class="modal-foot__info" id="export-warnings"></div>
       <div class="modal-foot__actions">
         <button type="button" class="btn btn--ghost" id="btn-copy-code">Copy Code</button>
         <button type="button" class="btn btn--primary" id="btn-download-html">Download .html</button>

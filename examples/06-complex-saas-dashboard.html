@@ -144,6 +144,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 8px;
+  min-width: 0;
 }
 
 .action-slot {
@@ -155,6 +156,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -353,6 +355,11 @@ html, body {
 
   .search-slot {
     width: 100%;
+    min-width: auto;
+  }
+
+  .action-slot {
+    min-width: auto;
   }
 
   .kpi-grid {

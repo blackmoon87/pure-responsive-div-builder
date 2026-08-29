@@ -24,6 +24,16 @@
     return JSON.parse(JSON.stringify(val));
   }
 
+  // A flex item only shrinks below its content width when min-width is cleared.
+  // Without this, a nowrap row bursts its container and the content is clipped.
+  function isGrid(props) {
+    return !!props && props.display === "grid";
+  }
+
+  function isFlexRow(props) {
+    return !!props && props.display === "flex" && (props.flexDirection || "row").indexOf("row") === 0;
+  }
+
   function el(tag, className, text) {
     var node = document.createElement(tag);
     if (className) node.className = className;
@@ -108,6 +118,7 @@
 
   var State = {
     device: "desktop",
+    customWidth: null,   // free-width preview; null = use the preset device width
     selectedId: null,
     activeTab: "palette",
     exportTab: "combined",
@@ -493,6 +504,11 @@
   var codeOutput = document.getElementById("code-output");
   var btnCopyCode = document.getElementById("btn-copy-code");
   var btnDownloadHtml = document.getElementById("btn-download-html");
+  var exportWarnings = document.getElementById("export-warnings");
+  var vpRange = document.getElementById("vp-range");
+  var vpWidth = document.getElementById("vp-width");
+  var vpReset = document.getElementById("vp-reset");
+  var PRESET_WIDTH = { desktop: 1280, tablet: 768, mobile: 375 };
 
   // ==========================================================================
   // Canvas Rendering (Pure Structural Wireframes)
@@ -527,7 +543,7 @@
       wrapper.style.display = "grid";
       // Phase 4.3: Grid auto-fit/auto-fill
       if (eff.gridAutoMode) {
-        wrapper.style.gridTemplateColumns = "repeat(" + eff.gridAutoMode + ", minmax(" + (eff.gridMinColWidth || "200px") + ", 1fr))";
+        wrapper.style.gridTemplateColumns = "repeat(" + eff.gridAutoMode + ", minmax(min(" + (eff.gridMinColWidth || "200px") + ", 100%), 1fr))";
       } else if (eff.customColumns) {
         wrapper.style.gridTemplateColumns = eff.customColumns;
       } else {
@@ -549,25 +565,24 @@
       wrapper.style.display = "block";
     }
 
-    // Horizontal & Self Alignment
+    // Horizontal & Self Alignment.
+    // Mirrors the exported CSS exactly: margin-auto does the centering, and
+    // justify-self is only meaningful (and only emitted) under a grid parent.
+    // Chrome honours justify-self in block layout, where it forces shrink-to-fit
+    // and bursts the container — so it must never be set outside a grid.
+    var parentIsGrid = parentDisplay === "grid";
     if (eff.horizontalAlign === "center") {
       wrapper.style.marginLeft = "auto";
       wrapper.style.marginRight = "auto";
-      wrapper.style.justifySelf = "center";
-      wrapper.style.alignSelf = "center";
-      if (!eff.width && !eff.maxWidth) wrapper.style.width = "fit-content";
+      if (parentIsGrid) wrapper.style.justifySelf = "center";
     } else if (eff.horizontalAlign === "right") {
       wrapper.style.marginLeft = "auto";
       wrapper.style.marginRight = "0";
-      wrapper.style.justifySelf = "end";
-      wrapper.style.alignSelf = "flex-end";
-      if (!eff.width && !eff.maxWidth) wrapper.style.width = "fit-content";
+      if (parentIsGrid) wrapper.style.justifySelf = "end";
     } else if (eff.horizontalAlign === "left") {
       wrapper.style.marginLeft = "0";
       wrapper.style.marginRight = "auto";
-      wrapper.style.justifySelf = "start";
-      wrapper.style.alignSelf = "flex-start";
-      if (!eff.width && !eff.maxWidth) wrapper.style.width = "fit-content";
+      if (parentIsGrid) wrapper.style.justifySelf = "start";
     } else {
       if (!eff.width && parentDisplay !== "grid") {
         wrapper.style.width = "100%";
@@ -614,6 +629,10 @@
       if (eff.flexGrow != null) wrapper.style.flexGrow = String(eff.flexGrow);
       if (eff.flexShrink != null) wrapper.style.flexShrink = String(eff.flexShrink);
       if (eff.flexBasis) wrapper.style.flexBasis = eff.flexBasis;
+      // Mirror the exported min-width:0 so the preview clips exactly like the output
+      if (parentNode && isFlexRow(getEffectiveProps(parentNode, State.device))) {
+        wrapper.style.minWidth = "0";
+      }
     }
     if (eff.order != null && eff.order !== 0) {
       wrapper.style.order = String(eff.order);
@@ -1273,6 +1292,60 @@
   // ==========================================================================
   // Chrome & UI Rendering
   // ==========================================================================
+  // Which breakpoint a given viewport width actually lands in. This is the same
+  // rule the exported @media queries use, so the preview cannot disagree with them.
+  function deviceForWidth(w) {
+    var bp = State.breakpoints;
+    if (w <= bp.mobile) return "mobile";
+    if (w <= bp.tablet) return "tablet";
+    return "desktop";
+  }
+
+  function currentWidth() {
+    return State.customWidth != null ? State.customWidth : PRESET_WIDTH[State.device];
+  }
+
+  // Flags breakpoint coverage the layout is missing. The three presets can all
+  // look correct while a whole range between them has no rules at all.
+  function collectExportWarnings() {
+    var warns = [];
+    var anyTablet = false, anyMobile = false;
+    var mobileOnly = [];
+    walk(State.root, function (node) {
+      if (node.id === "root") return;
+      var hasT = node.responsive.tablet && Object.keys(node.responsive.tablet).length > 0;
+      var hasM = node.responsive.mobile && Object.keys(node.responsive.mobile).length > 0;
+      if (hasT) anyTablet = true;
+      if (hasM) anyMobile = true;
+      if (hasM && !hasT) mobileOnly.push(node.customClass || node.name || node.id);
+    });
+    var bp = State.breakpoints;
+    if (!anyTablet && anyMobile) {
+      warns.push("No tablet rules anywhere — every width from " + (bp.mobile + 1) + "px to " +
+        bp.tablet + "px falls straight through to the desktop layout.");
+    } else if (mobileOnly.length) {
+      warns.push(mobileOnly.length + " div" + (mobileOnly.length > 1 ? "s have" : " has") +
+        " mobile rules but no tablet rules (." + mobileOnly.slice(0, 3).join(", .") +
+        (mobileOnly.length > 3 ? ", …" : "") + ") — unstyled between " +
+        (bp.mobile + 1) + "px and " + bp.tablet + "px.");
+    }
+    return warns;
+  }
+
+  function renderExportWarnings() {
+    if (!exportWarnings) return;
+    exportWarnings.innerHTML = "";
+    var warns = collectExportWarnings();
+    if (!warns.length) {
+      exportWarnings.appendChild(el("span", "export-ok", "\u2713 Pure DIV hierarchy \u00b7 desktop, tablet and mobile breakpoints all covered"));
+      return;
+    }
+    warns.forEach(function (w) {
+      exportWarnings.appendChild(el("span", "export-warn", "\u26a0 " + w));
+    });
+    exportWarnings.appendChild(el("span", "export-ok", "\u2713 Pure DIV hierarchy \u00b7 drag the width ruler to check the gap."));
+  }
+
   function renderChrome() {
     btnUndo.disabled = !History.canUndo();
     btnRedo.disabled = !History.canRedo();
@@ -1300,8 +1373,24 @@
     if (bpTabEl) bpTabEl.addEventListener("change", function (e) { State.breakpoints.tablet = parseInt(e.target.value, 10) || 992; render(); });
     if (bpMobEl) bpMobEl.addEventListener("change", function (e) { State.breakpoints.mobile = parseInt(e.target.value, 10) || 576; render(); });
 
-    viewportBadge.textContent = devNames[State.device];
+    var w = currentWidth();
+    if (State.customWidth != null) {
+      frame.classList.add("is-custom-width");
+      frame.style.width = w + "px";
+      viewportBadge.textContent = w + "px \u2192 " + devNames[State.device] + " rules";
+    } else {
+      frame.classList.remove("is-custom-width");
+      frame.style.width = "";
+      viewportBadge.textContent = devNames[State.device] + " \u00b7 " + w + "px";
+    }
     frame.dataset.device = State.device;
+
+    if (vpRange && document.activeElement !== vpRange) vpRange.value = String(w);
+    if (vpWidth && document.activeElement !== vpWidth) vpWidth.value = String(w);
+
+    document.querySelectorAll(".device-btn").forEach(function (b) {
+      b.classList.toggle("is-active", b.dataset.device === State.device);
+    });
   }
 
   function render() {
@@ -1350,7 +1439,7 @@
     var classCount = {};
     var bp = State.breakpoints || { tablet: 992, mobile: 576 };
 
-    walk(State.root, function (node) {
+    walk(State.root, function (node, parent) {
       if (node.id === "root") return;
       var baseClass = node.customClass || "div-box";
       if (!classCount[baseClass]) classCount[baseClass] = 0;
@@ -1361,12 +1450,21 @@
       var t = node.responsive.tablet || {};
       var m = node.responsive.mobile || {};
 
+      // Flex-item shrink context, resolved per device because a parent can
+      // switch between row and column at a breakpoint.
+      var dRow = parent ? isFlexRow(getEffectiveProps(parent, "desktop")) : false;
+      var tRow = parent ? isFlexRow(getEffectiveProps(parent, "tablet")) : false;
+      var mRow = parent ? isFlexRow(getEffectiveProps(parent, "mobile")) : false;
+      var dGrid = parent ? isGrid(getEffectiveProps(parent, "desktop")) : false;
+      var tGrid = parent ? isGrid(getEffectiveProps(parent, "tablet")) : false;
+      var mGrid = parent ? isGrid(getEffectiveProps(parent, "mobile")) : false;
+
       // --- Desktop ---
       var dCss = [];
       if (d.display === "grid") {
         dCss.push("  display: grid;");
         if (d.gridAutoMode) {
-          dCss.push("  grid-template-columns: repeat(" + d.gridAutoMode + ", minmax(" + (d.gridMinColWidth || "200px") + ", 1fr));");
+          dCss.push("  grid-template-columns: repeat(" + d.gridAutoMode + ", minmax(min(" + (d.gridMinColWidth || "200px") + ", 100%), 1fr));");
         } else if (d.customColumns) {
           dCss.push("  grid-template-columns: " + d.customColumns + ";");
         } else {
@@ -1388,9 +1486,9 @@
       }
 
       // Alignment
-      if (d.horizontalAlign === "center") dCss.push("  margin-left: auto;\n  margin-right: auto;\n  justify-self: center;");
-      else if (d.horizontalAlign === "right") dCss.push("  margin-left: auto;\n  margin-right: 0;\n  justify-self: end;");
-      else if (d.horizontalAlign === "left") dCss.push("  margin-left: 0;\n  margin-right: auto;\n  justify-self: start;");
+      if (d.horizontalAlign === "center") dCss.push("  margin-left: auto;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: center;" : ""));
+      else if (d.horizontalAlign === "right") dCss.push("  margin-left: auto;\n  margin-right: 0;" + (dGrid ? "\n  justify-self: end;" : ""));
+      else if (d.horizontalAlign === "left") dCss.push("  margin-left: 0;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: start;" : ""));
 
       // Sizing
       if (d.width) dCss.push("  width: " + d.width + ";");
@@ -1436,6 +1534,7 @@
       if (d.opacity && d.opacity !== "1") dCss.push("  opacity: " + d.opacity + ";");
 
       // Grid/Flex child
+      if (dRow) dCss.push("  min-width: 0;");
       if (d.span && d.span > 1) dCss.push("  grid-column: span " + d.span + ";");
       if (d.display === "flex" && d.flexGrow != null) dCss.push("  flex-grow: " + d.flexGrow + ";");
       if (d.flexShrink != null && d.flexShrink !== 1) dCss.push("  flex-shrink: " + d.flexShrink + ";");
@@ -1452,16 +1551,16 @@
       if (t.customColumns && t.customColumns !== d.customColumns) {
         tCss.push("    grid-template-columns: " + t.customColumns + ";");
       } else if (t.gridAutoMode && t.gridAutoMode !== d.gridAutoMode) {
-        tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+        tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(min(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
       } else if (t.columns && t.columns !== d.columns) {
         tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
       }
       if (t.flexDirection && t.flexDirection !== d.flexDirection) tCss.push("    flex-direction: " + t.flexDirection + ";");
       if (t.horizontalAlign && t.horizontalAlign !== d.horizontalAlign) {
-        if (t.horizontalAlign === "center") tCss.push("    margin-left: auto;\n    margin-right: auto;\n    justify-self: center;");
-        else if (t.horizontalAlign === "right") tCss.push("    margin-left: auto;\n    margin-right: 0;\n    justify-self: end;");
-        else if (t.horizontalAlign === "left") tCss.push("    margin-left: 0;\n    margin-right: auto;\n    justify-self: start;");
-        else if (t.horizontalAlign === "stretch") tCss.push("    margin-left: 0;\n    margin-right: 0;\n    justify-self: stretch;");
+        if (t.horizontalAlign === "center") tCss.push("    margin-left: auto;\n    margin-right: auto;" + (tGrid ? "\n    justify-self: center;" : ""));
+        else if (t.horizontalAlign === "right") tCss.push("    margin-left: auto;\n    margin-right: 0;" + (tGrid ? "\n    justify-self: end;" : ""));
+        else if (t.horizontalAlign === "left") tCss.push("    margin-left: 0;\n    margin-right: auto;" + (tGrid ? "\n    justify-self: start;" : ""));
+        else if (t.horizontalAlign === "stretch") tCss.push("    margin-left: 0;\n    margin-right: 0;" + (tGrid ? "\n    justify-self: stretch;" : ""));
       }
       if (t.width && t.width !== d.width) tCss.push("    width: " + t.width + ";");
       if (t.height && t.height !== d.height) tCss.push("    height: " + t.height + ";");
@@ -1485,6 +1584,7 @@
       if (t.minHeight && t.minHeight !== d.minHeight) tCss.push("    min-height: " + t.minHeight + "px;");
       if (t.overflowX && t.overflowX !== d.overflowX) tCss.push("    overflow-x: " + t.overflowX + ";");
       if (t.overflowY && t.overflowY !== d.overflowY) tCss.push("    overflow-y: " + t.overflowY + ";");
+      if (tRow !== dRow) tCss.push("    min-width: " + (tRow ? "0" : "auto") + ";");
       if (t.hidden) tCss.push("    display: none;");
       if (tCss.length) rules.tablet.push("  ." + clsName + " {\n" + tCss.join("\n") + "\n  }");
 
@@ -1494,16 +1594,16 @@
       if (m.customColumns && m.customColumns !== d.customColumns) {
         mCss.push("    grid-template-columns: " + m.customColumns + ";");
       } else if (m.gridAutoMode && m.gridAutoMode !== d.gridAutoMode) {
-        mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+        mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(min(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
       } else if (m.columns && m.columns !== d.columns) {
         mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
       }
       if (m.flexDirection && m.flexDirection !== d.flexDirection) mCss.push("    flex-direction: " + m.flexDirection + ";");
       if (m.horizontalAlign && m.horizontalAlign !== d.horizontalAlign) {
-        if (m.horizontalAlign === "center") mCss.push("    margin-left: auto;\n    margin-right: auto;\n    justify-self: center;");
-        else if (m.horizontalAlign === "right") mCss.push("    margin-left: auto;\n    margin-right: 0;\n    justify-self: end;");
-        else if (m.horizontalAlign === "left") mCss.push("    margin-left: 0;\n    margin-right: auto;\n    justify-self: start;");
-        else if (m.horizontalAlign === "stretch") mCss.push("    margin-left: 0;\n    margin-right: 0;\n    justify-self: stretch;");
+        if (m.horizontalAlign === "center") mCss.push("    margin-left: auto;\n    margin-right: auto;" + (mGrid ? "\n    justify-self: center;" : ""));
+        else if (m.horizontalAlign === "right") mCss.push("    margin-left: auto;\n    margin-right: 0;" + (mGrid ? "\n    justify-self: end;" : ""));
+        else if (m.horizontalAlign === "left") mCss.push("    margin-left: 0;\n    margin-right: auto;" + (mGrid ? "\n    justify-self: start;" : ""));
+        else if (m.horizontalAlign === "stretch") mCss.push("    margin-left: 0;\n    margin-right: 0;" + (mGrid ? "\n    justify-self: stretch;" : ""));
       }
       if (m.width && m.width !== d.width) mCss.push("    width: " + m.width + ";");
       if (m.height && m.height !== d.height) mCss.push("    height: " + m.height + ";");
@@ -1527,6 +1627,7 @@
       if (m.minHeight && m.minHeight !== d.minHeight) mCss.push("    min-height: " + m.minHeight + "px;");
       if (m.overflowX && m.overflowX !== d.overflowX) mCss.push("    overflow-x: " + m.overflowX + ";");
       if (m.overflowY && m.overflowY !== d.overflowY) mCss.push("    overflow-y: " + m.overflowY + ";");
+      if (mRow !== tRow) mCss.push("    min-width: " + (mRow ? "0" : "auto") + ";");
       if (m.hidden) mCss.push("    display: none;");
       if (mCss.length) rules.mobile.push("  ." + clsName + " {\n" + mCss.join("\n") + "\n  }");
     });
@@ -1561,6 +1662,7 @@
   }
 
   function updateExportModalContent() {
+    renderExportWarnings();
     if (State.exportTab === "combined") {
       codeOutput.textContent = generateFullHtmlDocument();
     } else if (State.exportTab === "html") {
@@ -1659,8 +1761,26 @@
     var btn = event.target.closest(".device-btn");
     if (!btn) return;
     State.device = btn.dataset.device;
-    this.querySelectorAll(".device-btn").forEach(function (b) { b.classList.remove("is-active"); });
-    btn.classList.add("is-active");
+    State.customWidth = null;   // picking a preset leaves free-width mode
+    render();
+  });
+
+  // --------------------------------------------------------------------------
+  // Free-width viewport ruler
+  // --------------------------------------------------------------------------
+  function setCustomWidth(px) {
+    var w = parseInt(px, 10);
+    if (isNaN(w)) return;
+    w = Math.max(200, Math.min(2560, w));
+    State.customWidth = w;
+    State.device = deviceForWidth(w);   // preview follows the real @media rules
+    render();
+  }
+
+  if (vpRange) vpRange.addEventListener("input", function (e) { setCustomWidth(e.target.value); });
+  if (vpWidth) vpWidth.addEventListener("input", function (e) { setCustomWidth(e.target.value); });
+  if (vpReset) vpReset.addEventListener("click", function () {
+    State.customWidth = null;
     render();
   });
 

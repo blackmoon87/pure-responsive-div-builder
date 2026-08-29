@@ -530,6 +530,9 @@ button { cursor: pointer; }
   padding: 24px;
   display: flex;
   justify-content: center;
+  /* "safe" keeps the frame reachable when a custom width overflows the stage —
+     plain centering would clip the left edge out of the scrollable area. */
+  justify-content: safe center;
   align-items: flex-start;
 }
 
@@ -1058,3 +1061,62 @@ button { cursor: pointer; }
   display: flex;
   gap: 8px;
 }
+
+/* ==========================================================================
+   Free-width viewport ruler — lets you preview the ranges *between* the three
+   presets, where responsive layouts actually break.
+   ========================================================================== */
+.stage__ruler {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 12px;
+}
+
+.stage__ruler input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 80px;
+  accent-color: var(--accent);
+  cursor: ew-resize;
+}
+
+.stage__ruler input[type="number"] {
+  width: 62px;
+  flex: 0 0 auto;
+  background: var(--bg-card);
+  color: var(--fg-base);
+  border: 1px solid var(--line-base);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.stage__ruler-unit { font-family: var(--font-mono); font-size: 11px; color: var(--fg-dim); }
+
+.btn-vp-reset {
+  flex: 0 0 auto;
+  background: var(--bg-card);
+  color: var(--fg-dim);
+  border: 1px solid var(--line-base);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.btn-vp-reset:hover { color: var(--fg-base); border-color: var(--accent); }
+
+/* Custom width overrides the preset device widths. max-width must be released
+   or the frame would silently render narrower than the number it reports. */
+.stage__frame.is-custom-width {
+  transition: none;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
+/* Export warnings */
+.modal-foot__info .export-warn { color: #f59e0b; }
+.modal-foot__info .export-ok { color: #10b981; }
+.modal-foot__info span { display: block; line-height: 1.5; }

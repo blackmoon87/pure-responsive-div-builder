@@ -163,11 +163,21 @@ export function findParent(id, node) {
   return null;
 }
 
-export function walk(node, fn) {
-  fn(node);
+export function walk(node, fn, parent) {
+  fn(node, parent);
   if (node.children) {
-    node.children.forEach(function (c) { walk(c, fn); });
+    node.children.forEach(function (c) { walk(c, fn, node); });
   }
+}
+
+// A flex item only shrinks below its content width when min-width is cleared.
+// Without this, a nowrap row bursts its container and the content is clipped.
+export function isGrid(props) {
+  return !!props && props.display === "grid";
+}
+
+function isFlexRow(props) {
+  return !!props && props.display === "flex" && (props.flexDirection || "row").indexOf("row") === 0;
 }
 
 export function getEffectiveProps(node, device) {
@@ -350,7 +360,7 @@ export function generateResponsiveCss() {
   var classCount = {};
   var bp = state.breakpoints || { tablet: 992, mobile: 576 };
 
-  walk(state.root, function (node) {
+  walk(state.root, function (node, parent) {
     if (node.id === "root") return;
     var baseClass = node.customClass || "div-box";
     if (!classCount[baseClass]) classCount[baseClass] = 0;
@@ -361,10 +371,20 @@ export function generateResponsiveCss() {
     var t = node.responsive.tablet || {};
     var m = node.responsive.mobile || {};
 
+    // Flex-item shrink context: a child of a flex row needs min-width:0 to be
+    // allowed to shrink below its content width. Resolved per device, because a
+    // parent can switch between row and column at a breakpoint.
+    var dRow = parent ? isFlexRow(getEffectiveProps(parent, "desktop")) : false;
+    var tRow = parent ? isFlexRow(getEffectiveProps(parent, "tablet")) : false;
+    var mRow = parent ? isFlexRow(getEffectiveProps(parent, "mobile")) : false;
+    var dGrid = parent ? isGrid(getEffectiveProps(parent, "desktop")) : false;
+    var tGrid = parent ? isGrid(getEffectiveProps(parent, "tablet")) : false;
+    var mGrid = parent ? isGrid(getEffectiveProps(parent, "mobile")) : false;
+
     var dCss = [];
     if (d.display === "grid") {
       dCss.push("  display: grid;");
-      if (d.gridAutoMode) dCss.push("  grid-template-columns: repeat(" + d.gridAutoMode + ", minmax(" + (d.gridMinColWidth || "200px") + ", 1fr));");
+      if (d.gridAutoMode) dCss.push("  grid-template-columns: repeat(" + d.gridAutoMode + ", minmax(min(" + (d.gridMinColWidth || "200px") + ", 100%), 1fr));");
       else if (d.customColumns) dCss.push("  grid-template-columns: " + d.customColumns + ";");
       else dCss.push("  grid-template-columns: repeat(" + (d.columns || 1) + ", 1fr);");
       dCss.push("  gap: " + (d.gap != null ? d.gap : 16) + "px;");
@@ -382,9 +402,9 @@ export function generateResponsiveCss() {
       dCss.push("  display: block;");
     }
 
-    if (d.horizontalAlign === "center") dCss.push("  margin-left: auto;\n  margin-right: auto;\n  justify-self: center;");
-    else if (d.horizontalAlign === "right") dCss.push("  margin-left: auto;\n  margin-right: 0;\n  justify-self: end;");
-    else if (d.horizontalAlign === "left") dCss.push("  margin-left: 0;\n  margin-right: auto;\n  justify-self: start;");
+    if (d.horizontalAlign === "center") dCss.push("  margin-left: auto;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: center;" : ""));
+    else if (d.horizontalAlign === "right") dCss.push("  margin-left: auto;\n  margin-right: 0;" + (dGrid ? "\n  justify-self: end;" : ""));
+    else if (d.horizontalAlign === "left") dCss.push("  margin-left: 0;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: start;" : ""));
 
     if (d.width) dCss.push("  width: " + d.width + ";");
     if (d.height) dCss.push("  height: " + d.height + ";");
@@ -423,6 +443,7 @@ export function generateResponsiveCss() {
     if (d.boxShadow) dCss.push("  box-shadow: " + d.boxShadow + ";");
     if (d.opacity && d.opacity !== "1") dCss.push("  opacity: " + d.opacity + ";");
 
+    if (dRow) dCss.push("  min-width: 0;");
     if (d.span && d.span > 1) dCss.push("  grid-column: span " + d.span + ";");
     if (d.display === "flex" && d.flexGrow != null) dCss.push("  flex-grow: " + d.flexGrow + ";");
     if (d.flexShrink != null && d.flexShrink !== 1) dCss.push("  flex-shrink: " + d.flexShrink + ";");
@@ -439,7 +460,7 @@ export function generateResponsiveCss() {
     if (t.customColumns && t.customColumns !== d.customColumns) {
       tCss.push("    grid-template-columns: " + t.customColumns + ";");
     } else if (t.gridAutoMode && t.gridAutoMode !== d.gridAutoMode) {
-      tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+      tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(min(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
     } else if (t.columns && t.columns !== d.columns) {
       tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
     }
@@ -466,6 +487,7 @@ export function generateResponsiveCss() {
     if (t.height && t.height !== d.height) tCss.push("    height: " + t.height + ";");
     if (t.span != null && t.span !== d.span) tCss.push("    grid-column: span " + t.span + ";");
     if (t.order != null && t.order !== d.order) tCss.push("    order: " + t.order + ";");
+    if (tRow !== dRow) tCss.push("    min-width: " + (tRow ? "0" : "auto") + ";");
     if (t.hidden) tCss.push("    display: none;");
     if (tCss.length) rules.tablet.push("  ." + clsName + " {\n" + tCss.join("\n") + "\n  }");
 
@@ -475,7 +497,7 @@ export function generateResponsiveCss() {
     if (m.customColumns && m.customColumns !== d.customColumns) {
       mCss.push("    grid-template-columns: " + m.customColumns + ";");
     } else if (m.gridAutoMode && m.gridAutoMode !== d.gridAutoMode) {
-      mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+      mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(min(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
     } else if (m.columns && m.columns !== d.columns) {
       mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
     }
@@ -502,6 +524,7 @@ export function generateResponsiveCss() {
     if (m.height && m.height !== d.height) mCss.push("    height: " + m.height + ";");
     if (m.span != null && m.span !== d.span) mCss.push("    grid-column: span " + m.span + ";");
     if (m.order != null && m.order !== d.order) mCss.push("    order: " + m.order + ";");
+    if (mRow !== tRow) mCss.push("    min-width: " + (mRow ? "0" : "auto") + ";");
     if (m.hidden) mCss.push("    display: none;");
     if (mCss.length) rules.mobile.push("  ." + clsName + " {\n" + mCss.join("\n") + "\n  }");
   });

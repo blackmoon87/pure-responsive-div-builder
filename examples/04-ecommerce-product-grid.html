@@ -26,7 +26,6 @@ html, body {
   gap: 32px;
   margin-left: auto;
   margin-right: auto;
-  justify-self: center;
   min-height: 60px;
   max-width: 1280px;
   padding: 40px 24px 40px 24px;
@@ -55,6 +54,7 @@ html, body {
   padding: 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .toolbar-filters {
@@ -66,6 +66,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -76,6 +77,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 20px;
+  min-width: 0;
 }
 
 .filter-chip-2 {
@@ -85,6 +87,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 20px;
+  min-width: 0;
 }
 
 .filter-chip-3 {
@@ -94,11 +97,12 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 20px;
+  min-width: 0;
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   gap: 24px;
   row-gap: 16px;
   min-height: 60px;
@@ -170,6 +174,7 @@ html, body {
   padding: 16px;
   background-color: #10b981;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .btn-buy {
@@ -179,6 +184,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .product-card-2 {
@@ -246,6 +252,7 @@ html, body {
   padding: 16px;
   background-color: #10b981;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .btn-buy-2 {
@@ -255,6 +262,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .product-card-3 {
@@ -322,6 +330,7 @@ html, body {
   padding: 16px;
   background-color: #10b981;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .btn-buy-3 {
@@ -331,6 +340,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .product-card-4 {
@@ -398,6 +408,7 @@ html, body {
   padding: 16px;
   background-color: #10b981;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .btn-buy-4 {
@@ -407,6 +418,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 /* Mobile (max-width: 576px) */
@@ -424,12 +436,14 @@ html, body {
 
   .toolbar-search {
     width: 100%;
+    min-width: auto;
   }
 
   .toolbar-filters {
     width: 100%;
     gap: 8px;
     overflow-x: auto;
+    min-width: auto;
   }
 
   .filter-chip {

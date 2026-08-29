@@ -38,7 +38,6 @@ html, body {
   gap: 16px;
   margin-left: auto;
   margin-right: auto;
-  justify-self: center;
   min-height: 68px;
   max-width: 1200px;
   padding: 16px 24px 16px 24px;
@@ -52,6 +51,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .nav-links {
@@ -63,6 +63,7 @@ html, body {
   gap: 20px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -73,6 +74,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .nav-item-2 {
@@ -82,6 +84,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .nav-item-3 {
@@ -91,6 +94,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .nav-item-4 {
@@ -100,6 +104,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .nav-actions {
@@ -111,6 +116,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -121,13 +127,13 @@ html, body {
   padding: 16px;
   background-color: #6366f1;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .hero-banner {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  justify-self: center;
   min-height: 300px;
   max-width: 1200px;
   padding: 16px;
@@ -144,9 +150,14 @@ html, body {
     padding: 16px 16px 16px 16px;
   }
 
+  .brand-logo {
+    min-width: auto;
+  }
+
   .nav-links {
     width: 100%;
     gap: 8px;
+    min-width: auto;
   }
 
   .nav-item {
@@ -167,6 +178,7 @@ html, body {
 
   .nav-actions {
     width: 100%;
+    min-width: auto;
   }
 
   .btn-cta {
