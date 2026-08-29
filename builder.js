@@ -1449,7 +1449,13 @@
       // --- Tablet overrides ---
       var tCss = [];
       if (t.display && t.display !== d.display) tCss.push("    display: " + t.display + ";");
-      if (t.columns && t.columns !== d.columns) tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
+      if (t.customColumns && t.customColumns !== d.customColumns) {
+        tCss.push("    grid-template-columns: " + t.customColumns + ";");
+      } else if (t.gridAutoMode && t.gridAutoMode !== d.gridAutoMode) {
+        tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+      } else if (t.columns && t.columns !== d.columns) {
+        tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
+      }
       if (t.flexDirection && t.flexDirection !== d.flexDirection) tCss.push("    flex-direction: " + t.flexDirection + ";");
       if (t.horizontalAlign && t.horizontalAlign !== d.horizontalAlign) {
         if (t.horizontalAlign === "center") tCss.push("    margin-left: auto;\n    margin-right: auto;\n    justify-self: center;");
@@ -1485,7 +1491,13 @@
       // --- Mobile overrides ---
       var mCss = [];
       if (m.display && m.display !== d.display) mCss.push("    display: " + m.display + ";");
-      if (m.columns && m.columns !== d.columns) mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
+      if (m.customColumns && m.customColumns !== d.customColumns) {
+        mCss.push("    grid-template-columns: " + m.customColumns + ";");
+      } else if (m.gridAutoMode && m.gridAutoMode !== d.gridAutoMode) {
+        mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+      } else if (m.columns && m.columns !== d.columns) {
+        mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
+      }
       if (m.flexDirection && m.flexDirection !== d.flexDirection) mCss.push("    flex-direction: " + m.flexDirection + ";");
       if (m.horizontalAlign && m.horizontalAlign !== d.horizontalAlign) {
         if (m.horizontalAlign === "center") mCss.push("    margin-left: auto;\n    margin-right: auto;\n    justify-self: center;");

@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoqj7u_1",
+      "id": "div_mtdoxfos_1",
       "type": "div",
       "name": "Site Header",
       "customClass": "site-header",
@@ -89,7 +89,7 @@
       },
       "children": [
         {
-          "id": "div_mtdoqj7u_2",
+          "id": "div_mtdoxfos_2",
           "type": "div",
           "name": "Nav Container",
           "customClass": "nav-container",
@@ -162,7 +162,7 @@
           },
           "children": [
             {
-              "id": "div_mtdoqj7u_3",
+              "id": "div_mtdoxfot_3",
               "type": "div",
               "name": "Brand Logo",
               "customClass": "brand-logo",
@@ -229,7 +229,7 @@
               "children": []
             },
             {
-              "id": "div_mtdoqj7u_4",
+              "id": "div_mtdoxfot_4",
               "type": "div",
               "name": "Nav Links",
               "customClass": "nav-links",
@@ -293,12 +293,14 @@
                 "tablet": {},
                 "mobile": {
                   "width": "100%",
+                  "flexWrap": "wrap",
+                  "gap": 8,
                   "justifyContent": "space-between"
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7u_5",
+                  "id": "div_mtdoxfot_5",
                   "type": "div",
                   "name": "Nav Item 1",
                   "customClass": "nav-item",
@@ -360,12 +362,14 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "60px"
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7u_6",
+                  "id": "div_mtdoxfot_6",
                   "type": "div",
                   "name": "Nav Item 2",
                   "customClass": "nav-item",
@@ -427,12 +431,14 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "60px"
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7u_7",
+                  "id": "div_mtdoxfot_7",
                   "type": "div",
                   "name": "Nav Item 3",
                   "customClass": "nav-item",
@@ -494,12 +500,14 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "60px"
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7u_8",
+                  "id": "div_mtdoxfot_8",
                   "type": "div",
                   "name": "Nav Item 4",
                   "customClass": "nav-item",
@@ -561,14 +569,16 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "60px"
+                    }
                   },
                   "children": []
                 }
               ]
             },
             {
-              "id": "div_mtdoqj7u_9",
+              "id": "div_mtdoxfot_9",
               "type": "div",
               "name": "Nav Actions",
               "customClass": "nav-actions",
@@ -636,7 +646,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7u_10",
+                  "id": "div_mtdoxfot_10",
                   "type": "div",
                   "name": "CTA Button",
                   "customClass": "btn-cta",
@@ -711,7 +721,7 @@
       ]
     },
     {
-      "id": "div_mtdoqj7u_11",
+      "id": "div_mtdoxfot_11",
       "type": "div",
       "name": "Hero Section",
       "customClass": "hero-banner",
@@ -773,7 +783,14 @@
           "direction": ""
         },
         "tablet": {},
-        "mobile": {}
+        "mobile": {
+          "paddingTop": 16,
+          "paddingRight": 16,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "marginTop": "20px",
+          "marginBottom": "20px"
+        }
       },
       "children": []
     }

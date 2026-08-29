@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoqj7x_1",
+      "id": "div_mtdoxfow_1",
       "type": "div",
       "name": "Catalog Wrapper",
       "customClass": "catalog-wrapper",
@@ -85,11 +85,17 @@
           "direction": ""
         },
         "tablet": {},
-        "mobile": {}
+        "mobile": {
+          "paddingTop": 20,
+          "paddingRight": 16,
+          "paddingBottom": 20,
+          "paddingLeft": 16,
+          "gap": 20
+        }
       },
       "children": [
         {
-          "id": "div_mtdoqj7x_2",
+          "id": "div_mtdoxfow_2",
           "type": "div",
           "name": "Toolbar",
           "customClass": "catalog-toolbar",
@@ -153,12 +159,16 @@
             "tablet": {},
             "mobile": {
               "flexDirection": "column",
-              "gap": 16
+              "gap": 12,
+              "paddingTop": 12,
+              "paddingRight": 12,
+              "paddingBottom": 12,
+              "paddingLeft": 12
             }
           },
           "children": [
             {
-              "id": "div_mtdoqj7x_3",
+              "id": "div_mtdoxfow_3",
               "type": "div",
               "name": "Search",
               "customClass": "toolbar-search",
@@ -227,7 +237,7 @@
               "children": []
             },
             {
-              "id": "div_mtdoqj7x_4",
+              "id": "div_mtdoxfow_4",
               "type": "div",
               "name": "Filters",
               "customClass": "toolbar-filters",
@@ -291,12 +301,13 @@
                 "tablet": {},
                 "mobile": {
                   "width": "100%",
-                  "overflowX": "auto"
+                  "overflowX": "auto",
+                  "gap": 8
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7x_5",
+                  "id": "div_mtdoxfow_5",
                   "type": "div",
                   "name": "Filter 1",
                   "customClass": "filter-chip",
@@ -358,12 +369,15 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_6",
+                  "id": "div_mtdoxfow_6",
                   "type": "div",
                   "name": "Filter 2",
                   "customClass": "filter-chip",
@@ -425,12 +439,15 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_7",
+                  "id": "div_mtdoxfow_7",
                   "type": "div",
                   "name": "Filter 3",
                   "customClass": "filter-chip",
@@ -492,7 +509,10 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 }
@@ -501,7 +521,7 @@
           ]
         },
         {
-          "id": "div_mtdoqj7x_8",
+          "id": "div_mtdoxfow_8",
           "type": "div",
           "name": "Product Grid",
           "customClass": "product-grid",
@@ -565,12 +585,13 @@
             "tablet": {},
             "mobile": {
               "gridAutoMode": "",
-              "columns": 1
+              "columns": 1,
+              "gap": 16
             }
           },
           "children": [
             {
-              "id": "div_mtdoqj7x_9",
+              "id": "div_mtdoxfow_9",
               "type": "div",
               "name": "Product Card 1",
               "customClass": "product-card",
@@ -636,7 +657,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7x_10",
+                  "id": "div_mtdoxfow_10",
                   "type": "div",
                   "name": "Image",
                   "customClass": "product-image-box",
@@ -703,7 +724,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_11",
+                  "id": "div_mtdoxfow_11",
                   "type": "div",
                   "name": "Info",
                   "customClass": "product-info",
@@ -769,7 +790,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7x_12",
+                      "id": "div_mtdoxfow_12",
                       "type": "div",
                       "name": "Title",
                       "customClass": "product-title",
@@ -836,7 +857,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7x_13",
+                      "id": "div_mtdoxfow_13",
                       "type": "div",
                       "name": "Meta",
                       "customClass": "product-meta",
@@ -902,7 +923,7 @@
                       },
                       "children": [
                         {
-                          "id": "div_mtdoqj7x_14",
+                          "id": "div_mtdoxfow_14",
                           "type": "div",
                           "name": "Price",
                           "customClass": "product-price",
@@ -969,7 +990,7 @@
                           "children": []
                         },
                         {
-                          "id": "div_mtdoqj7x_15",
+                          "id": "div_mtdoxfow_15",
                           "type": "div",
                           "name": "Buy Button",
                           "customClass": "btn-buy",
@@ -1042,7 +1063,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7x_16",
+              "id": "div_mtdoxfow_16",
               "type": "div",
               "name": "Product Card 2",
               "customClass": "product-card",
@@ -1108,7 +1129,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7x_17",
+                  "id": "div_mtdoxfow_17",
                   "type": "div",
                   "name": "Image",
                   "customClass": "product-image-box",
@@ -1175,7 +1196,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_18",
+                  "id": "div_mtdoxfow_18",
                   "type": "div",
                   "name": "Info",
                   "customClass": "product-info",
@@ -1241,7 +1262,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7x_19",
+                      "id": "div_mtdoxfow_19",
                       "type": "div",
                       "name": "Title",
                       "customClass": "product-title",
@@ -1308,7 +1329,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7x_20",
+                      "id": "div_mtdoxfow_20",
                       "type": "div",
                       "name": "Meta",
                       "customClass": "product-meta",
@@ -1374,7 +1395,7 @@
                       },
                       "children": [
                         {
-                          "id": "div_mtdoqj7x_21",
+                          "id": "div_mtdoxfow_21",
                           "type": "div",
                           "name": "Price",
                           "customClass": "product-price",
@@ -1441,7 +1462,7 @@
                           "children": []
                         },
                         {
-                          "id": "div_mtdoqj7x_22",
+                          "id": "div_mtdoxfow_22",
                           "type": "div",
                           "name": "Buy Button",
                           "customClass": "btn-buy",
@@ -1514,7 +1535,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7x_23",
+              "id": "div_mtdoxfow_23",
               "type": "div",
               "name": "Product Card 3",
               "customClass": "product-card",
@@ -1580,7 +1601,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7x_24",
+                  "id": "div_mtdoxfow_24",
                   "type": "div",
                   "name": "Image",
                   "customClass": "product-image-box",
@@ -1647,7 +1668,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_25",
+                  "id": "div_mtdoxfow_25",
                   "type": "div",
                   "name": "Info",
                   "customClass": "product-info",
@@ -1713,7 +1734,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7x_26",
+                      "id": "div_mtdoxfow_26",
                       "type": "div",
                       "name": "Title",
                       "customClass": "product-title",
@@ -1780,7 +1801,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7x_27",
+                      "id": "div_mtdoxfow_27",
                       "type": "div",
                       "name": "Meta",
                       "customClass": "product-meta",
@@ -1846,7 +1867,7 @@
                       },
                       "children": [
                         {
-                          "id": "div_mtdoqj7x_28",
+                          "id": "div_mtdoxfow_28",
                           "type": "div",
                           "name": "Price",
                           "customClass": "product-price",
@@ -1913,7 +1934,7 @@
                           "children": []
                         },
                         {
-                          "id": "div_mtdoqj7x_29",
+                          "id": "div_mtdoxfow_29",
                           "type": "div",
                           "name": "Buy Button",
                           "customClass": "btn-buy",
@@ -1986,7 +2007,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7x_30",
+              "id": "div_mtdoxfow_30",
               "type": "div",
               "name": "Product Card 4",
               "customClass": "product-card",
@@ -2052,7 +2073,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7x_31",
+                  "id": "div_mtdoxfow_31",
                   "type": "div",
                   "name": "Image",
                   "customClass": "product-image-box",
@@ -2119,7 +2140,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7x_32",
+                  "id": "div_mtdoxfow_32",
                   "type": "div",
                   "name": "Info",
                   "customClass": "product-info",
@@ -2185,7 +2206,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7x_33",
+                      "id": "div_mtdoxfow_33",
                       "type": "div",
                       "name": "Title",
                       "customClass": "product-title",
@@ -2252,7 +2273,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7x_34",
+                      "id": "div_mtdoxfow_34",
                       "type": "div",
                       "name": "Meta",
                       "customClass": "product-meta",
@@ -2318,7 +2339,7 @@
                       },
                       "children": [
                         {
-                          "id": "div_mtdoqj7y_35",
+                          "id": "div_mtdoxfow_35",
                           "type": "div",
                           "name": "Price",
                           "customClass": "product-price",
@@ -2385,7 +2406,7 @@
                           "children": []
                         },
                         {
-                          "id": "div_mtdoqj7y_36",
+                          "id": "div_mtdoxfow_36",
                           "type": "div",
                           "name": "Buy Button",
                           "customClass": "btn-buy",

@@ -436,7 +436,13 @@ export function generateResponsiveCss() {
     // Tablet
     var tCss = [];
     if (t.display && t.display !== d.display) tCss.push("    display: " + t.display + ";");
-    if (t.columns && t.columns !== d.columns) tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
+    if (t.customColumns && t.customColumns !== d.customColumns) {
+      tCss.push("    grid-template-columns: " + t.customColumns + ";");
+    } else if (t.gridAutoMode && t.gridAutoMode !== d.gridAutoMode) {
+      tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+    } else if (t.columns && t.columns !== d.columns) {
+      tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
+    }
     if (t.flexDirection && t.flexDirection !== d.flexDirection) tCss.push("    flex-direction: " + t.flexDirection + ";");
     if (t.width && t.width !== d.width) tCss.push("    width: " + t.width + ";");
     if (t.gap != null && t.gap !== d.gap) tCss.push("    gap: " + t.gap + "px;");
@@ -466,7 +472,13 @@ export function generateResponsiveCss() {
     // Mobile
     var mCss = [];
     if (m.display && m.display !== d.display) mCss.push("    display: " + m.display + ";");
-    if (m.columns && m.columns !== d.columns) mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
+    if (m.customColumns && m.customColumns !== d.customColumns) {
+      mCss.push("    grid-template-columns: " + m.customColumns + ";");
+    } else if (m.gridAutoMode && m.gridAutoMode !== d.gridAutoMode) {
+      mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 1fr));");
+    } else if (m.columns && m.columns !== d.columns) {
+      mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
+    }
     if (m.flexDirection && m.flexDirection !== d.flexDirection) mCss.push("    flex-direction: " + m.flexDirection + ";");
     if (m.width && m.width !== d.width) mCss.push("    width: " + m.width + ";");
     if (m.gap != null && m.gap !== d.gap) mCss.push("    gap: " + m.gap + "px;");

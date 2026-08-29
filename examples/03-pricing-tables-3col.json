@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoqj7w_1",
+      "id": "div_mtdoxfou_1",
       "type": "div",
       "name": "Pricing Section",
       "customClass": "pricing-section",
@@ -85,11 +85,17 @@
           "direction": ""
         },
         "tablet": {},
-        "mobile": {}
+        "mobile": {
+          "paddingTop": 32,
+          "paddingRight": 16,
+          "paddingBottom": 32,
+          "paddingLeft": 16,
+          "gap": 24
+        }
       },
       "children": [
         {
-          "id": "div_mtdoqj7w_2",
+          "id": "div_mtdoxfov_2",
           "type": "div",
           "name": "Pricing Header",
           "customClass": "pricing-header",
@@ -155,7 +161,7 @@
           },
           "children": [
             {
-              "id": "div_mtdoqj7w_3",
+              "id": "div_mtdoxfov_3",
               "type": "div",
               "name": "Title",
               "customClass": "pricing-title",
@@ -217,12 +223,14 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "maxWidth": "100%"
+                }
               },
               "children": []
             },
             {
-              "id": "div_mtdoqj7w_4",
+              "id": "div_mtdoxfov_4",
               "type": "div",
               "name": "Subtitle",
               "customClass": "pricing-subtitle",
@@ -284,14 +292,17 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "width": "100%",
+                  "maxWidth": "280px"
+                }
               },
               "children": []
             }
           ]
         },
         {
-          "id": "div_mtdoqj7w_5",
+          "id": "div_mtdoxfov_5",
           "type": "div",
           "name": "Pricing Grid",
           "customClass": "pricing-grid",
@@ -356,12 +367,13 @@
               "columns": 2
             },
             "mobile": {
-              "columns": 1
+              "columns": 1,
+              "gap": 16
             }
           },
           "children": [
             {
-              "id": "div_mtdoqj7w_6",
+              "id": "div_mtdoxfov_6",
               "type": "div",
               "name": "Plan 1",
               "customClass": "plan-card",
@@ -423,11 +435,17 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "paddingTop": 24,
+                  "paddingRight": 20,
+                  "paddingBottom": 24,
+                  "paddingLeft": 20,
+                  "minHeight": 380
+                }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7w_7",
+                  "id": "div_mtdoxfov_7",
                   "type": "div",
                   "name": "Plan Name",
                   "customClass": "plan-name",
@@ -494,7 +512,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_8",
+                  "id": "div_mtdoxfov_8",
                   "type": "div",
                   "name": "Plan Price",
                   "customClass": "plan-price",
@@ -561,7 +579,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_9",
+                  "id": "div_mtdoxfov_9",
                   "type": "div",
                   "name": "Features",
                   "customClass": "plan-features",
@@ -627,7 +645,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7w_10",
+                      "id": "div_mtdoxfov_10",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -694,7 +712,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_11",
+                      "id": "div_mtdoxfov_11",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -761,7 +779,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_12",
+                      "id": "div_mtdoxfov_12",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -830,7 +848,7 @@
                   ]
                 },
                 {
-                  "id": "div_mtdoqj7w_13",
+                  "id": "div_mtdoxfov_13",
                   "type": "div",
                   "name": "CTA Button",
                   "customClass": "plan-btn",
@@ -899,7 +917,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7w_14",
+              "id": "div_mtdoxfov_14",
               "type": "div",
               "name": "Plan 2",
               "customClass": "plan-card-featured",
@@ -964,13 +982,17 @@
                   "span": 2
                 },
                 "mobile": {
-                  "span": 1,
-                  "minHeight": 420
+                  "paddingTop": 24,
+                  "paddingRight": 20,
+                  "paddingBottom": 24,
+                  "paddingLeft": 20,
+                  "minHeight": 380,
+                  "span": 1
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7w_15",
+                  "id": "div_mtdoxfov_15",
                   "type": "div",
                   "name": "Plan Name",
                   "customClass": "plan-name",
@@ -1037,7 +1059,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_16",
+                  "id": "div_mtdoxfov_16",
                   "type": "div",
                   "name": "Plan Price",
                   "customClass": "plan-price",
@@ -1104,7 +1126,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_17",
+                  "id": "div_mtdoxfov_17",
                   "type": "div",
                   "name": "Features",
                   "customClass": "plan-features",
@@ -1170,7 +1192,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7w_18",
+                      "id": "div_mtdoxfov_18",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1237,7 +1259,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_19",
+                      "id": "div_mtdoxfov_19",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1304,7 +1326,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_20",
+                      "id": "div_mtdoxfov_20",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1373,7 +1395,7 @@
                   ]
                 },
                 {
-                  "id": "div_mtdoqj7w_21",
+                  "id": "div_mtdoxfov_21",
                   "type": "div",
                   "name": "CTA Button",
                   "customClass": "plan-btn-primary",
@@ -1442,7 +1464,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7w_22",
+              "id": "div_mtdoxfov_22",
               "type": "div",
               "name": "Plan 3",
               "customClass": "plan-card",
@@ -1504,11 +1526,17 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "paddingTop": 24,
+                  "paddingRight": 20,
+                  "paddingBottom": 24,
+                  "paddingLeft": 20,
+                  "minHeight": 380
+                }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7w_23",
+                  "id": "div_mtdoxfov_23",
                   "type": "div",
                   "name": "Plan Name",
                   "customClass": "plan-name",
@@ -1575,7 +1603,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_24",
+                  "id": "div_mtdoxfov_24",
                   "type": "div",
                   "name": "Plan Price",
                   "customClass": "plan-price",
@@ -1642,7 +1670,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7w_25",
+                  "id": "div_mtdoxfov_25",
                   "type": "div",
                   "name": "Features",
                   "customClass": "plan-features",
@@ -1708,7 +1736,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7w_26",
+                      "id": "div_mtdoxfov_26",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1775,7 +1803,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_27",
+                      "id": "div_mtdoxfov_27",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1842,7 +1870,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7w_28",
+                      "id": "div_mtdoxfov_28",
                       "type": "div",
                       "name": "Feature",
                       "customClass": "feature-line",
@@ -1911,7 +1939,7 @@
                   ]
                 },
                 {
-                  "id": "div_mtdoqj7w_29",
+                  "id": "div_mtdoxfov_29",
                   "type": "div",
                   "name": "CTA Button",
                   "customClass": "plan-btn",

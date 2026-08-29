@@ -410,8 +410,15 @@ html, body {
 
 /* Mobile (max-width: 576px) */
 @media (max-width: 576px) {
+  .catalog-wrapper {
+    gap: 20px;
+    padding: 20px 16px 20px 16px;
+  }
+
   .catalog-toolbar {
     flex-direction: column;
+    gap: 12px;
+    padding: 12px 12px 12px 12px;
   }
 
   .toolbar-search {
@@ -420,7 +427,27 @@ html, body {
 
   .toolbar-filters {
     width: 100%;
+    gap: 8px;
     overflow-x: auto;
+  }
+
+  .filter-chip {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .filter-chip-2 {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .filter-chip-3 {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .product-grid {
+    gap: 16px;
   }
 }
   </style>

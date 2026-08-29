@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoqj7z_1",
+      "id": "div_mtdoxfox_1",
       "type": "div",
       "name": "App Root",
       "customClass": "app-root",
@@ -40,7 +40,7 @@
           "flexWrap": "nowrap",
           "justifyContent": "flex-start",
           "alignItems": "stretch",
-          "gap": 16,
+          "gap": 0,
           "rowGap": 16,
           "horizontalAlign": "stretch",
           "width": "",
@@ -50,10 +50,10 @@
           "minHeight": 600,
           "aspectRatio": "",
           "textAlign": "left",
-          "paddingTop": 16,
-          "paddingRight": 16,
-          "paddingBottom": 16,
-          "paddingLeft": 16,
+          "paddingTop": 0,
+          "paddingRight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
           "paddingLinked": true,
           "marginTop": "",
           "marginRight": "",
@@ -89,7 +89,7 @@
       },
       "children": [
         {
-          "id": "div_mtdoqj7z_2",
+          "id": "div_mtdoxfox_2",
           "type": "div",
           "name": "Header",
           "customClass": "app-header",
@@ -151,12 +151,17 @@
               "direction": ""
             },
             "tablet": {},
-            "mobile": {}
+            "mobile": {
+              "paddingTop": 12,
+              "paddingRight": 16,
+              "paddingBottom": 12,
+              "paddingLeft": 16
+            }
           },
           "children": []
         },
         {
-          "id": "div_mtdoqj7z_3",
+          "id": "div_mtdoxfox_3",
           "type": "div",
           "name": "Main Layout",
           "customClass": "app-main-layout",
@@ -218,19 +223,25 @@
               "direction": ""
             },
             "tablet": {
-              "customColumns": "220px 1fr"
+              "customColumns": "200px 1fr",
+              "paddingTop": 20,
+              "paddingRight": 16,
+              "paddingBottom": 20,
+              "paddingLeft": 16,
+              "gap": 16
             },
             "mobile": {
               "customColumns": "1fr",
               "paddingTop": 16,
               "paddingRight": 16,
               "paddingBottom": 16,
-              "paddingLeft": 16
+              "paddingLeft": 16,
+              "gap": 16
             }
           },
           "children": [
             {
-              "id": "div_mtdoqj7z_4",
+              "id": "div_mtdoxfox_4",
               "type": "div",
               "name": "Left Nav",
               "customClass": "left-nav",
@@ -291,15 +302,24 @@
                   "hidden": false,
                   "direction": ""
                 },
-                "tablet": {},
+                "tablet": {
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16
+                },
                 "mobile": {
-                  "order": 2
+                  "order": 2,
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16
                 }
               },
               "children": []
             },
             {
-              "id": "div_mtdoqj7z_5",
+              "id": "div_mtdoxfox_5",
               "type": "div",
               "name": "Center Content",
               "customClass": "center-content",
@@ -360,14 +380,24 @@
                   "hidden": false,
                   "direction": ""
                 },
-                "tablet": {},
+                "tablet": {
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16
+                },
                 "mobile": {
-                  "order": 1
+                  "order": 1,
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "gap": 16
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoqj7z_6",
+                  "id": "div_mtdoxfox_6",
                   "type": "div",
                   "name": "Hero Box",
                   "customClass": "content-hero-box",
@@ -434,7 +464,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdoqj7z_7",
+                  "id": "div_mtdoxfox_7",
                   "type": "div",
                   "name": "Inner Grid",
                   "customClass": "content-grid-cards",
@@ -497,12 +527,13 @@
                     },
                     "tablet": {},
                     "mobile": {
-                      "columns": 1
+                      "columns": 1,
+                      "gap": 12
                     }
                   },
                   "children": [
                     {
-                      "id": "div_mtdoqj7z_8",
+                      "id": "div_mtdoxfox_8",
                       "type": "div",
                       "name": "Card 1",
                       "customClass": "inner-card",
@@ -569,7 +600,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoqj7z_9",
+                      "id": "div_mtdoxfox_9",
                       "type": "div",
                       "name": "Card 2",
                       "customClass": "inner-card",
@@ -640,7 +671,7 @@
               ]
             },
             {
-              "id": "div_mtdoqj7z_10",
+              "id": "div_mtdoxfox_10",
               "type": "div",
               "name": "Right Sidebar",
               "customClass": "right-sidebar",
@@ -702,11 +733,19 @@
                   "direction": ""
                 },
                 "tablet": {
-                  "span": 2
+                  "span": 2,
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16
                 },
                 "mobile": {
                   "span": 1,
-                  "order": 3
+                  "order": 3,
+                  "paddingTop": 16,
+                  "paddingRight": 16,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16
                 }
               },
               "children": []
@@ -714,7 +753,7 @@
           ]
         },
         {
-          "id": "div_mtdoqj7z_11",
+          "id": "div_mtdoxfox_11",
           "type": "div",
           "name": "Footer",
           "customClass": "app-footer",
