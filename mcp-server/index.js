@@ -151,7 +151,7 @@ server.tool(
 // ============================================================================
 server.tool(
   "set_props",
-  "Set responsive properties on a div for a specific device breakpoint. Props can include: display, columns, gap, flexDirection, flexWrap, justifyContent, alignItems, horizontalAlign, alignSelf, width, height, maxWidth, maxHeight, minHeight, aspectRatio, paddingTop/Right/Bottom/Left, marginTop/Right/Bottom/Left, position, top/right/bottom/left, zIndex, overflow, backgroundColor, borderWidth, borderStyle, borderColor, borderRadius, boxShadow, opacity, span, flexGrow, flexShrink, flexBasis, order, hidden, direction, gridAutoMode, gridMinColWidth, justifyItems, alignContent",
+  "Set responsive properties on a div for a specific device breakpoint. Props can include: display, columns, gap, flexDirection, flexWrap, justifyContent, alignItems, horizontalAlign, alignSelf, width, height, maxWidth, maxHeight, minHeight, aspectRatio, paddingTop/Right/Bottom/Left, marginTop/Right/Bottom/Left, position, top/right/bottom/left, zIndex, overflow, backgroundColor, borderWidth, borderStyle, borderColor, borderRadius, boxShadow, opacity, transform, transition, backdropFilter, span, flexGrow, flexShrink, flexBasis, order, hidden, direction, gridAutoMode, gridMinColWidth, justifyItems, alignContent",
   {
     nodeId: z.string().describe("ID of the node"),
     device: z.enum(["desktop", "tablet", "mobile"]).describe("Device breakpoint"),

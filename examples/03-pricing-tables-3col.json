@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdr1o24_1",
+        "id": "div_mtdr8v6z_1",
         "type": "div",
         "name": "Pricing Section",
         "customClass": "pricing-section",
@@ -83,6 +83,9 @@
             "borderRadius": "",
             "boxShadow": "",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -102,7 +105,7 @@
         },
         "children": [
           {
-            "id": "div_mtdr1o24_2",
+            "id": "div_mtdr8v6z_2",
             "type": "div",
             "name": "Pricing Header",
             "customClass": "pricing-header",
@@ -156,6 +159,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -169,7 +175,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o24_3",
+                "id": "div_mtdr8v6z_3",
                 "type": "div",
                 "name": "Title",
                 "customClass": "pricing-title",
@@ -223,6 +229,9 @@
                     "borderRadius": "6px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -239,7 +248,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o24_4",
+                "id": "div_mtdr8v6z_4",
                 "type": "div",
                 "name": "Subtitle",
                 "customClass": "pricing-subtitle",
@@ -293,6 +302,9 @@
                     "borderRadius": "4px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -312,7 +324,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o24_5",
+            "id": "div_mtdr8v6z_5",
             "type": "div",
             "name": "Pricing Grid",
             "customClass": "pricing-grid",
@@ -366,6 +378,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -384,7 +399,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o24_6",
+                "id": "div_mtdr8v6z_6",
                 "type": "div",
                 "name": "Plan 1",
                 "customClass": "plan-card",
@@ -438,6 +453,9 @@
                     "borderRadius": "16px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -457,7 +475,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o24_7",
+                    "id": "div_mtdr8v6z_7",
                     "type": "div",
                     "name": "Plan Name",
                     "customClass": "plan-name",
@@ -511,6 +529,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -525,7 +546,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_8",
+                    "id": "div_mtdr8v6z_8",
                     "type": "div",
                     "name": "Plan Price",
                     "customClass": "plan-price",
@@ -579,6 +600,9 @@
                         "borderRadius": "6px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -593,7 +617,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_9",
+                    "id": "div_mtdr8v6z_9",
                     "type": "div",
                     "name": "Features",
                     "customClass": "plan-features",
@@ -647,6 +671,9 @@
                         "borderRadius": "",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -660,7 +687,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o24_10",
+                        "id": "div_mtdr8v6z_10",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -714,6 +741,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -728,7 +758,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_11",
+                        "id": "div_mtdr8v6z_11",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -782,6 +812,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -796,7 +829,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_12",
+                        "id": "div_mtdr8v6z_12",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -850,6 +883,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -866,7 +902,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o24_13",
+                    "id": "div_mtdr8v6z_13",
                     "type": "div",
                     "name": "CTA Button",
                     "customClass": "plan-btn",
@@ -920,6 +956,9 @@
                         "borderRadius": "8px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -936,7 +975,7 @@
                 ]
               },
               {
-                "id": "div_mtdr1o24_14",
+                "id": "div_mtdr8v6z_14",
                 "type": "div",
                 "name": "Plan 2",
                 "customClass": "plan-card-featured",
@@ -990,6 +1029,9 @@
                     "borderRadius": "16px",
                     "boxShadow": "0 12px 30px rgba(56, 189, 248, 0.18)",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -1012,7 +1054,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o24_15",
+                    "id": "div_mtdr8v6z_15",
                     "type": "div",
                     "name": "Plan Name",
                     "customClass": "plan-name",
@@ -1066,6 +1108,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1080,7 +1125,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_16",
+                    "id": "div_mtdr8v6z_16",
                     "type": "div",
                     "name": "Plan Price",
                     "customClass": "plan-price",
@@ -1134,6 +1179,9 @@
                         "borderRadius": "6px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1148,7 +1196,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_17",
+                    "id": "div_mtdr8v6z_17",
                     "type": "div",
                     "name": "Features",
                     "customClass": "plan-features",
@@ -1202,6 +1250,9 @@
                         "borderRadius": "",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1215,7 +1266,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o24_18",
+                        "id": "div_mtdr8v6z_18",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1269,6 +1320,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1283,7 +1337,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_19",
+                        "id": "div_mtdr8v6z_19",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1337,6 +1391,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1351,7 +1408,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_20",
+                        "id": "div_mtdr8v6z_20",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1405,6 +1462,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1421,7 +1481,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o24_21",
+                    "id": "div_mtdr8v6z_21",
                     "type": "div",
                     "name": "CTA Button",
                     "customClass": "plan-btn-primary",
@@ -1475,6 +1535,9 @@
                         "borderRadius": "8px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1491,7 +1554,7 @@
                 ]
               },
               {
-                "id": "div_mtdr1o24_22",
+                "id": "div_mtdr8v6z_22",
                 "type": "div",
                 "name": "Plan 3",
                 "customClass": "plan-card",
@@ -1545,6 +1608,9 @@
                     "borderRadius": "16px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -1564,7 +1630,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o24_23",
+                    "id": "div_mtdr8v6z_23",
                     "type": "div",
                     "name": "Plan Name",
                     "customClass": "plan-name",
@@ -1618,6 +1684,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1632,7 +1701,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_24",
+                    "id": "div_mtdr8v6z_24",
                     "type": "div",
                     "name": "Plan Price",
                     "customClass": "plan-price",
@@ -1686,6 +1755,9 @@
                         "borderRadius": "6px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1700,7 +1772,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o24_25",
+                    "id": "div_mtdr8v6z_25",
                     "type": "div",
                     "name": "Features",
                     "customClass": "plan-features",
@@ -1754,6 +1826,9 @@
                         "borderRadius": "",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1767,7 +1842,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o24_26",
+                        "id": "div_mtdr8v6z_26",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1821,6 +1896,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1835,7 +1913,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_27",
+                        "id": "div_mtdr8v6z_27",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1889,6 +1967,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1903,7 +1984,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o24_28",
+                        "id": "div_mtdr8v6z_28",
                         "type": "div",
                         "name": "Feature",
                         "customClass": "feature-line",
@@ -1957,6 +2038,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1973,7 +2057,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o24_29",
+                    "id": "div_mtdr8v6z_29",
                     "type": "div",
                     "name": "CTA Button",
                     "customClass": "plan-btn",
@@ -2027,6 +2111,9 @@
                         "borderRadius": "8px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,

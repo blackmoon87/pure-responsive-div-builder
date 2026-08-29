@@ -563,6 +563,13 @@ import {
     if (eff.borderRadius) wrapper.style.borderRadius = eff.borderRadius;
     if (eff.boxShadow) wrapper.style.boxShadow = eff.boxShadow;
     if (eff.opacity && eff.opacity !== "1") wrapper.style.opacity = eff.opacity;
+    if (eff.transform) wrapper.style.transform = eff.transform;
+    if (eff.backdropFilter) {
+      wrapper.style.backdropFilter = eff.backdropFilter;
+      wrapper.style.webkitBackdropFilter = eff.backdropFilter;
+    }
+    // transition is deliberately NOT mirrored: it has no effect on a static
+    // render, and would animate the editor itself on every re-render.
     if (eff.direction) wrapper.style.direction = eff.direction;
 
     // Tag badge on div
@@ -1139,6 +1146,33 @@ import {
     var opI = el("input", "prop-input"); opI.type = "range"; opI.min = "0"; opI.max = "1"; opI.step = "0.05"; opI.value = eff.opacity || "1";
     opI.addEventListener("input", function (e) { setProp("opacity", e.target.value); });
     opGrp.appendChild(opI); visCard.appendChild(opGrp);
+
+    // Transform / Transition / Backdrop filter — the entrance-animation and
+    // frosted-glass primitives a modal or drawer needs. Free-text so any valid
+    // CSS value works; presets cover the common cases.
+    [["Transform", "transform", "scale(0.96) / translateY(-8px)",
+      [["None", ""], ["Lift", "translateY(-8px)"], ["Shrink", "scale(0.96)"], ["Off-canvas", "translateX(-100%)"]]],
+     ["Transition", "transition", "opacity .2s ease, transform .2s ease",
+      [["None", ""], ["Fast", "all .15s ease"], ["Base", "all .25s ease"], ["Slow", "all .4s ease"]]],
+     ["Backdrop Filter", "backdropFilter", "blur(12px) saturate(140%)",
+      [["None", ""], ["sm", "blur(4px)"], ["md", "blur(12px)"], ["Glass", "blur(12px) saturate(140%)"]]]
+    ].forEach(function (spec) {
+      var label = spec[0], key = spec[1], ph = spec[2], presets = spec[3];
+      var g = el("div", "prop-group");
+      g.appendChild(el("label", "prop-label", label));
+      var bar = el("div", "quick-split-bar");
+      presets.forEach(function (pr) {
+        var b = el("button", "btn-tree-action" + (eff[key] === pr[1] ? " is-active-preset" : ""), pr[0]);
+        b.addEventListener("click", function () { setProp(key, pr[1]); });
+        bar.appendChild(b);
+      });
+      g.appendChild(bar);
+      var inp = el("input", "prop-input"); inp.type = "text"; inp.value = eff[key] || ""; inp.placeholder = ph;
+      inp.addEventListener("input", debounce(function (e) { setProp(key, e.target.value.trim()); }, 300));
+      g.appendChild(inp);
+      visCard.appendChild(g);
+    });
+
     propsBody.appendChild(visCard);
 
     // ========================================================================

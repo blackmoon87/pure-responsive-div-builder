@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdr1o1z_1",
+        "id": "div_mtdr8v6t_1",
         "type": "div",
         "name": "Card Container",
         "customClass": "card-container",
@@ -83,6 +83,9 @@
             "borderRadius": "16px",
             "boxShadow": "0 10px 25px rgba(0, 0, 0, 0.4)",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -101,7 +104,7 @@
         },
         "children": [
           {
-            "id": "div_mtdr1o1z_2",
+            "id": "div_mtdr8v6t_2",
             "type": "div",
             "name": "Card Header",
             "customClass": "card-header",
@@ -155,6 +158,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -168,7 +174,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o1z_3",
+                "id": "div_mtdr8v6t_3",
                 "type": "div",
                 "name": "Badge",
                 "customClass": "card-badge",
@@ -222,6 +228,9 @@
                     "borderRadius": "20px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -238,7 +247,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o1z_4",
+            "id": "div_mtdr8v6t_4",
             "type": "div",
             "name": "Card Body",
             "customClass": "card-body",
@@ -292,6 +301,9 @@
                 "borderRadius": "8px",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -306,7 +318,7 @@
             "children": []
           },
           {
-            "id": "div_mtdr1o1z_5",
+            "id": "div_mtdr8v6t_5",
             "type": "div",
             "name": "Card Footer",
             "customClass": "card-footer",
@@ -360,6 +372,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -375,7 +390,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o1z_6",
+                "id": "div_mtdr8v6t_6",
                 "type": "div",
                 "name": "Action Button",
                 "customClass": "btn-action",
@@ -429,6 +444,9 @@
                     "borderRadius": "8px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,

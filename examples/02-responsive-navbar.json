@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdr1o22_1",
+        "id": "div_mtdr8v6x_1",
         "type": "div",
         "name": "Site Header",
         "customClass": "site-header",
@@ -83,6 +83,9 @@
             "borderRadius": "",
             "boxShadow": "",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -96,7 +99,7 @@
         },
         "children": [
           {
-            "id": "div_mtdr1o22_2",
+            "id": "div_mtdr8v6x_2",
             "type": "div",
             "name": "Nav Container",
             "customClass": "nav-container",
@@ -150,6 +153,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -170,7 +176,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o22_3",
+                "id": "div_mtdr8v6x_3",
                 "type": "div",
                 "name": "Brand Logo",
                 "customClass": "brand-logo",
@@ -224,6 +230,9 @@
                     "borderRadius": "6px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -238,7 +247,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o22_4",
+                "id": "div_mtdr8v6x_4",
                 "type": "div",
                 "name": "Nav Links",
                 "customClass": "nav-links",
@@ -292,6 +301,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -310,7 +322,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o22_5",
+                    "id": "div_mtdr8v6x_5",
                     "type": "div",
                     "name": "Nav Item 1",
                     "customClass": "nav-item",
@@ -364,6 +376,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -380,7 +395,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o22_6",
+                    "id": "div_mtdr8v6x_6",
                     "type": "div",
                     "name": "Nav Item 2",
                     "customClass": "nav-item",
@@ -434,6 +449,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -450,7 +468,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o22_7",
+                    "id": "div_mtdr8v6x_7",
                     "type": "div",
                     "name": "Nav Item 3",
                     "customClass": "nav-item",
@@ -504,6 +522,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -520,7 +541,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o22_8",
+                    "id": "div_mtdr8v6x_8",
                     "type": "div",
                     "name": "Nav Item 4",
                     "customClass": "nav-item",
@@ -574,6 +595,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -592,7 +616,7 @@
                 ]
               },
               {
-                "id": "div_mtdr1o22_9",
+                "id": "div_mtdr8v6x_9",
                 "type": "div",
                 "name": "Nav Actions",
                 "customClass": "nav-actions",
@@ -646,6 +670,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -661,7 +688,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o22_10",
+                    "id": "div_mtdr8v6x_10",
                     "type": "div",
                     "name": "CTA Button",
                     "customClass": "btn-cta",
@@ -715,6 +742,9 @@
                         "borderRadius": "6px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -737,7 +767,7 @@
         ]
       },
       {
-        "id": "div_mtdr1o22_11",
+        "id": "div_mtdr8v6x_11",
         "type": "div",
         "name": "Hero Section",
         "customClass": "hero-banner",
@@ -791,6 +821,9 @@
             "borderRadius": "12px",
             "boxShadow": "",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,

@@ -69,6 +69,9 @@ export var defaultDesktopProps = {
     borderRadius: "",         // "8px", "50%"
     boxShadow: "",
     opacity: "",
+    transform: "",            // "translateY(-8px)", "scale(0.96)", "translate(-50%, -50%)"
+    transition: "",           // "opacity .2s ease, transform .2s ease"
+    backdropFilter: "",       // "blur(8px)", "blur(12px) saturate(140%)"
 
     // Flex/Grid child
     span: 1,
@@ -183,6 +186,8 @@ var NEUTRAL = {
   "overflow": "visible", "overflow-x": "visible", "overflow-y": "visible",
   "background-color": "transparent", "border": "none", "border-radius": "0",
   "box-shadow": "none", "opacity": "1", "min-width": "auto",
+  "transform": "none", "transition": "none",
+  "backdrop-filter": "none", "-webkit-backdrop-filter": "none",
   "grid-column": "auto", "order": "0", "flex-basis": "auto", "flex-grow": "0",
   "justify-self": "stretch", "align-self": "auto", "justify-items": "stretch",
   // Neutrals mirror this generator's own defaults, not the CSS-wide initial
@@ -295,6 +300,14 @@ function declarationsFor(props, ctx) {
   if (p.borderRadius) o.push("border-radius: " + p.borderRadius + ";");
   if (p.boxShadow) o.push("box-shadow: " + p.boxShadow + ";");
   if (p.opacity && p.opacity !== "1") o.push("opacity: " + p.opacity + ";");
+  if (p.transform) o.push("transform: " + p.transform + ";");
+  if (p.transition) o.push("transition: " + p.transition + ";");
+  if (p.backdropFilter) {
+    // Safari needed the prefix until 18; both are emitted so the output stays
+    // paste-anywhere without a build step.
+    o.push("-webkit-backdrop-filter: " + p.backdropFilter + ";");
+    o.push("backdrop-filter: " + p.backdropFilter + ";");
+  }
 
   // --- as a child of its parent -------------------------------------------
   if (ctx.rowParent) o.push("min-width: 0;");

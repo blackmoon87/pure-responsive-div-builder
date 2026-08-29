@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdr1o2b_1",
+        "id": "div_mtdr8v78_1",
         "type": "div",
         "name": "App Root",
         "customClass": "app-root",
@@ -83,6 +83,9 @@
             "borderRadius": "",
             "boxShadow": "",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -96,7 +99,7 @@
         },
         "children": [
           {
-            "id": "div_mtdr1o2b_2",
+            "id": "div_mtdr8v78_2",
             "type": "div",
             "name": "Header",
             "customClass": "app-header",
@@ -150,6 +153,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -169,7 +175,7 @@
             "children": []
           },
           {
-            "id": "div_mtdr1o2b_3",
+            "id": "div_mtdr8v78_3",
             "type": "div",
             "name": "Main Layout",
             "customClass": "app-main-layout",
@@ -223,6 +229,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -250,7 +259,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o2b_4",
+                "id": "div_mtdr8v78_4",
                 "type": "div",
                 "name": "Left Nav",
                 "customClass": "left-nav",
@@ -304,6 +313,9 @@
                     "borderRadius": "12px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -329,7 +341,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2b_5",
+                "id": "div_mtdr8v78_5",
                 "type": "div",
                 "name": "Center Content",
                 "customClass": "center-content",
@@ -383,6 +395,9 @@
                     "borderRadius": "12px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -408,7 +423,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o2b_6",
+                    "id": "div_mtdr8v78_6",
                     "type": "div",
                     "name": "Hero Box",
                     "customClass": "content-hero-box",
@@ -462,6 +477,9 @@
                         "borderRadius": "8px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -476,7 +494,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o2b_7",
+                    "id": "div_mtdr8v78_7",
                     "type": "div",
                     "name": "Inner Grid",
                     "customClass": "content-grid-cards",
@@ -530,6 +548,9 @@
                         "borderRadius": "",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -546,7 +567,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2b_8",
+                        "id": "div_mtdr8v78_8",
                         "type": "div",
                         "name": "Card 1",
                         "customClass": "inner-card",
@@ -600,6 +621,9 @@
                             "borderRadius": "8px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -614,7 +638,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2b_9",
+                        "id": "div_mtdr8v78_9",
                         "type": "div",
                         "name": "Card 2",
                         "customClass": "inner-card",
@@ -668,6 +692,9 @@
                             "borderRadius": "8px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -686,7 +713,7 @@
                 ]
               },
               {
-                "id": "div_mtdr1o2b_10",
+                "id": "div_mtdr8v78_10",
                 "type": "div",
                 "name": "Right Sidebar",
                 "customClass": "right-sidebar",
@@ -740,6 +767,9 @@
                     "borderRadius": "12px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -769,7 +799,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o2b_11",
+            "id": "div_mtdr8v78_11",
             "type": "div",
             "name": "Footer",
             "customClass": "app-footer",
@@ -823,6 +853,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,

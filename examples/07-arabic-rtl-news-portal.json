@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdr1o2g_1",
+        "id": "div_mtdr8v7e_1",
         "type": "div",
         "name": "Portal Root",
         "customClass": "portal-root",
@@ -83,6 +83,9 @@
             "borderRadius": "",
             "boxShadow": "",
             "opacity": "",
+            "transform": "",
+            "transition": "",
+            "backdropFilter": "",
             "span": 1,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -96,7 +99,7 @@
         },
         "children": [
           {
-            "id": "div_mtdr1o2g_2",
+            "id": "div_mtdr8v7e_2",
             "type": "div",
             "name": "Ticker Bar",
             "customClass": "top-ticker-bar",
@@ -150,6 +153,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -169,7 +175,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o2g_3",
+                "id": "div_mtdr8v7e_3",
                 "type": "div",
                 "name": "Ticker Badge",
                 "customClass": "ticker-badge",
@@ -223,6 +229,9 @@
                     "borderRadius": "4px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -240,7 +249,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2g_4",
+                "id": "div_mtdr8v7e_4",
                 "type": "div",
                 "name": "Ticker Text",
                 "customClass": "ticker-text",
@@ -294,6 +303,9 @@
                     "borderRadius": "4px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -310,7 +322,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o2g_5",
+            "id": "div_mtdr8v7e_5",
             "type": "div",
             "name": "Portal Nav",
             "customClass": "portal-nav",
@@ -364,6 +376,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -384,7 +399,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o2g_6",
+                "id": "div_mtdr8v7e_6",
                 "type": "div",
                 "name": "Logo",
                 "customClass": "portal-logo",
@@ -438,6 +453,9 @@
                     "borderRadius": "8px",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -454,7 +472,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2g_7",
+                "id": "div_mtdr8v7e_7",
                 "type": "div",
                 "name": "Menu",
                 "customClass": "portal-menu",
@@ -508,6 +526,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -526,7 +547,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o2g_8",
+                    "id": "div_mtdr8v7e_8",
                     "type": "div",
                     "name": "Menu Link 1",
                     "customClass": "menu-link",
@@ -580,6 +601,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -596,7 +620,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o2g_9",
+                    "id": "div_mtdr8v7e_9",
                     "type": "div",
                     "name": "Menu Link 2",
                     "customClass": "menu-link",
@@ -650,6 +674,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -666,7 +693,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o2g_10",
+                    "id": "div_mtdr8v7e_10",
                     "type": "div",
                     "name": "Menu Link 3",
                     "customClass": "menu-link",
@@ -720,6 +747,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -736,7 +766,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdr1o2g_11",
+                    "id": "div_mtdr8v7e_11",
                     "type": "div",
                     "name": "Menu Link 4",
                     "customClass": "menu-link",
@@ -790,6 +820,9 @@
                         "borderRadius": "4px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -810,7 +843,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o2g_12",
+            "id": "div_mtdr8v7e_12",
             "type": "div",
             "name": "Portal Body",
             "customClass": "portal-body",
@@ -864,6 +897,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -883,7 +919,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o2g_13",
+                "id": "div_mtdr8v7e_13",
                 "type": "div",
                 "name": "Featured Grid",
                 "customClass": "featured-grid",
@@ -937,6 +973,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -955,7 +994,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o2g_14",
+                    "id": "div_mtdr8v7e_14",
                     "type": "div",
                     "name": "Lead Story",
                     "customClass": "main-lead-story",
@@ -1009,6 +1048,9 @@
                         "borderRadius": "14px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1028,7 +1070,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2g_15",
+                        "id": "div_mtdr8v7e_15",
                         "type": "div",
                         "name": "Tag",
                         "customClass": "lead-tag",
@@ -1082,6 +1124,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1096,7 +1141,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_16",
+                        "id": "div_mtdr8v7e_16",
                         "type": "div",
                         "name": "Headline",
                         "customClass": "lead-headline",
@@ -1150,6 +1195,9 @@
                             "borderRadius": "6px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1166,7 +1214,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_17",
+                        "id": "div_mtdr8v7e_17",
                         "type": "div",
                         "name": "Summary",
                         "customClass": "lead-summary",
@@ -1220,6 +1268,9 @@
                             "borderRadius": "4px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1238,7 +1289,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o2g_18",
+                    "id": "div_mtdr8v7f_18",
                     "type": "div",
                     "name": "Secondary Column",
                     "customClass": "secondary-column",
@@ -1292,6 +1343,9 @@
                         "borderRadius": "",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1305,7 +1359,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2g_19",
+                        "id": "div_mtdr8v7f_19",
                         "type": "div",
                         "name": "Small News 1",
                         "customClass": "news-card-small",
@@ -1359,6 +1413,9 @@
                             "borderRadius": "10px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1373,7 +1430,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_20",
+                        "id": "div_mtdr8v7f_20",
                         "type": "div",
                         "name": "Small News 2",
                         "customClass": "news-card-small",
@@ -1427,6 +1484,9 @@
                             "borderRadius": "10px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1441,7 +1501,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_21",
+                        "id": "div_mtdr8v7g_21",
                         "type": "div",
                         "name": "Small News 3",
                         "customClass": "news-card-small",
@@ -1495,6 +1555,9 @@
                             "borderRadius": "10px",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1513,7 +1576,7 @@
                 ]
               },
               {
-                "id": "div_mtdr1o2g_22",
+                "id": "div_mtdr8v7g_22",
                 "type": "div",
                 "name": "3-Col Articles",
                 "customClass": "articles-3col-grid",
@@ -1567,6 +1630,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -1585,7 +1651,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdr1o2g_23",
+                    "id": "div_mtdr8v7g_23",
                     "type": "div",
                     "name": "Article 1",
                     "customClass": "article-box",
@@ -1639,6 +1705,9 @@
                         "borderRadius": "12px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1652,7 +1721,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2g_24",
+                        "id": "div_mtdr8v7g_24",
                         "type": "div",
                         "name": "Image",
                         "customClass": "article-img",
@@ -1706,6 +1775,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1720,7 +1792,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_25",
+                        "id": "div_mtdr8v7g_25",
                         "type": "div",
                         "name": "Content",
                         "customClass": "article-content",
@@ -1774,6 +1846,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1790,7 +1865,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o2g_26",
+                    "id": "div_mtdr8v7g_26",
                     "type": "div",
                     "name": "Article 2",
                     "customClass": "article-box",
@@ -1844,6 +1919,9 @@
                         "borderRadius": "12px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -1857,7 +1935,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2g_27",
+                        "id": "div_mtdr8v7g_27",
                         "type": "div",
                         "name": "Image",
                         "customClass": "article-img",
@@ -1911,6 +1989,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1925,7 +2006,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_28",
+                        "id": "div_mtdr8v7g_28",
                         "type": "div",
                         "name": "Content",
                         "customClass": "article-content",
@@ -1979,6 +2060,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -1995,7 +2079,7 @@
                     ]
                   },
                   {
-                    "id": "div_mtdr1o2g_29",
+                    "id": "div_mtdr8v7g_29",
                     "type": "div",
                     "name": "Article 3",
                     "customClass": "article-box",
@@ -2049,6 +2133,9 @@
                         "borderRadius": "12px",
                         "boxShadow": "",
                         "opacity": "",
+                        "transform": "",
+                        "transition": "",
+                        "backdropFilter": "",
                         "span": 1,
                         "flexGrow": 1,
                         "flexShrink": 1,
@@ -2062,7 +2149,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdr1o2g_30",
+                        "id": "div_mtdr8v7g_30",
                         "type": "div",
                         "name": "Image",
                         "customClass": "article-img",
@@ -2116,6 +2203,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -2130,7 +2220,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdr1o2g_31",
+                        "id": "div_mtdr8v7g_31",
                         "type": "div",
                         "name": "Content",
                         "customClass": "article-content",
@@ -2184,6 +2274,9 @@
                             "borderRadius": "",
                             "boxShadow": "",
                             "opacity": "",
+                            "transform": "",
+                            "transition": "",
+                            "backdropFilter": "",
                             "span": 1,
                             "flexGrow": 1,
                             "flexShrink": 1,
@@ -2204,7 +2297,7 @@
             ]
           },
           {
-            "id": "div_mtdr1o2g_32",
+            "id": "div_mtdr8v7g_32",
             "type": "div",
             "name": "Footer",
             "customClass": "portal-footer",
@@ -2258,6 +2351,9 @@
                 "borderRadius": "",
                 "boxShadow": "",
                 "opacity": "",
+                "transform": "",
+                "transition": "",
+                "backdropFilter": "",
                 "span": 1,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -2280,7 +2376,7 @@
             },
             "children": [
               {
-                "id": "div_mtdr1o2g_33",
+                "id": "div_mtdr8v7g_33",
                 "type": "div",
                 "name": "Footer Col 1",
                 "customClass": "footer-col",
@@ -2334,6 +2430,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -2348,7 +2447,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2g_34",
+                "id": "div_mtdr8v7g_34",
                 "type": "div",
                 "name": "Footer Col 2",
                 "customClass": "footer-col",
@@ -2402,6 +2501,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -2416,7 +2518,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2g_35",
+                "id": "div_mtdr8v7g_35",
                 "type": "div",
                 "name": "Footer Col 3",
                 "customClass": "footer-col",
@@ -2470,6 +2572,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,
@@ -2484,7 +2589,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdr1o2g_36",
+                "id": "div_mtdr8v7g_36",
                 "type": "div",
                 "name": "Footer Col 4",
                 "customClass": "footer-col",
@@ -2538,6 +2643,9 @@
                     "borderRadius": "",
                     "boxShadow": "",
                     "opacity": "",
+                    "transform": "",
+                    "transition": "",
+                    "backdropFilter": "",
                     "span": 1,
                     "flexGrow": 1,
                     "flexShrink": 1,

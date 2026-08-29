@@ -33,9 +33,10 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 | **4-Side Spacing** | Individual Top/Right/Bottom/Left padding & margins with linked 🔗 toggle |
 | **Layer & Positioning** | `static`, `relative`, `absolute`, `fixed`, `sticky` + offsets (top/right/bottom/left) + `z-index` |
 | **Overflow Control** | Combined + independent `overflow-x` / `overflow-y` (`visible`, `hidden`, `scroll`, `auto`) |
-| **Visual Styling** | Color picker + Hex background, custom borders (width/style/color), border-radius presets, box-shadows, opacity slider |
+| **Visual Styling** | Color picker + Hex background, custom borders (width/style/color), border-radius presets, box-shadows, opacity slider, `transform`, `transition`, `backdrop-filter` (auto `-webkit-` prefixed) |
 | **Child Rules** | Column span (1-12), `flex-grow`, `flex-shrink`, `flex-basis`, `order` |
 | **Instant Export** | Clean HTML, responsive CSS with media queries, or single-file combined HTML with download & clipboard copy |
+| **Overlays** | Modals, drawers and popovers: fixed full-viewport backdrop with `rgba()` scrim + `backdrop-filter`, flex-centred dialog, `transform`/`transition` for entrance states. Ship it `hidden` and open it from your own JS with `el.style.display = 'flex'` — every other declaration survives |
 | **Show / Hide** | `hidden` per device on every breakpoint including desktop — hide a sidebar on phones, or keep a mobile-only panel `display: none` on desktop and switch it back on at its breakpoint |
 | **Undo / Redo** | 50-deep snapshot history with keyboard shortcuts (`Ctrl+Z`, `Ctrl+Y`, `Del`) |
 
