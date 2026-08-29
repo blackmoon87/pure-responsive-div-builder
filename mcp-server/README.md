@@ -1,6 +1,6 @@
 # htmlCreator MCP Server
 
-Exposes the Pure Responsive DIV Generator as **16 MCP tools** for AI agents.
+Exposes the Pure Responsive DIV Generator as **20 MCP tools** for AI agents.
 
 ## Quick Start
 

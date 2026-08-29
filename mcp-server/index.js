@@ -177,6 +177,7 @@ server.tool(
     device: z.enum(["tablet", "mobile"]).describe("Device to reset (cannot reset desktop)")
   },
   async ({ nodeId, device }) => {
+    core.pushHistory();
     const ok = core.resetDevice(nodeId, device);
     return { content: [{ type: "text", text: ok ? "Reset " + device + " overrides on " + nodeId : "Error: node not found" }] };
   }
@@ -250,9 +251,12 @@ server.tool(
     tree: z.record(z.any()).describe("Full tree JSON object (as exported by export_json)")
   },
   async ({ tree }) => {
-    core.importTreeJson(tree);
+    core.pushHistory();
+    const res = core.importTreeJson(tree);
+    if (!res.ok) return { content: [{ type: "text", text: "Error: invalid tree — " + res.error }] };
     const count = core.listTree().length;
-    return { content: [{ type: "text", text: "Imported tree with " + count + " nodes" }] };
+    return { content: [{ type: "text", text: "Imported tree with " + count + " nodes (breakpoints: tablet=" +
+      res.breakpoints.tablet + "px, mobile=" + res.breakpoints.mobile + "px)" }] };
   }
 );
 
@@ -267,6 +271,7 @@ server.tool(
     mobile: z.number().optional().describe("Mobile breakpoint (default 576)")
   },
   async ({ tablet, mobile }) => {
+    core.pushHistory();
     const bp = core.setBreakpoints(tablet, mobile);
     return { content: [{ type: "text", text: "Breakpoints: tablet=" + bp.tablet + "px, mobile=" + bp.mobile + "px" }] };
   }
@@ -280,8 +285,9 @@ server.tool(
   "Clear the entire tree and start fresh with a clean page root",
   {},
   async () => {
+    core.pushHistory();
     core.resetAll();
-    return { content: [{ type: "text", text: "Reset complete. Empty page root ready." }] };
+    return { content: [{ type: "text", text: "Reset complete. Empty page root ready. (undo restores the previous tree)" }] };
   }
 );
 

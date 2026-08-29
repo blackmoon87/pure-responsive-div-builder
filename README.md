@@ -3,7 +3,7 @@
 [![HTML5](https://img.shields.io/badge/HTML5-Pure%20DIVs%20Only-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder)
 [![CSS3](https://img.shields.io/badge/CSS3-Modern%20Grid%20%26%20Flexbox-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder)
 [![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla%20ES5%20Zero%20Deps-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/blackmoon87/pure-responsive-div-builder)
-[![MCP Server](https://img.shields.io/badge/MCP%20Server-19%20AI%20Agent%20Tools-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder/tree/main/mcp-server)
+[![MCP Server](https://img.shields.io/badge/MCP%20Server-20%20AI%20Agent%20Tools-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder/tree/main/mcp-server)
 [![RTL Supported](https://img.shields.io/badge/RTL-Arabic%20%26%20Hebrew%20Ready-10B981?style=for-the-badge)](https://github.com/blackmoon87/pure-responsive-div-builder)
 
 > **A high-performance visual wireframe builder & responsive HTML5/CSS3 layout generator that generates 100% pure, unbloated `<div>` hierarchies with modern CSS Grid, Flexbox, RTL support, and a built-in MCP Server for AI coding agents.**
@@ -17,9 +17,9 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 **Pure Responsive DIV Generator follows a strict zero-bloat philosophy:**
 - 🧱 **100% Pure `<div>` Tags:** Clean, predictable structural wireframes. No unauthorized tags or inline junk.
 - 📐 **Zero Dependencies:** Pure Vanilla JavaScript & CSS. No frameworks, no build step, no bundlers needed.
-- 📱 **Triple-Breakpoint Responsive Engine:** Visual desktop (>992px), tablet (≤992px), and mobile (≤576px) views with editable live breakpoints.
+- 📱 **Triple-Breakpoint Responsive Engine:** Desktop (>992px), tablet (≤992px), and mobile (≤576px) rules, with editable live breakpoints and a free-width ruler for previewing any viewport in between — the ranges where layouts actually break.
 - 🌐 **First-Class RTL (Right-to-Left) Support:** Native `dir="rtl"` and `direction: rtl` export for Arabic, Hebrew, and Persian layouts.
-- 🤖 **Model Context Protocol (MCP) Server:** Exposes 19 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
+- 🤖 **Model Context Protocol (MCP) Server:** Exposes 20 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
 
 ---
 
@@ -204,7 +204,7 @@ Native RTL support with `dir="rtl"` and responsive flow:
 
 The project includes a standalone **Model Context Protocol (MCP)** server under `mcp-server/` allowing LLMs like Claude, Cursor, Antigravity, and Windsurf to create and manipulate responsive layouts programmatically.
 
-### MCP Tools List (19 Tools)
+### MCP Tools List (20 Tools)
 
 | Category | Tools |
 |---|---|
@@ -259,3 +259,19 @@ For an exhaustive technical breakdown of every function, algorithm, data structu
 ## 📄 License
 
 MIT License © 2026 [blackmoon87](https://github.com/blackmoon87)
+
+---
+
+## 🏗️ Architecture: one generator, two surfaces
+
+HTML and CSS emission lives in a single module, **`generator.js`**, which is pure and state-free — every entry point takes the tree and breakpoints as arguments:
+
+```
+generator.js  ──┬──►  builder.js        (browser UI, ES module)
+                └──►  mcp-server/core.js (MCP server state + tools)
+                          └──►  generate_examples.js
+```
+
+Previously `builder.js` and `mcp-server/core.js` each carried their own copy of the emitter. They drifted: the MCP path silently dropped `overflow-x`/`overflow-y` and tablet/mobile `horizontalAlign`, so agents received a success response and CSS that ignored the properties they had set. **Any change to emitted CSS now belongs in `generator.js` and reaches both surfaces at once.**
+
+Because `builder.js` is an ES module, the builder must be served over HTTP (`python3 -m http.server 8080`) — opening `index.html` via `file://` will not work.
