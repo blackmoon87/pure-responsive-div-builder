@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdp34x1_1",
+      "id": "div_mtdp71ka_1",
       "type": "div",
       "name": "Dashboard Root",
       "customClass": "dashboard-layout",
@@ -91,7 +91,7 @@
       },
       "children": [
         {
-          "id": "div_mtdp34x1_2",
+          "id": "div_mtdp71ka_2",
           "type": "div",
           "name": "Sidebar",
           "customClass": "dash-sidebar",
@@ -159,7 +159,7 @@
           },
           "children": [
             {
-              "id": "div_mtdp34x1_3",
+              "id": "div_mtdp71ka_3",
               "type": "div",
               "name": "Brand",
               "customClass": "brand-slot",
@@ -226,7 +226,7 @@
               "children": []
             },
             {
-              "id": "div_mtdp34x1_4",
+              "id": "div_mtdp71ka_4",
               "type": "div",
               "name": "Nav List",
               "customClass": "side-nav-list",
@@ -292,7 +292,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdp34x1_5",
+                  "id": "div_mtdp71ka_5",
                   "type": "div",
                   "name": "Nav Item 1",
                   "customClass": "side-nav-item-active",
@@ -359,7 +359,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_6",
+                  "id": "div_mtdp71ka_6",
                   "type": "div",
                   "name": "Nav Item 2",
                   "customClass": "side-nav-item",
@@ -426,7 +426,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_7",
+                  "id": "div_mtdp71ka_7",
                   "type": "div",
                   "name": "Nav Item 3",
                   "customClass": "side-nav-item",
@@ -493,7 +493,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_8",
+                  "id": "div_mtdp71ka_8",
                   "type": "div",
                   "name": "Nav Item 4",
                   "customClass": "side-nav-item",
@@ -562,7 +562,7 @@
               ]
             },
             {
-              "id": "div_mtdp34x1_9",
+              "id": "div_mtdp71ka_9",
               "type": "div",
               "name": "User Profile",
               "customClass": "user-profile-slot",
@@ -631,7 +631,7 @@
           ]
         },
         {
-          "id": "div_mtdp34x1_10",
+          "id": "div_mtdp71ka_10",
           "type": "div",
           "name": "Main Content",
           "customClass": "dash-main",
@@ -703,7 +703,7 @@
           },
           "children": [
             {
-              "id": "div_mtdp34x1_11",
+              "id": "div_mtdp71ka_11",
               "type": "div",
               "name": "Topbar",
               "customClass": "dash-topbar",
@@ -773,7 +773,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdp34x1_12",
+                  "id": "div_mtdp71ka_12",
                   "type": "div",
                   "name": "Search",
                   "customClass": "search-slot",
@@ -842,7 +842,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_13",
+                  "id": "div_mtdp71ka_13",
                   "type": "div",
                   "name": "Actions",
                   "customClass": "action-slot",
@@ -911,7 +911,7 @@
               ]
             },
             {
-              "id": "div_mtdp34x1_14",
+              "id": "div_mtdp71ka_14",
               "type": "div",
               "name": "KPI Grid",
               "customClass": "kpi-grid",
@@ -981,7 +981,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdp34x1_15",
+                  "id": "div_mtdp71ka_15",
                   "type": "div",
                   "name": "KPI 1",
                   "customClass": "kpi-card",
@@ -1048,7 +1048,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_16",
+                  "id": "div_mtdp71ka_16",
                   "type": "div",
                   "name": "KPI 2",
                   "customClass": "kpi-card",
@@ -1115,7 +1115,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_17",
+                  "id": "div_mtdp71ka_17",
                   "type": "div",
                   "name": "KPI 3",
                   "customClass": "kpi-card",
@@ -1182,7 +1182,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_18",
+                  "id": "div_mtdp71ka_18",
                   "type": "div",
                   "name": "KPI 4",
                   "customClass": "kpi-card",
@@ -1251,7 +1251,7 @@
               ]
             },
             {
-              "id": "div_mtdp34x1_19",
+              "id": "div_mtdp71ka_19",
               "type": "div",
               "name": "Analytics Grid",
               "customClass": "analytics-section",
@@ -1317,7 +1317,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdp34x1_20",
+                  "id": "div_mtdp71ka_20",
                   "type": "div",
                   "name": "Chart Box",
                   "customClass": "chart-box",
@@ -1386,7 +1386,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_21",
+                  "id": "div_mtdp71ka_21",
                   "type": "div",
                   "name": "Donut Box",
                   "customClass": "donut-box",
@@ -1457,7 +1457,7 @@
               ]
             },
             {
-              "id": "div_mtdp34x1_22",
+              "id": "div_mtdp71ka_22",
               "type": "div",
               "name": "Table Section",
               "customClass": "table-section",
@@ -1523,7 +1523,7 @@
               },
               "children": [
                 {
-                  "id": "div_mtdp34x1_23",
+                  "id": "div_mtdp71ka_23",
                   "type": "div",
                   "name": "Table Row 1",
                   "customClass": "table-row",
@@ -1593,7 +1593,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_24",
+                  "id": "div_mtdp71ka_24",
                   "type": "div",
                   "name": "Table Row 2",
                   "customClass": "table-row",
@@ -1663,7 +1663,7 @@
                   "children": []
                 },
                 {
-                  "id": "div_mtdp34x1_25",
+                  "id": "div_mtdp71ka_25",
                   "type": "div",
                   "name": "Table Row 3",
                   "customClass": "table-row",

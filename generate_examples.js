@@ -686,7 +686,7 @@ core.setProps(pNav.id, "desktop", {
   display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",
   paddingTop: 16, paddingRight: 32, paddingBottom: 16, paddingLeft: 32,
   backgroundColor: "#111620", borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
-  minHeight: 70
+  minHeight: 70, width: "100%"
 });
 core.setProps(pNav.id, "mobile", {
   flexDirection: "column", gap: 16,
@@ -699,17 +699,17 @@ core.setProps(pLogo.id, "mobile", { width: "140px" });
 
 const pMenu = core.addChildDiv(pNav.id, "Menu", "portal-menu");
 core.setProps(pMenu.id, "desktop", { display: "flex", flexDirection: "row", gap: 20 });
-core.setProps(pMenu.id, "mobile", { width: "100%", overflowX: "auto", gap: 12 });
+core.setProps(pMenu.id, "mobile", { width: "100%", flexWrap: "wrap", gap: 8, justifyContent: "center" });
 
 for (let i = 1; i <= 4; i++) {
   const mLink = core.addChildDiv(pMenu.id, "Menu Link " + i, "menu-link");
   core.setProps(mLink.id, "desktop", { width: "80px", minHeight: 24, backgroundColor: "#18202d", borderRadius: "4px" });
-  core.setProps(mLink.id, "mobile", { width: "70px", flexShrink: 0 });
+  core.setProps(mLink.id, "mobile", { width: "65px" });
 }
 
 const pBody = core.addChildDiv(portalRoot.id, "Portal Body", "portal-body");
 core.setProps(pBody.id, "desktop", {
-  display: "flex", flexDirection: "column", maxWidth: "1360px", horizontalAlign: "center",
+  display: "flex", flexDirection: "column", width: "100%", maxWidth: "1360px", horizontalAlign: "center",
   paddingTop: 32, paddingRight: 24, paddingBottom: 32, paddingLeft: 24, gap: 32
 });
 core.setProps(pBody.id, "mobile", {
@@ -717,19 +717,19 @@ core.setProps(pBody.id, "mobile", {
 });
 
 const featGrid = core.addChildDiv(pBody.id, "Featured Grid", "featured-grid");
-core.setProps(featGrid.id, "desktop", { display: "grid", customColumns: "2fr 1fr", gap: 24 });
+core.setProps(featGrid.id, "desktop", { display: "grid", customColumns: "2fr 1fr", gap: 24, width: "100%" });
 core.setProps(featGrid.id, "tablet", { customColumns: "1fr" });
 core.setProps(featGrid.id, "mobile", { customColumns: "1fr", gap: 16 });
 
 const leadStory = core.addChildDiv(featGrid.id, "Lead Story", "main-lead-story");
 core.setProps(leadStory.id, "desktop", {
-  display: "flex", flexDirection: "column", minHeight: 420,
+  display: "flex", flexDirection: "column", minHeight: 420, width: "100%",
   backgroundColor: "#18202d", borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
   borderRadius: "14px", paddingTop: 24, paddingRight: 24, paddingBottom: 24, paddingLeft: 24,
   justifyContent: "flex-end", gap: 12
 });
 core.setProps(leadStory.id, "mobile", {
-  minHeight: 280,
+  minHeight: 260,
   paddingTop: 16, paddingRight: 16, paddingBottom: 16, paddingLeft: 16
 });
 
@@ -744,7 +744,7 @@ core.setProps(leadSum.id, "desktop", { width: "60%", minHeight: 20, backgroundCo
 core.setProps(leadSum.id, "mobile", { width: "100%" });
 
 const secCol = core.addChildDiv(featGrid.id, "Secondary Column", "secondary-column");
-core.setProps(secCol.id, "desktop", { display: "flex", flexDirection: "column", gap: 16 });
+core.setProps(secCol.id, "desktop", { display: "flex", flexDirection: "column", gap: 16, width: "100%" });
 
 for (let i = 1; i <= 3; i++) {
   const smCard = core.addChildDiv(secCol.id, "Small News " + i, "news-card-small");
@@ -752,12 +752,12 @@ for (let i = 1; i <= 3; i++) {
     display: "flex", flexDirection: "column", backgroundColor: "#111620",
     borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
     borderRadius: "10px", paddingTop: 16, paddingRight: 16, paddingBottom: 16, paddingLeft: 16,
-    gap: 8, minHeight: 125
+    gap: 8, minHeight: 125, width: "100%"
   });
 }
 
 const artGrid = core.addChildDiv(pBody.id, "3-Col Articles", "articles-3col-grid");
-core.setProps(artGrid.id, "desktop", { display: "grid", columns: 3, gap: 24 });
+core.setProps(artGrid.id, "desktop", { display: "grid", columns: 3, gap: 24, width: "100%" });
 core.setProps(artGrid.id, "tablet", { columns: 2 });
 core.setProps(artGrid.id, "mobile", { columns: 1, gap: 16 });
 
@@ -766,7 +766,7 @@ for (let i = 1; i <= 3; i++) {
   core.setProps(artBox.id, "desktop", {
     display: "flex", flexDirection: "column", backgroundColor: "#111620",
     borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
-    borderRadius: "12px", overflow: "hidden"
+    borderRadius: "12px", overflow: "hidden", width: "100%"
   });
   const artImg = core.addChildDiv(artBox.id, "Image", "article-img");
   core.setProps(artImg.id, "desktop", { width: "100%", aspectRatio: "16/9", backgroundColor: "#1d2737" });
@@ -778,14 +778,14 @@ const footer = core.addChildDiv(portalRoot.id, "Footer", "portal-footer");
 core.setProps(footer.id, "desktop", {
   display: "grid", columns: 4, gap: 24, backgroundColor: "#111620",
   borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
-  paddingTop: 40, paddingRight: 32, paddingBottom: 40, paddingLeft: 32, marginTop: "auto"
+  paddingTop: 40, paddingRight: 32, paddingBottom: 40, paddingLeft: 32, marginTop: "auto", width: "100%"
 });
 core.setProps(footer.id, "tablet", { columns: 2 });
 core.setProps(footer.id, "mobile", { columns: 1, paddingTop: 24, paddingRight: 16, paddingBottom: 24, paddingLeft: 16, gap: 16 });
 
 for (let i = 1; i <= 4; i++) {
   const fCol = core.addChildDiv(footer.id, "Footer Col " + i, "footer-col");
-  core.setProps(fCol.id, "desktop", { display: "flex", flexDirection: "column", gap: 12, minHeight: 100 });
+  core.setProps(fCol.id, "desktop", { display: "flex", flexDirection: "column", gap: 12, minHeight: 100, width: "100%" });
 }
 
 fs.writeFileSync(path.join(examplesDir, "07-arabic-rtl-news-portal.html"), core.generateFullHtmlDocument());
