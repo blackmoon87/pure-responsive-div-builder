@@ -258,6 +258,26 @@ For an exhaustive technical breakdown of every function, algorithm, data structu
 
 ---
 
+## 🧪 Tests
+
+```bash
+node test/run.js          # regression + property coverage + example integrity
+node mcp-server/test.js   # MCP tool smoke tests
+```
+
+Then serve the repo and open **`test/responsive.html`** for the layout sweep: every
+example at each width from 320px to 1440px in 20px steps (570 checks), measuring
+every div against the viewport edge.
+
+That sweep deliberately avoids `scrollWidth`. The exported reset sets
+`overflow-x: hidden` on `body`, so an overflowing element produces **no scrollbar** —
+the page looks clean while content is silently clipped. Every layout bug found in
+this project was invisible to a scrollbar check.
+
+See [test/README.md](test/README.md).
+
+---
+
 ## 📄 License
 
 MIT License © 2026 [blackmoon87](https://github.com/blackmoon87)

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Responsive Sweep — Pure Responsive DIV Generator</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:24px; background:#0a0d12; color:#e6edf3;
+         font:13px/1.55 ui-monospace, "JetBrains Mono", Menlo, monospace; }
+  h1 { font-size:16px; margin:0 0 4px; }
+  p.sub { color:#8b9bb4; margin:0 0 18px; max-width:70ch; }
+  #verdict { font-size:15px; font-weight:700; padding:10px 14px; border-radius:8px;
+             display:inline-block; margin-bottom:16px; background:#182030; }
+  #verdict.pass { background:rgba(16,185,129,.14); color:#10b981; }
+  #verdict.fail { background:rgba(244,63,94,.14); color:#f43f5e; }
+  #out { white-space:pre-wrap; }
+  .pass { color:#10b981; } .fail { color:#f43f5e; }
+  iframe { border:0; position:absolute; left:-9999px; top:0; }
+</style></head>
+<body>
+<h1>Responsive sweep</h1>
+<p class="sub">
+  Loads every example at each width from 320px to 1440px in 20px steps and measures
+  every div's <code>getBoundingClientRect()</code> against the viewport edge.
+  This cannot be done in Node — it needs real layout. It also cannot be done with
+  <code>scrollWidth</code>: the exported reset sets <code>overflow-x: hidden</code> on
+  <code>body</code>, so an overflowing element produces no scrollbar and the page looks
+  clean while content is silently clipped.
+</p>
+<div id="verdict">running…</div>
+<div id="out"></div>
+<script>
+const FILES = [
+  "01-simple-centered-card", "02-responsive-navbar", "03-pricing-tables-3col",
+  "04-ecommerce-product-grid", "05-holy-grail-layout", "06-complex-saas-dashboard",
+  "07-arabic-rtl-news-portal", "08-modal-overlay-system",
+  "09-app-shell-collapsing-sidebar", "10-editorial-magazine-grid"
+];
+const WIDTHS = [];
+for (let w = 320; w <= 1440; w += 20) WIDTHS.push(w);
+
+function measure(file, width) {
+  return new Promise(resolve => {
+    const frame = document.createElement("iframe");
+    frame.style.width = width + "px";
+    frame.style.height = "900px";
+    frame.src = "../examples/" + file + ".html";
+    frame.onload = () => {
+      const doc = frame.contentDocument;
+      let clipped = 0, worst = null;
+      doc.querySelectorAll("div").forEach(el => {
+        const r = el.getBoundingClientRect();
+        const overRight = r.right - width, overLeft = -r.left;
+        if (overRight > 1) { clipped++; if (!worst || overRight > worst.by) worst = { cls: el.className, by: Math.round(overRight), side: "right" }; }
+        if (overLeft  > 1) { clipped++; if (!worst || overLeft  > worst.by) worst = { cls: el.className, by: Math.round(overLeft),  side: "left"  }; }
+      });
+      resolve({ clipped, worst });
+      frame.remove();
+    };
+    document.body.appendChild(frame);
+  });
+}
+
+(async () => {
+  const out = document.getElementById("out");
+  const verdict = document.getElementById("verdict");
+  let totalFailing = 0;
+  for (const file of FILES) {
+    const bad = [];
+    for (const w of WIDTHS) {
+      const r = await measure(file, w);
+      if (r.clipped) { totalFailing++; bad.push(`${w}px .${r.worst.cls} ${r.worst.by}px off-${r.worst.side}`); }
+    }
+    const line = document.createElement("div");
+    line.className = bad.length ? "fail" : "pass";
+    line.textContent = (bad.length ? "FAIL  " : "PASS  ") + file.padEnd(34) +
+      (bad.length ? bad.join(" | ") : `clean ${WIDTHS.length}/${WIDTHS.length} widths`);
+    out.appendChild(line);
+  }
+  verdict.className = totalFailing ? "fail" : "pass";
+  verdict.textContent = totalFailing
+    ? `✗ ${totalFailing} FAILING WIDTHS of ${FILES.length * WIDTHS.length} checks`
+    : `✓ ALL ${FILES.length * WIDTHS.length} CHECKS PASSED — 0 failing widths`;
+  document.title = (totalFailing ? "FAIL" : "PASS") + " — Responsive Sweep";
+})();
+</script>
+</body></html>

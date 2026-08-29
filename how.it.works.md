@@ -1029,6 +1029,13 @@ PASS 10-editorial-magazine-grid       clean 57/57
 A property-coverage audit sets each property on each device and checks whether
 it reaches the CSS: **47/47 on desktop, tablet and mobile**.
 
+These checks are committed, not ad-hoc. `node test/run.js` runs three suites —
+`regression` (one test per bug that shipped once), `property-coverage`, and
+`examples` — and exits non-zero on failure; `test/responsive.html` is the browser
+sweep. The suite was validated by mutation: re-introducing the `justify-self`
+gate removal, the grid `min-width: 0`, and one-way `hidden` each failed a named
+assertion.
+
 `mcp-server/test.js` covers the 20 tools (10 smoke tests), and the examples are
 verified honest two ways: each committed `.json` reproduces its committed
 `.html` byte-for-byte through `importTreeJson` + `generateFullHtmlDocument`, and
