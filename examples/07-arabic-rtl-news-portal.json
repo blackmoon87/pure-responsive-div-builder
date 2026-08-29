@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoxfp0_1",
+      "id": "div_mtdp34x2_1",
       "type": "div",
       "name": "Portal Root",
       "customClass": "portal-root",
@@ -40,7 +40,7 @@
           "flexWrap": "nowrap",
           "justifyContent": "flex-start",
           "alignItems": "stretch",
-          "gap": 16,
+          "gap": 0,
           "rowGap": 16,
           "horizontalAlign": "stretch",
           "width": "",
@@ -50,10 +50,10 @@
           "minHeight": 600,
           "aspectRatio": "",
           "textAlign": "left",
-          "paddingTop": 16,
-          "paddingRight": 16,
-          "paddingBottom": 16,
-          "paddingLeft": 16,
+          "paddingTop": 0,
+          "paddingRight": 0,
+          "paddingBottom": 0,
+          "paddingLeft": 0,
           "paddingLinked": true,
           "marginTop": "",
           "marginRight": "",
@@ -89,7 +89,7 @@
       },
       "children": [
         {
-          "id": "div_mtdoxfp0_2",
+          "id": "div_mtdp34x2_2",
           "type": "div",
           "name": "Ticker Bar",
           "customClass": "top-ticker-bar",
@@ -151,11 +151,17 @@
               "direction": ""
             },
             "tablet": {},
-            "mobile": {}
+            "mobile": {
+              "paddingTop": 8,
+              "paddingRight": 16,
+              "paddingBottom": 8,
+              "paddingLeft": 16,
+              "gap": 10
+            }
           },
           "children": [
             {
-              "id": "div_mtdoxfp0_3",
+              "id": "div_mtdp34x2_3",
               "type": "div",
               "name": "Ticker Badge",
               "customClass": "ticker-badge",
@@ -217,12 +223,15 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "width": "60px",
+                  "flexShrink": 0
+                }
               },
               "children": []
             },
             {
-              "id": "div_mtdoxfp0_4",
+              "id": "div_mtdp34x2_4",
               "type": "div",
               "name": "Ticker Text",
               "customClass": "ticker-text",
@@ -291,7 +300,7 @@
           ]
         },
         {
-          "id": "div_mtdoxfp0_5",
+          "id": "div_mtdp34x2_5",
           "type": "div",
           "name": "Portal Nav",
           "customClass": "portal-nav",
@@ -355,12 +364,16 @@
             "tablet": {},
             "mobile": {
               "flexDirection": "column",
-              "gap": 16
+              "gap": 16,
+              "paddingTop": 16,
+              "paddingRight": 16,
+              "paddingBottom": 16,
+              "paddingLeft": 16
             }
           },
           "children": [
             {
-              "id": "div_mtdoxfp0_6",
+              "id": "div_mtdp34x2_6",
               "type": "div",
               "name": "Logo",
               "customClass": "portal-logo",
@@ -422,12 +435,14 @@
                   "direction": ""
                 },
                 "tablet": {},
-                "mobile": {}
+                "mobile": {
+                  "width": "140px"
+                }
               },
               "children": []
             },
             {
-              "id": "div_mtdoxfp0_7",
+              "id": "div_mtdp34x2_7",
               "type": "div",
               "name": "Menu",
               "customClass": "portal-menu",
@@ -491,12 +506,13 @@
                 "tablet": {},
                 "mobile": {
                   "width": "100%",
-                  "overflowX": "auto"
+                  "overflowX": "auto",
+                  "gap": 12
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoxfp0_8",
+                  "id": "div_mtdp34x2_8",
                   "type": "div",
                   "name": "Menu Link 1",
                   "customClass": "menu-link",
@@ -558,12 +574,15 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoxfp0_9",
+                  "id": "div_mtdp34x2_9",
                   "type": "div",
                   "name": "Menu Link 2",
                   "customClass": "menu-link",
@@ -625,12 +644,15 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoxfp0_10",
+                  "id": "div_mtdp34x2_10",
                   "type": "div",
                   "name": "Menu Link 3",
                   "customClass": "menu-link",
@@ -692,12 +714,15 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 },
                 {
-                  "id": "div_mtdoxfp0_11",
+                  "id": "div_mtdp34x2_11",
                   "type": "div",
                   "name": "Menu Link 4",
                   "customClass": "menu-link",
@@ -759,7 +784,10 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "width": "70px",
+                      "flexShrink": 0
+                    }
                   },
                   "children": []
                 }
@@ -768,7 +796,7 @@
           ]
         },
         {
-          "id": "div_mtdoxfp0_12",
+          "id": "div_mtdp34x2_12",
           "type": "div",
           "name": "Portal Body",
           "customClass": "portal-body",
@@ -830,11 +858,17 @@
               "direction": ""
             },
             "tablet": {},
-            "mobile": {}
+            "mobile": {
+              "paddingTop": 20,
+              "paddingRight": 16,
+              "paddingBottom": 20,
+              "paddingLeft": 16,
+              "gap": 20
+            }
           },
           "children": [
             {
-              "id": "div_mtdoxfp0_13",
+              "id": "div_mtdp34x2_13",
               "type": "div",
               "name": "Featured Grid",
               "customClass": "featured-grid",
@@ -898,11 +932,14 @@
                 "tablet": {
                   "customColumns": "1fr"
                 },
-                "mobile": {}
+                "mobile": {
+                  "customColumns": "1fr",
+                  "gap": 16
+                }
               },
               "children": [
                 {
-                  "id": "div_mtdoxfp0_14",
+                  "id": "div_mtdp34x2_14",
                   "type": "div",
                   "name": "Lead Story",
                   "customClass": "main-lead-story",
@@ -964,11 +1001,17 @@
                       "direction": ""
                     },
                     "tablet": {},
-                    "mobile": {}
+                    "mobile": {
+                      "minHeight": 280,
+                      "paddingTop": 16,
+                      "paddingRight": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16
+                    }
                   },
                   "children": [
                     {
-                      "id": "div_mtdoxfp0_15",
+                      "id": "div_mtdp34x2_15",
                       "type": "div",
                       "name": "Tag",
                       "customClass": "lead-tag",
@@ -1035,7 +1078,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_16",
+                      "id": "div_mtdp34x2_16",
                       "type": "div",
                       "name": "Headline",
                       "customClass": "lead-headline",
@@ -1097,12 +1140,14 @@
                           "direction": ""
                         },
                         "tablet": {},
-                        "mobile": {}
+                        "mobile": {
+                          "width": "100%"
+                        }
                       },
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_17",
+                      "id": "div_mtdp34x2_17",
                       "type": "div",
                       "name": "Summary",
                       "customClass": "lead-summary",
@@ -1164,14 +1209,16 @@
                           "direction": ""
                         },
                         "tablet": {},
-                        "mobile": {}
+                        "mobile": {
+                          "width": "100%"
+                        }
                       },
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "div_mtdoxfp0_18",
+                  "id": "div_mtdp34x2_18",
                   "type": "div",
                   "name": "Secondary Column",
                   "customClass": "secondary-column",
@@ -1237,7 +1284,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoxfp0_19",
+                      "id": "div_mtdp34x2_19",
                       "type": "div",
                       "name": "Small News 1",
                       "customClass": "news-card-small",
@@ -1304,7 +1351,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_20",
+                      "id": "div_mtdp34x2_20",
                       "type": "div",
                       "name": "Small News 2",
                       "customClass": "news-card-small",
@@ -1371,7 +1418,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_21",
+                      "id": "div_mtdp34x2_21",
                       "type": "div",
                       "name": "Small News 3",
                       "customClass": "news-card-small",
@@ -1442,7 +1489,7 @@
               ]
             },
             {
-              "id": "div_mtdoxfp0_22",
+              "id": "div_mtdp34x2_22",
               "type": "div",
               "name": "3-Col Articles",
               "customClass": "articles-3col-grid",
@@ -1507,12 +1554,13 @@
                   "columns": 2
                 },
                 "mobile": {
-                  "columns": 1
+                  "columns": 1,
+                  "gap": 16
                 }
               },
               "children": [
                 {
-                  "id": "div_mtdoxfp0_23",
+                  "id": "div_mtdp34x2_23",
                   "type": "div",
                   "name": "Article 1",
                   "customClass": "article-box",
@@ -1578,7 +1626,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoxfp0_24",
+                      "id": "div_mtdp34x2_24",
                       "type": "div",
                       "name": "Image",
                       "customClass": "article-img",
@@ -1645,7 +1693,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_25",
+                      "id": "div_mtdp34x2_25",
                       "type": "div",
                       "name": "Content",
                       "customClass": "article-content",
@@ -1714,7 +1762,7 @@
                   ]
                 },
                 {
-                  "id": "div_mtdoxfp0_26",
+                  "id": "div_mtdp34x2_26",
                   "type": "div",
                   "name": "Article 2",
                   "customClass": "article-box",
@@ -1780,7 +1828,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoxfp0_27",
+                      "id": "div_mtdp34x2_27",
                       "type": "div",
                       "name": "Image",
                       "customClass": "article-img",
@@ -1847,7 +1895,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_28",
+                      "id": "div_mtdp34x2_28",
                       "type": "div",
                       "name": "Content",
                       "customClass": "article-content",
@@ -1916,7 +1964,7 @@
                   ]
                 },
                 {
-                  "id": "div_mtdoxfp0_29",
+                  "id": "div_mtdp34x2_29",
                   "type": "div",
                   "name": "Article 3",
                   "customClass": "article-box",
@@ -1982,7 +2030,7 @@
                   },
                   "children": [
                     {
-                      "id": "div_mtdoxfp0_30",
+                      "id": "div_mtdp34x2_30",
                       "type": "div",
                       "name": "Image",
                       "customClass": "article-img",
@@ -2049,7 +2097,7 @@
                       "children": []
                     },
                     {
-                      "id": "div_mtdoxfp0_31",
+                      "id": "div_mtdp34x2_31",
                       "type": "div",
                       "name": "Content",
                       "customClass": "article-content",
@@ -2122,7 +2170,7 @@
           ]
         },
         {
-          "id": "div_mtdoxfp0_32",
+          "id": "div_mtdp34x2_32",
           "type": "div",
           "name": "Footer",
           "customClass": "portal-footer",
@@ -2187,12 +2235,17 @@
               "columns": 2
             },
             "mobile": {
-              "columns": 1
+              "columns": 1,
+              "paddingTop": 24,
+              "paddingRight": 16,
+              "paddingBottom": 24,
+              "paddingLeft": 16,
+              "gap": 16
             }
           },
           "children": [
             {
-              "id": "div_mtdoxfp0_33",
+              "id": "div_mtdp34x2_33",
               "type": "div",
               "name": "Footer Col 1",
               "customClass": "footer-col",
@@ -2259,7 +2312,7 @@
               "children": []
             },
             {
-              "id": "div_mtdoxfp0_34",
+              "id": "div_mtdp34x2_34",
               "type": "div",
               "name": "Footer Col 2",
               "customClass": "footer-col",
@@ -2326,7 +2379,7 @@
               "children": []
             },
             {
-              "id": "div_mtdoxfp0_35",
+              "id": "div_mtdp34x2_35",
               "type": "div",
               "name": "Footer Col 3",
               "customClass": "footer-col",
@@ -2393,7 +2446,7 @@
               "children": []
             },
             {
-              "id": "div_mtdoxfp0_36",
+              "id": "div_mtdp34x2_36",
               "type": "div",
               "name": "Footer Col 4",
               "customClass": "footer-col",

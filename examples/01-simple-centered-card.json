@@ -23,7 +23,7 @@
   },
   "children": [
     {
-      "id": "div_mtdoxfoq_1",
+      "id": "div_mtdp34wq_1",
       "type": "div",
       "name": "Card Container",
       "customClass": "card-container",
@@ -94,7 +94,7 @@
       },
       "children": [
         {
-          "id": "div_mtdoxfoq_2",
+          "id": "div_mtdp34wq_2",
           "type": "div",
           "name": "Card Header",
           "customClass": "card-header",
@@ -160,7 +160,7 @@
           },
           "children": [
             {
-              "id": "div_mtdoxfoq_3",
+              "id": "div_mtdp34wq_3",
               "type": "div",
               "name": "Badge",
               "customClass": "card-badge",
@@ -229,7 +229,7 @@
           ]
         },
         {
-          "id": "div_mtdoxfoq_4",
+          "id": "div_mtdp34wq_4",
           "type": "div",
           "name": "Card Body",
           "customClass": "card-body",
@@ -296,7 +296,7 @@
           "children": []
         },
         {
-          "id": "div_mtdoxfoq_5",
+          "id": "div_mtdp34wq_5",
           "type": "div",
           "name": "Card Footer",
           "customClass": "card-footer",
@@ -364,7 +364,7 @@
           },
           "children": [
             {
-              "id": "div_mtdoxfoq_6",
+              "id": "div_mtdp34wq_6",
               "type": "div",
               "name": "Action Button",
               "customClass": "btn-action",

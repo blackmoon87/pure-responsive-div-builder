@@ -22,9 +22,9 @@ html, body {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 16px;
+  gap: 0px;
   min-height: 600px;
-  padding: 16px;
+  padding: 0px;
   flex-grow: 1;
   direction: rtl;
 }
@@ -451,21 +451,83 @@ html, body {
 
 /* Mobile (max-width: 576px) */
 @media (max-width: 576px) {
+  .top-ticker-bar {
+    gap: 10px;
+    padding: 8px 16px 8px 16px;
+  }
+
+  .ticker-badge {
+    width: 60px;
+    flex-shrink: 0;
+  }
+
   .portal-nav {
     flex-direction: column;
+    padding: 16px 16px 16px 16px;
+  }
+
+  .portal-logo {
+    width: 140px;
   }
 
   .portal-menu {
     width: 100%;
+    gap: 12px;
     overflow-x: auto;
+  }
+
+  .menu-link {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .menu-link-2 {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .menu-link-3 {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .menu-link-4 {
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .portal-body {
+    gap: 20px;
+    padding: 20px 16px 20px 16px;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .main-lead-story {
+    padding: 16px 16px 16px 16px;
+    min-height: 280px;
+  }
+
+  .lead-headline {
+    width: 100%;
+  }
+
+  .lead-summary {
+    width: 100%;
   }
 
   .articles-3col-grid {
     grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
   }
 
   .portal-footer {
     grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    padding: 24px 16px 24px 16px;
   }
 }
   </style>

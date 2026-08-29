@@ -660,7 +660,8 @@ console.log("✓ Generated 06-complex-saas-dashboard.html directly from core.js"
 core.resetAll();
 const portalRoot = core.addChildDiv("root", "Portal Root", "portal-root");
 core.setProps(portalRoot.id, "desktop", {
-  display: "flex", flexDirection: "column", minHeight: 600, direction: "rtl"
+  display: "flex", flexDirection: "column", minHeight: 600, direction: "rtl",
+  paddingTop: 0, paddingRight: 0, paddingBottom: 0, paddingLeft: 0, gap: 0
 });
 
 const ticker = core.addChildDiv(portalRoot.id, "Ticker Bar", "top-ticker-bar");
@@ -669,8 +670,14 @@ core.setProps(ticker.id, "desktop", {
   backgroundColor: "#f43f5e", paddingTop: 8, paddingRight: 24, paddingBottom: 8, paddingLeft: 24,
   minHeight: 38, gap: 16
 });
+core.setProps(ticker.id, "mobile", {
+  paddingTop: 8, paddingRight: 16, paddingBottom: 8, paddingLeft: 16, gap: 10
+});
+
 const tBadge = core.addChildDiv(ticker.id, "Ticker Badge", "ticker-badge");
 core.setProps(tBadge.id, "desktop", { width: "80px", minHeight: 24, backgroundColor: "#ffffff", borderRadius: "4px" });
+core.setProps(tBadge.id, "mobile", { width: "60px", flexShrink: 0 });
+
 const tText = core.addChildDiv(ticker.id, "Ticker Text", "ticker-text");
 core.setProps(tText.id, "desktop", { flexGrow: 1, minHeight: 18, backgroundColor: "rgba(255, 255, 255, 0.4)", borderRadius: "4px" });
 
@@ -681,18 +688,23 @@ core.setProps(pNav.id, "desktop", {
   backgroundColor: "#111620", borderWidth: "1px", borderStyle: "solid", borderColor: "#263447",
   minHeight: 70
 });
-core.setProps(pNav.id, "mobile", { flexDirection: "column", gap: 16 });
+core.setProps(pNav.id, "mobile", {
+  flexDirection: "column", gap: 16,
+  paddingTop: 16, paddingRight: 16, paddingBottom: 16, paddingLeft: 16
+});
 
 const pLogo = core.addChildDiv(pNav.id, "Logo", "portal-logo");
 core.setProps(pLogo.id, "desktop", { width: "160px", minHeight: 40, backgroundColor: "#38bdf8", borderRadius: "8px" });
+core.setProps(pLogo.id, "mobile", { width: "140px" });
 
 const pMenu = core.addChildDiv(pNav.id, "Menu", "portal-menu");
 core.setProps(pMenu.id, "desktop", { display: "flex", flexDirection: "row", gap: 20 });
-core.setProps(pMenu.id, "mobile", { width: "100%", overflowX: "auto" });
+core.setProps(pMenu.id, "mobile", { width: "100%", overflowX: "auto", gap: 12 });
 
 for (let i = 1; i <= 4; i++) {
   const mLink = core.addChildDiv(pMenu.id, "Menu Link " + i, "menu-link");
   core.setProps(mLink.id, "desktop", { width: "80px", minHeight: 24, backgroundColor: "#18202d", borderRadius: "4px" });
+  core.setProps(mLink.id, "mobile", { width: "70px", flexShrink: 0 });
 }
 
 const pBody = core.addChildDiv(portalRoot.id, "Portal Body", "portal-body");
@@ -700,10 +712,14 @@ core.setProps(pBody.id, "desktop", {
   display: "flex", flexDirection: "column", maxWidth: "1360px", horizontalAlign: "center",
   paddingTop: 32, paddingRight: 24, paddingBottom: 32, paddingLeft: 24, gap: 32
 });
+core.setProps(pBody.id, "mobile", {
+  paddingTop: 20, paddingRight: 16, paddingBottom: 20, paddingLeft: 16, gap: 20
+});
 
 const featGrid = core.addChildDiv(pBody.id, "Featured Grid", "featured-grid");
 core.setProps(featGrid.id, "desktop", { display: "grid", customColumns: "2fr 1fr", gap: 24 });
 core.setProps(featGrid.id, "tablet", { customColumns: "1fr" });
+core.setProps(featGrid.id, "mobile", { customColumns: "1fr", gap: 16 });
 
 const leadStory = core.addChildDiv(featGrid.id, "Lead Story", "main-lead-story");
 core.setProps(leadStory.id, "desktop", {
@@ -712,13 +728,20 @@ core.setProps(leadStory.id, "desktop", {
   borderRadius: "14px", paddingTop: 24, paddingRight: 24, paddingBottom: 24, paddingLeft: 24,
   justifyContent: "flex-end", gap: 12
 });
+core.setProps(leadStory.id, "mobile", {
+  minHeight: 280,
+  paddingTop: 16, paddingRight: 16, paddingBottom: 16, paddingLeft: 16
+});
 
 const leadTag = core.addChildDiv(leadStory.id, "Tag", "lead-tag");
 core.setProps(leadTag.id, "desktop", { width: "90px", minHeight: 24, backgroundColor: "#f43f5e", borderRadius: "4px" });
 const leadHead = core.addChildDiv(leadStory.id, "Headline", "lead-headline");
 core.setProps(leadHead.id, "desktop", { width: "80%", minHeight: 32, backgroundColor: "#f0f6fc", borderRadius: "6px" });
+core.setProps(leadHead.id, "mobile", { width: "100%" });
+
 const leadSum = core.addChildDiv(leadStory.id, "Summary", "lead-summary");
 core.setProps(leadSum.id, "desktop", { width: "60%", minHeight: 20, backgroundColor: "#5a6b85", borderRadius: "4px" });
+core.setProps(leadSum.id, "mobile", { width: "100%" });
 
 const secCol = core.addChildDiv(featGrid.id, "Secondary Column", "secondary-column");
 core.setProps(secCol.id, "desktop", { display: "flex", flexDirection: "column", gap: 16 });
@@ -736,7 +759,7 @@ for (let i = 1; i <= 3; i++) {
 const artGrid = core.addChildDiv(pBody.id, "3-Col Articles", "articles-3col-grid");
 core.setProps(artGrid.id, "desktop", { display: "grid", columns: 3, gap: 24 });
 core.setProps(artGrid.id, "tablet", { columns: 2 });
-core.setProps(artGrid.id, "mobile", { columns: 1 });
+core.setProps(artGrid.id, "mobile", { columns: 1, gap: 16 });
 
 for (let i = 1; i <= 3; i++) {
   const artBox = core.addChildDiv(artGrid.id, "Article " + i, "article-box");
@@ -758,7 +781,7 @@ core.setProps(footer.id, "desktop", {
   paddingTop: 40, paddingRight: 32, paddingBottom: 40, paddingLeft: 32, marginTop: "auto"
 });
 core.setProps(footer.id, "tablet", { columns: 2 });
-core.setProps(footer.id, "mobile", { columns: 1 });
+core.setProps(footer.id, "mobile", { columns: 1, paddingTop: 24, paddingRight: 16, paddingBottom: 24, paddingLeft: 16, gap: 16 });
 
 for (let i = 1; i <= 4; i++) {
   const fCol = core.addChildDiv(footer.id, "Footer Col " + i, "footer-col");
