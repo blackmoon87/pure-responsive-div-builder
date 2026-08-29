@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 04: Auto-Fit E-Commerce Catalog | Pure Responsive DIV Builder</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: system-ui, sans-serif; }
+
+    /* Desktop Base Styles */
+    .catalog-wrapper {
+      display: flex;
+      flex-direction: column;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 40px 24px;
+      gap: 32px;
+    }
+
+    .catalog-toolbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 10px;
+    }
+
+    .toolbar-search {
+      display: block;
+      width: 260px;
+      min-height: 36px;
+      background-color: #18202d;
+      border-radius: 6px;
+    }
+
+    .toolbar-filters {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+    }
+
+    .filter-chip {
+      display: block;
+      width: 80px;
+      min-height: 32px;
+      background-color: #1d2737;
+      border-radius: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .product-image-box {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background-color: #1d2737;
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 12px;
+    }
+
+    .product-title {
+      display: block;
+      width: 75%;
+      min-height: 20px;
+      background-color: #f0f6fc;
+      border-radius: 4px;
+    }
+
+    .product-meta {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-price {
+      display: block;
+      width: 60px;
+      min-height: 24px;
+      background-color: #10b981;
+      border-radius: 4px;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 90px;
+      min-height: 32px;
+      background-color: #38bdf8;
+      border-radius: 6px;
+    }
+
+    /* Mobile Breakpoint (<= 576px) */
+    @media (max-width: 576px) {
+      .catalog-toolbar {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .toolbar-search {
+        width: 100%;
+      }
+      .toolbar-filters {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="catalog-wrapper">
+  <div class="catalog-toolbar">
+    <div class="toolbar-search"></div>
+    <div class="toolbar-filters">
+      <div class="filter-chip"></div>
+      <div class="filter-chip"></div>
+      <div class="filter-chip"></div>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-image-box"></div>
+      <div class="product-info">
+        <div class="product-title"></div>
+        <div class="product-meta">
+          <div class="product-price"></div>
+          <div class="btn-buy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image-box"></div>
+      <div class="product-info">
+        <div class="product-title"></div>
+        <div class="product-meta">
+          <div class="product-price"></div>
+          <div class="btn-buy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image-box"></div>
+      <div class="product-info">
+        <div class="product-title"></div>
+        <div class="product-meta">
+          <div class="product-price"></div>
+          <div class="btn-buy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image-box"></div>
+      <div class="product-info">
+        <div class="product-title"></div>
+        <div class="product-meta">
+          <div class="product-price"></div>
+          <div class="btn-buy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

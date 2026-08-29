@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 07: Arabic RTL News Magazine Portal | Pure Responsive DIV Builder</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: "Tajawal", "Almarai", system-ui, sans-serif; direction: rtl; }
+
+    /* Desktop Base Styles */
+    .portal-root {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Bar & Breaking News */
+    .top-ticker-bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: #f43f5e;
+      padding: 8px 24px;
+      min-height: 38px;
+      gap: 16px;
+    }
+
+    .ticker-badge {
+      display: block;
+      width: 80px;
+      min-height: 24px;
+      background-color: #ffffff;
+      border-radius: 4px;
+    }
+
+    .ticker-text {
+      display: block;
+      flex-grow: 1;
+      min-height: 18px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+    }
+
+    /* Main Navigation */
+    .portal-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: #111620;
+      border-bottom: 1px solid #263447;
+      min-height: 70px;
+    }
+
+    .portal-logo {
+      display: block;
+      width: 160px;
+      min-height: 40px;
+      background-color: #38bdf8;
+      border-radius: 8px;
+    }
+
+    .portal-menu {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    .menu-link {
+      display: block;
+      width: 80px;
+      min-height: 24px;
+      background-color: #18202d;
+      border-radius: 4px;
+    }
+
+    /* Container Body */
+    .portal-body {
+      display: flex;
+      flex-direction: column;
+      max-width: 1360px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 32px 24px;
+      gap: 32px;
+    }
+
+    /* Featured Section (2:1 Grid) */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    .main-lead-story {
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+      background-color: #18202d;
+      border: 1px solid #263447;
+      border-radius: 14px;
+      padding: 24px;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .lead-tag {
+      display: block;
+      width: 90px;
+      min-height: 24px;
+      background-color: #f43f5e;
+      border-radius: 4px;
+    }
+
+    .lead-headline {
+      display: block;
+      width: 80%;
+      min-height: 32px;
+      background-color: #f0f6fc;
+      border-radius: 6px;
+    }
+
+    .lead-summary {
+      display: block;
+      width: 60%;
+      min-height: 20px;
+      background-color: #5a6b85;
+      border-radius: 4px;
+    }
+
+    /* Secondary News Column */
+    .secondary-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .news-card-small {
+      display: flex;
+      flex-direction: column;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 10px;
+      padding: 16px;
+      gap: 8px;
+      min-height: 125px;
+    }
+
+    /* 3-Column Magazine Articles Grid */
+    .articles-3col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .article-box {
+      display: flex;
+      flex-direction: column;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .article-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-color: #1d2737;
+    }
+
+    .article-content {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 12px;
+    }
+
+    /* Footer */
+    .portal-footer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      background-color: #111620;
+      border-top: 1px solid #263447;
+      padding: 40px 32px;
+      margin-top: auto;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Tablet Breakpoint (<= 992px) */
+    @media (max-width: 992px) {
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+      .articles-3col-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .portal-footer {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile Breakpoint (<= 576px) */
+    @media (max-width: 576px) {
+      .portal-nav {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .portal-menu {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .articles-3col-grid {
+        grid-template-columns: 1fr;
+      }
+      .portal-footer {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="portal-root" dir="rtl">
+  <!-- Breaking News Ticker -->
+  <div class="top-ticker-bar">
+    <div class="ticker-badge"></div>
+    <div class="ticker-text"></div>
+  </div>
+
+  <!-- Main Navigation -->
+  <div class="portal-nav">
+    <div class="portal-logo"></div>
+    <div class="portal-menu">
+      <div class="menu-link"></div>
+      <div class="menu-link"></div>
+      <div class="menu-link"></div>
+      <div class="menu-link"></div>
+    </div>
+  </div>
+
+  <!-- Portal Body -->
+  <div class="portal-body">
+    <!-- Featured 2:1 Section -->
+    <div class="featured-grid">
+      <div class="main-lead-story">
+        <div class="lead-tag"></div>
+        <div class="lead-headline"></div>
+        <div class="lead-summary"></div>
+      </div>
+      <div class="secondary-column">
+        <div class="news-card-small"></div>
+        <div class="news-card-small"></div>
+        <div class="news-card-small"></div>
+      </div>
+    </div>
+
+    <!-- 3-Column Magazine Articles -->
+    <div class="articles-3col-grid">
+      <div class="article-box">
+        <div class="article-img"></div>
+        <div class="article-content"></div>
+      </div>
+      <div class="article-box">
+        <div class="article-img"></div>
+        <div class="article-content"></div>
+      </div>
+      <div class="article-box">
+        <div class="article-img"></div>
+        <div class="article-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="portal-footer">
+    <div class="footer-col"></div>
+    <div class="footer-col"></div>
+    <div class="footer-col"></div>
+    <div class="footer-col"></div>
+  </div>
+</div>
+
+</body>
+</html>

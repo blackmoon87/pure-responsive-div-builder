@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 05: Holy Grail Responsive Layout | Pure Responsive DIV Builder</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: system-ui, sans-serif; }
+
+    /* Desktop Base Styles */
+    .app-root {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .app-header {
+      display: block;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      min-height: 64px;
+      background-color: #111620;
+      border-bottom: 1px solid #263447;
+      padding: 16px 24px;
+      z-index: 100;
+    }
+
+    .app-main-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr 280px;
+      gap: 20px;
+      flex-grow: 1;
+      padding: 24px;
+      max-width: 1440px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .left-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 12px;
+      padding: 20px;
+      order: 1;
+    }
+
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: #18202d;
+      border: 1px solid #263447;
+      border-radius: 12px;
+      padding: 24px;
+      order: 2;
+    }
+
+    .right-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 12px;
+      padding: 20px;
+      order: 3;
+    }
+
+    .content-hero-box {
+      display: block;
+      min-height: 200px;
+      background-color: #1d2737;
+      border-radius: 8px;
+    }
+
+    .content-grid-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .inner-card {
+      display: block;
+      min-height: 140px;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 8px;
+    }
+
+    .app-footer {
+      display: block;
+      width: 100%;
+      min-height: 50px;
+      background-color: #111620;
+      border-top: 1px solid #263447;
+      padding: 16px 24px;
+      margin-top: auto;
+    }
+
+    /* Tablet Breakpoint (<= 992px) */
+    @media (max-width: 992px) {
+      .app-main-layout {
+        grid-template-columns: 220px 1fr;
+      }
+      .right-sidebar {
+        grid-column: span 2;
+      }
+    }
+
+    /* Mobile Breakpoint (<= 576px) */
+    @media (max-width: 576px) {
+      .app-main-layout {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+      /* Reorder content so main reads FIRST on mobile */
+      .center-content {
+        order: 1;
+      }
+      .left-nav {
+        order: 2;
+      }
+      .right-sidebar {
+        order: 3;
+        grid-column: span 1;
+      }
+      .content-grid-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-root">
+  <div class="app-header"></div>
+
+  <div class="app-main-layout">
+    <div class="left-nav"></div>
+
+    <div class="center-content">
+      <div class="content-hero-box"></div>
+      <div class="content-grid-cards">
+        <div class="inner-card"></div>
+        <div class="inner-card"></div>
+      </div>
+    </div>
+
+    <div class="right-sidebar"></div>
+  </div>
+
+  <div class="app-footer"></div>
+</div>
+
+</body>
+</html>

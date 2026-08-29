@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example 03: Responsive 3-Tier Pricing Table | Pure Responsive DIV Builder</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: system-ui, sans-serif; }
+
+    /* Desktop Base Styles */
+    .pricing-section {
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 60px 24px;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .pricing-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 600px;
+    }
+
+    .pricing-title {
+      display: block;
+      width: 240px;
+      min-height: 36px;
+      background-color: #38bdf8;
+      border-radius: 6px;
+    }
+
+    .pricing-subtitle {
+      display: block;
+      width: 360px;
+      min-height: 20px;
+      background-color: #1d2737;
+      border-radius: 4px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .plan-card {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      background-color: #111620;
+      border: 1px solid #263447;
+      border-radius: 16px;
+      gap: 24px;
+      min-height: 420px;
+    }
+
+    .plan-card--featured {
+      background-color: #18202d;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.18);
+      min-height: 460px;
+    }
+
+    .plan-head {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .plan-name {
+      display: block;
+      width: 100px;
+      min-height: 24px;
+      background-color: #5a6b85;
+      border-radius: 4px;
+    }
+
+    .plan-price {
+      display: block;
+      width: 140px;
+      min-height: 40px;
+      background-color: #f0f6fc;
+      border-radius: 6px;
+    }
+
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    .feature-line {
+      display: block;
+      width: 100%;
+      min-height: 16px;
+      background-color: #1d2737;
+      border-radius: 4px;
+    }
+
+    .plan-btn {
+      display: block;
+      width: 100%;
+      min-height: 44px;
+      background-color: #263447;
+      border-radius: 8px;
+    }
+
+    .plan-btn--primary {
+      background-color: #38bdf8;
+    }
+
+    /* Tablet Breakpoint (<= 992px) */
+    @media (max-width: 992px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .plan-card--featured {
+        grid-column: span 2;
+      }
+    }
+
+    /* Mobile Breakpoint (<= 576px) */
+    @media (max-width: 576px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .plan-card--featured {
+        grid-column: span 1;
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pricing-section">
+  <div class="pricing-header">
+    <div class="pricing-title"></div>
+    <div class="pricing-subtitle"></div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="plan-card">
+      <div class="plan-head">
+        <div class="plan-name"></div>
+        <div class="plan-price"></div>
+      </div>
+      <div class="plan-features">
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+      </div>
+      <div class="plan-btn"></div>
+    </div>
+
+    <div class="plan-card plan-card--featured">
+      <div class="plan-head">
+        <div class="plan-name"></div>
+        <div class="plan-price"></div>
+      </div>
+      <div class="plan-features">
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+      </div>
+      <div class="plan-btn plan-btn--primary"></div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-head">
+        <div class="plan-name"></div>
+        <div class="plan-price"></div>
+      </div>
+      <div class="plan-features">
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+        <div class="feature-line"></div>
+      </div>
+      <div class="plan-btn"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
