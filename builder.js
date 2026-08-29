@@ -6,7 +6,8 @@ import {
   getEffectiveProps,
   generateCleanHtml,
   generateResponsiveCss as buildCss,
-  generateFullHtmlDocument as buildDoc
+  generateFullHtmlDocument as buildDoc,
+  safeClass
 } from "./generator.js";
 
 (function () {
@@ -125,9 +126,44 @@ import {
     canRedo: function () { return this.future.length > 0; }
   };
 
+  // ==========================================================================
+  // Persistence — a refresh used to destroy the whole tree
+  // ==========================================================================
+  var STORAGE_KEY = "pure-div-builder:v1";
+
+  var saveSoon = debounce(function () {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        version: 1,
+        root: State.root,
+        breakpoints: State.breakpoints,
+        selectedId: State.selectedId
+      }));
+    } catch (err) {
+      // private mode, disabled storage, or quota — never block editing for it
+    }
+  }, 400);
+
+  function restoreSaved() {
+    var raw;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (err) { return false; }
+    if (!raw) return false;
+    try {
+      var saved = JSON.parse(raw);
+      if (!saved || !saved.root || !Array.isArray(saved.root.children)) return false;
+      State.root = saved.root;
+      if (saved.breakpoints) State.breakpoints = saved.breakpoints;
+      State.selectedId = saved.selectedId || null;
+      return true;
+    } catch (err) {
+      return false;   // corrupt payload: fall back to the starter layout
+    }
+  }
+
   function commit(mutator) {
     History.push();
     mutator();
+    saveSoon();
     render();
   }
 
@@ -525,6 +561,8 @@ import {
       wrapper.style.gridColumn = "span " + eff.span;
     }
     if (parentDisplay === "flex") {
+      // flex-grow/shrink/basis belong to a flex ITEM — gated on the parent,
+      // exactly as generator.js emits them.
       if (eff.flexGrow != null) wrapper.style.flexGrow = String(eff.flexGrow);
       if (eff.flexShrink != null) wrapper.style.flexShrink = String(eff.flexShrink);
       if (eff.flexBasis) wrapper.style.flexBasis = eff.flexBasis;
@@ -576,7 +614,7 @@ import {
     var tag = el("div", "struct-div__tag");
     tag.appendChild(el("span", null, "<div"));
     if (node.customClass) {
-      var cls = el("span", "struct-div__tag-class", "." + node.customClass);
+      var cls = el("span", "struct-div__tag-class", "." + safeClass(node.customClass));
       tag.appendChild(cls);
     }
     tag.appendChild(el("span", null, ">"));
@@ -1337,6 +1375,7 @@ import {
   }
 
   function render() {
+    saveSoon();
     renderCanvas();
     renderTree();
     renderProps();
@@ -1479,6 +1518,7 @@ import {
   });
 
   btnClear.addEventListener("click", function () {
+    // no need to remove the saved copy: commit() persists the emptied tree
     commit(function () {
       State.root.children.length = 0;
       State.selectedId = null;
@@ -1548,7 +1588,8 @@ import {
   // ==========================================================================
   // Initialize with a Clean Responsive Div Wireframe Preset
   // ==========================================================================
-  (function initDemo() {
+  (function init() {
+    if (restoreSaved()) return;          // pick up where the last session left off
     var container = createPresetDiv("container");
     var grid3 = createPresetDiv("grid3");
     container.children.push(grid3);

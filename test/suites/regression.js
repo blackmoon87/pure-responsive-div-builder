@@ -118,6 +118,58 @@ export default {
     core.undo();
     t.eq("undo reverses set_breakpoints", core.state.breakpoints.tablet, 992);
 
+    // flex-grow/shrink/basis style a flex ITEM. The test used to be inverted:
+    // a flex container in a block parent got them, a real flex item did not.
+    core.resetAll();
+    const blockParent = core.addChildDiv("root", "BP", "blockp");
+    core.setProps(blockParent.id, "desktop", { display: "block" });
+    const flexChild = core.addChildDiv(blockParent.id, "FC", "flexkid");
+    core.setProps(flexChild.id, "desktop", { display: "flex" });
+    const flexParent = core.addChildDiv("root", "FP", "flexp");
+    core.setProps(flexParent.id, "desktop", { display: "flex" });
+    core.addChildDiv(flexParent.id, "PC", "plainkid");
+    css = core.generateResponsiveCss();
+    t.excludes("a flex container in a block parent gets no flex-grow", ruleFor(css, "flexkid"), "flex-grow");
+    t.includes("a plain child of a flex parent gets flex-grow", ruleFor(css, "plainkid"), "flex-grow");
+
+    // customClass is interpolated into class="" AND a CSS selector.
+    core.resetAll();
+    core.addChildDiv("root", "X", 'hero"><img src=x onerror=alert(1)>');
+    const html = core.generateCleanHtml(core.state.root, 0);
+    t.excludes("a hostile customClass cannot break out of the attribute", html, "<img");
+    t.excludes("nor inject a quote", html, '"><');
+    core.resetAll();
+    core.addChildDiv("root", "Y", "2 cols!");
+    const sane = core.generateCleanHtml(core.state.root, 0);
+    t.includes("an invalid class is sanitised to a valid ident", sane, 'class="_2-cols"');
+    t.includes("and the CSS selector agrees with it", core.generateResponsiveCss(), "._2-cols {");
+
+    // build_tree: one round trip instead of dozens. The shipped examples need
+    // 31-64 create_div/set_props calls each when built a node at a time.
+    core.resetAll();
+    const built = core.buildTree({
+      class: "shell",
+      desktop: { display: "grid", customColumns: "260px 1fr" },
+      mobile: { customColumns: "1fr" },
+      children: [
+        { class: "rail", desktop: { position: "sticky", top: "0" }, mobile: { hidden: true } },
+        { class: "main", children: [{ class: "card" }, { class: "card" }] }
+      ]
+    });
+    t.ok("build_tree creates a whole subtree in one call", built.ok && built.created === 5,
+      JSON.stringify(built));
+    css = core.generateResponsiveCss();
+    t.includes("nested desktop props are applied", css, "grid-template-columns: 260px 1fr");
+    t.includes("nested breakpoint props are applied", css, "display: none");
+    t.ok("repeated classes still de-duplicate", css.includes(".card {") && css.includes(".card-2 {"));
+    for (const [bad, want] of [
+      [{ class: "a", desktop: "nope" }, "desktop must be an object"],
+      [{ class: "a", children: "nope" }, "children must be an array"]
+    ]) {
+      const r = core.buildTree(bad);
+      t.ok(`build_tree rejects ${JSON.stringify(bad)}`, !r.ok && r.error.includes(want.split(" ")[0]), JSON.stringify(r));
+    }
+
     // The generators were forks and drifted: the MCP copy dropped these.
     core.resetAll();
     n = core.addChildDiv("root", "D", "drift");

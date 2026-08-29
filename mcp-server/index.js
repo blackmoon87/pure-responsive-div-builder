@@ -167,6 +167,32 @@ server.tool(
 );
 
 // ============================================================================
+// Tool: build_tree
+// ============================================================================
+server.tool(
+  "build_tree",
+  "Create a whole subtree from one compact nested spec — the fast path for building a page. " +
+  "Each node is { class, name?, desktop?, tablet?, mobile?, children?[] } where the device " +
+  "objects take the same properties as set_props. Prefer this over dozens of create_div/" +
+  "set_props calls: the shipped examples would otherwise need 31-64 round trips each.",
+  {
+    spec: z.union([z.record(z.any()), z.array(z.record(z.any()))])
+      .describe("A node spec, or an array of them, to append under parentId"),
+    parentId: z.string().optional().describe("Parent node id (default: root)"),
+    replace: z.boolean().optional().describe("Remove the parent's existing children first (default: false)")
+  },
+  async ({ spec, parentId, replace }) => {
+    core.pushHistory();
+    const res = core.buildTree(spec, parentId, replace);
+    if (!res.ok) return { content: [{ type: "text", text: "Error: " + res.error }] };
+    return { content: [{ type: "text", text:
+      "Created " + res.created + " divs under " + (parentId || "root") +
+      "\nTop-level ids: " + res.rootIds.join(", ") +
+      "\n\n" + core.listTree().map(n => "  ".repeat(n.depth) + (n.customClass || n.name) + "  [" + n.id + "]").join("\n") }] };
+  }
+);
+
+// ============================================================================
 // Tool: reset_device
 // ============================================================================
 server.tool(

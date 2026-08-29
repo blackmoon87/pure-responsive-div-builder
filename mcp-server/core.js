@@ -294,6 +294,52 @@ export function importTreeJson(payload) {
   return { ok: true, breakpoints: state.breakpoints };
 }
 
+// Build a whole subtree from one compact nested spec. Creating a page a node at
+// a time costs one round trip per call — the shipped examples need 31 to 64 of
+// them — which is the dominant cost of driving this over MCP.
+//
+//   { class, name?, desktop?, tablet?, mobile?, children?: [ ... ] }
+//
+export function buildTree(spec, parentId, replace) {
+  var parent = findNode(parentId || "root");
+  if (!parent) return { ok: false, error: "parent not found: " + parentId };
+
+  var specs = Array.isArray(spec) ? spec : [spec];
+  var err = validateSpec(specs);
+  if (err) return { ok: false, error: err };
+
+  if (replace) parent.children.length = 0;
+
+  var created = 0;
+  function add(node, parentNode) {
+    var made = createPureDiv(node.name || node.class || "Div", node.class || "", node.desktop, node.tablet, node.mobile);
+    parentNode.children.push(made);
+    created++;
+    (node.children || []).forEach(function (c) { add(c, made); });
+    return made;
+  }
+  var roots = specs.map(function (s) { return add(s, parent); });
+  return { ok: true, created: created, rootIds: roots.map(function (n) { return n.id; }) };
+}
+
+function validateSpec(specs, path) {
+  path = path || "spec";
+  if (!Array.isArray(specs)) return path + " must be an object or array";
+  for (var i = 0; i < specs.length; i++) {
+    var s = specs[i], p = path + "[" + i + "]";
+    if (!s || typeof s !== "object" || Array.isArray(s)) return p + " must be an object";
+    for (var k of ["desktop", "tablet", "mobile"]) {
+      if (s[k] != null && (typeof s[k] !== "object" || Array.isArray(s[k]))) return p + "." + k + " must be an object";
+    }
+    if (s.children != null) {
+      if (!Array.isArray(s.children)) return p + ".children must be an array";
+      var e = validateSpec(s.children, p + ".children");
+      if (e) return e;
+    }
+  }
+  return null;
+}
+
 export function setBreakpoints(tablet, mobile) {
   if (tablet != null) state.breakpoints.tablet = tablet;
   if (mobile != null) state.breakpoints.mobile = mobile;

@@ -87,6 +87,20 @@ export var defaultDesktopProps = {
 // min-width is cleared: both have an automatic minimum size of min-content.
 // Without this a nowrap row bursts its container, and a grid track is widened
 // by its widest item until the whole grid overflows.
+// A class name is interpolated into `class="..."` AND into a CSS selector, so an
+// invalid one corrupts both at once. Sanitised at emission rather than on input,
+// so a hand-written or agent-supplied tree is safe too. Both emitters call this,
+// which is what keeps the HTML and the CSS naming each other correctly.
+export function safeClass(name) {
+  var out = String(name == null ? "" : name)
+    .trim()
+    .replace(/[^A-Za-z0-9_-]+/g, "-")   // anything not a CSS ident char
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (/^\d/.test(out)) out = "_" + out;  // an ident may not start with a digit
+  return out || "div-box";
+}
+
 export function isGrid(props) {
   return !!props && props.display === "grid";
 }
@@ -160,7 +174,7 @@ export function generateCleanHtml(node, depth, classCount) {
     return out;
   }
 
-  var baseClass = node.customClass || "div-box";
+  var baseClass = safeClass(node.customClass);
   if (!classCount[baseClass]) classCount[baseClass] = 0;
   classCount[baseClass]++;
   var clsName = classCount[baseClass] > 1 ? baseClass + "-" + classCount[baseClass] : baseClass;
@@ -190,7 +204,7 @@ var NEUTRAL = {
   "box-shadow": "none", "opacity": "1",
   "transform": "none", "transition": "none",
   "backdrop-filter": "none", "-webkit-backdrop-filter": "none",
-  "grid-column": "auto", "order": "0", "flex-basis": "auto", "flex-grow": "0",
+  "grid-column": "auto", "order": "0", "flex-basis": "auto", "flex-grow": "0", "flex-shrink": "1",
   "justify-self": "stretch", "align-self": "auto", "justify-items": "stretch",
   // Neutrals mirror this generator's own defaults, not the CSS-wide initial
   // values, so undoing a rule lands back where the base block would have been.
@@ -320,9 +334,15 @@ function declarationsFor(props, ctx) {
   // a `min-width: auto` neutral would hand the burst straight back.
   o.push("min-width: 0;");
   if (p.span && p.span > 1) o.push("grid-column: span " + p.span + ";");
-  if (p.display === "flex" && p.flexGrow != null) o.push("flex-grow: " + p.flexGrow + ";");
-  if (p.flexShrink != null && p.flexShrink !== 1) o.push("flex-shrink: " + p.flexShrink + ";");
-  if (p.flexBasis) o.push("flex-basis: " + p.flexBasis + ";");
+  // flex-grow/shrink/basis style a flex ITEM, so they depend on the PARENT being
+  // flex — not on this node being flex. The old test was inverted: a flex
+  // container inside a block parent got flex-grow (inert), while a real flex item
+  // got none.
+  if (ctx.flexParent) {
+    if (p.flexGrow != null) o.push("flex-grow: " + p.flexGrow + ";");
+    if (p.flexShrink != null && p.flexShrink !== 1) o.push("flex-shrink: " + p.flexShrink + ";");
+    if (p.flexBasis) o.push("flex-basis: " + p.flexBasis + ";");
+  }
   if (p.order != null && p.order !== 0) o.push("order: " + p.order + ";");
   if (p.textAlign && p.textAlign !== "left") o.push("text-align: " + p.textAlign + ";");
   if (p.direction) o.push("direction: " + p.direction + ";");
@@ -359,7 +379,7 @@ export function generateResponsiveCss(root, breakpoints) {
 
   walk(root, function (node, parent) {
     if (node.id === "root") return;
-    var baseClass = node.customClass || "div-box";
+    var baseClass = safeClass(node.customClass);
     if (!classCount[baseClass]) classCount[baseClass] = 0;
     classCount[baseClass]++;
     var clsName = classCount[baseClass] > 1 ? baseClass + "-" + classCount[baseClass] : baseClass;
@@ -368,7 +388,11 @@ export function generateResponsiveCss(root, breakpoints) {
     // between grid, flex-row and flex-column at a breakpoint.
     function ctxFor(device) {
       var pp = parent ? getEffectiveProps(parent, device) : null;
-      return { gridParent: isGrid(pp), rowParent: isFlexRow(pp) };
+      return {
+        gridParent: isGrid(pp),
+        rowParent: isFlexRow(pp),
+        flexParent: !!pp && pp.display === "flex"
+      };
     }
 
     var dDecls = declarationsFor(getEffectiveProps(node, "desktop"), ctxFor("desktop"));

@@ -88,7 +88,7 @@ reaches the browser and the MCP server at once.**
 | `generator.js` | 411 | **Single source of truth for HTML & CSS emission.** Pure, state-free, shared by the browser and the MCP server |
 | `builder.css` | 1122 | Dark theme UI styling, layout grid, component styles |
 | `export-template.css` | ~20 | CSS reset template included in exported documents |
-| `mcp-server/index.js` | 344 | MCP server with 20 tools |
+| `mcp-server/index.js` | 344 | MCP server with 21 tools |
 | `mcp-server/core.js` | 373 | Server-side **state** (tree, history, breakpoints). Delegates all emission to `generator.js` |
 | `generate_examples.js` | ~1100 | Generates all 10 examples in `examples/` through `core.js` — no handwritten HTML |
 
@@ -800,7 +800,7 @@ Agent ──stdio──> index.js ──calls──> core.js ──manages──
 - **SDK:** `@modelcontextprotocol/sdk` v1.12+
 - **State:** In-memory, no file persistence (resets on restart)
 
-### 15.2 All 20 Tools
+### 15.2 All 21 Tools
 
 Every mutating tool records history. Four of them (`reset_device`,
 `import_json`, `set_breakpoints`, `reset_all`) previously did not, so `undo`
@@ -828,6 +828,27 @@ skipped straight past them — an agent could not undo a `reset_all`.
 | 18 | `reset_all` | Config | ✅ | ✅ |
 | 19 | `undo` | History | ✅ | — |
 | 20 | `redo` | History | ✅ | — |
+| 21 | `build_tree` | Tree | ✅ | ✅ |
+
+### 15.2.4 `build_tree` — the fast path
+
+Building a page a node at a time costs one round trip per call; the shipped
+examples need **31 to 64** of them each, which is the dominant cost of driving
+this over MCP. `build_tree` takes one compact nested spec instead:
+
+```json
+{ "class": "app-shell",
+  "desktop": { "display": "grid", "customColumns": "260px 1fr" },
+  "mobile":  { "customColumns": "1fr" },
+  "children": [
+    { "class": "sidebar", "desktop": { "position": "sticky", "top": "0" }, "mobile": { "hidden": true } },
+    { "class": "content", "children": [ { "class": "card" }, { "class": "card" } ] }
+  ] }
+```
+
+The device objects take exactly the properties `set_props` accepts. The spec is
+validated before anything is created and reports the offending path
+(`spec[0].desktop must be an object`), and the whole build is one undo step.
 
 ### 15.2.1 `export_json` / `import_json` envelope
 
@@ -900,6 +921,9 @@ buildCss(state.root, state.breakpoints)  buildCss(State.root, State.breakpoints)
 | **BUG 12** | The breakpoint blocks were a hand-maintained `if` chain parallel to desktop; 16 of 43 properties were silently unreachable at tablet/mobile | Table-driven emission — see 12.2 |
 | **BUG 13** | `hidden` was appended after the diff and read only raw overrides: no desktop support, and it could never be switched back on | `hidden` is the display value inside the declaration list |
 | **BUG 14** | The canvas preview applied `align-self` and `width: fit-content` that the export never emitted | Preview mirrors the exported declarations exactly |
+| **BUG 16** | `customClass` was interpolated raw into both `class="…"` and a CSS selector, so a name containing a quote or a space produced broken markup | `safeClass()` in `generator.js`, called by **both** emitters so the HTML and CSS can never name each other differently |
+| **BUG 17** | `flex-grow`/`shrink`/`basis` were emitted when the node itself was `display:flex`. That is inverted — they style a flex **item** — so a flex container in a block parent got inert declarations while a real flex item got none | Gated on `ctx.flexParent` |
+| **BUG 18** | The browser builder had no persistence: a refresh destroyed the whole tree | Debounced `localStorage` autosave, restored on boot, guarded by try/catch for private mode and quota |
 | **BUG 15** | The three fixed preview widths (1280/768/375) all sat outside the 580–720px band where layouts broke | Free-width ruler drives the breakpoint from `State.breakpoints`, using the same rule the `@media` queries use |
 
 ### 16.2 Safety Guards
@@ -1059,7 +1083,7 @@ sweep. The suite was validated by mutation: re-introducing the `justify-self`
 gate removal, the grid `min-width: 0`, and one-way `hidden` each failed a named
 assertion.
 
-`mcp-server/test.js` covers the 20 tools (10 smoke tests), and the examples are
+`mcp-server/test.js` covers the 21 tools (10 smoke tests), and the examples are
 verified honest two ways: each committed `.json` reproduces its committed
 `.html` byte-for-byte through `importTreeJson` + `generateFullHtmlDocument`, and
 re-running `generate_examples.js` reproduces every file byte-for-byte apart from

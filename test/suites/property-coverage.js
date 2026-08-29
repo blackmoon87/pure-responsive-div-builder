@@ -6,9 +6,11 @@
 import * as core from "../../mcp-server/core.js";
 
 const GRID = { display: "grid" }, FLEX = { display: "flex" }, POS = { position: "absolute" };
+const FLEX_PARENT = { display: "flex", flexDirection: "row" };
 const BORDER = { borderWidth: "7px", borderStyle: "dashed", borderColor: "#654321" };
 
-// label -> [value, needle, prerequisite props, real prop key (if label differs)]
+// label -> [value, needle, prerequisite props, real prop key, parent props]
+// FLEX_PARENT: flex-grow/shrink/basis style a flex ITEM, so the PARENT must be flex.
 const CASES = {
   display: ["grid", "display: grid", {}],
   columns: [5, "repeat(5", GRID],
@@ -55,9 +57,9 @@ const CASES = {
   transition: ["all .3s ease", "transition: all .3s ease", {}],
   backdropFilter: ["blur(9px)", "backdrop-filter: blur(9px)", {}],
   span: [9, "span 9", {}],
-  flexGrow: [6, "flex-grow: 6", FLEX],
-  flexShrink: [8, "flex-shrink: 8", {}],
-  flexBasis: ["77px", "flex-basis: 77px", {}],
+  flexGrow: [6, "flex-grow: 6", {}, null, FLEX_PARENT],
+  flexShrink: [8, "flex-shrink: 8", {}, null, FLEX_PARENT],
+  flexBasis: ["77px", "flex-basis: 77px", {}, null, FLEX_PARENT],
   order: [4, "order: 4", {}],
   direction: ["rtl", "direction: rtl", {}],
   hidden: [true, "display: none", {}]
@@ -75,11 +77,11 @@ export default {
   run(t) {
     for (const device of ["desktop", "tablet", "mobile"]) {
       const missing = [];
-      for (const [label, [value, needle, pre, realKey]] of Object.entries(CASES)) {
+      for (const [label, [value, needle, pre, realKey, parentProps]] of Object.entries(CASES)) {
         const key = realKey || label;
         core.resetAll();
         const parent = core.addChildDiv("root", "P", "p");
-        core.setProps(parent.id, "desktop", { display: "grid", columns: 3 });
+        core.setProps(parent.id, "desktop", parentProps || { display: "grid", columns: 3 });
         const node = core.addChildDiv(parent.id, "T", "target");
         // an object value is merged wholesale (compound properties like border);
         // a scalar is assigned to `key`

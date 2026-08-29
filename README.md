@@ -3,7 +3,7 @@
 [![HTML5](https://img.shields.io/badge/HTML5-Pure%20DIVs%20Only-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder)
 [![CSS3](https://img.shields.io/badge/CSS3-Modern%20Grid%20%26%20Flexbox-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder)
 [![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla%20ES5%20Zero%20Deps-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/blackmoon87/pure-responsive-div-builder)
-[![MCP Server](https://img.shields.io/badge/MCP%20Server-20%20AI%20Agent%20Tools-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder/tree/main/mcp-server)
+[![MCP Server](https://img.shields.io/badge/MCP%20Server-21%20AI%20Agent%20Tools-8A2BE2?style=for-the-badge&logo=anthropic&logoColor=white)](https://github.com/blackmoon87/pure-responsive-div-builder/tree/main/mcp-server)
 [![RTL Supported](https://img.shields.io/badge/RTL-Arabic%20%26%20Hebrew%20Ready-10B981?style=for-the-badge)](https://github.com/blackmoon87/pure-responsive-div-builder)
 
 > **A high-performance visual wireframe builder & responsive HTML5/CSS3 layout generator that generates 100% pure, unbloated `<div>` hierarchies with modern CSS Grid, Flexbox, RTL support, and a built-in MCP Server for AI coding agents.**
@@ -20,7 +20,7 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 - 📐 **Zero Dependencies:** Pure Vanilla JavaScript & CSS. No frameworks, no build step, no bundlers needed.
 - 📱 **Triple-Breakpoint Responsive Engine:** Desktop (>992px), tablet (≤992px), and mobile (≤576px) rules, with editable live breakpoints and a free-width ruler for previewing any viewport in between — the ranges where layouts actually break.
 - 🌐 **First-Class RTL (Right-to-Left) Support:** Native `dir="rtl"` and `direction: rtl` export for Arabic, Hebrew, and Persian layouts.
-- 🤖 **Model Context Protocol (MCP) Server:** Exposes 20 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
+- 🤖 **Model Context Protocol (MCP) Server:** Exposes 21 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
 
 ---
 
@@ -39,6 +39,7 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 | **Instant Export** | Clean HTML, responsive CSS with media queries, or single-file combined HTML with download & clipboard copy |
 | **Overlays** | Modals, drawers and popovers: fixed full-viewport backdrop with `rgba()` scrim + `backdrop-filter`, flex-centred dialog, `transform`/`transition` for entrance states. Ship it `hidden` and open it from your own JS with `el.style.display = 'flex'` — every other declaration survives |
 | **Show / Hide** | `hidden` per device on every breakpoint including desktop — hide a sidebar on phones, or keep a mobile-only panel `display: none` on desktop and switch it back on at its breakpoint |
+| **Autosave** | The browser builder persists to `localStorage` on every change and restores on load — a refresh no longer destroys your tree |
 | **Undo / Redo** | 50-deep snapshot history with keyboard shortcuts (`Ctrl+Z`, `Ctrl+Y`, `Del`) |
 
 ---
@@ -207,11 +208,11 @@ Native RTL support with `dir="rtl"` and responsive flow:
 
 The project includes a standalone **Model Context Protocol (MCP)** server under `mcp-server/` allowing LLMs like Claude, Cursor, Antigravity, and Windsurf to create and manipulate responsive layouts programmatically.
 
-### MCP Tools List (20 Tools)
+### MCP Tools List (21 Tools)
 
 | Category | Tools |
 |---|---|
-| **Tree Management** | `create_div`, `delete_div`, `move_div`, `clone_div`, `wrap_div`, `split_div`, `reparent_div`, `list_tree`, `get_node` |
+| **Tree Management** | `build_tree` (whole subtree in one call), `create_div`, `delete_div`, `move_div`, `clone_div`, `wrap_div`, `split_div`, `reparent_div`, `list_tree`, `get_node` |
 | **Properties** | `set_props` (50+ properties across desktop/tablet/mobile), `reset_device` |
 | **Export** | `export_html`, `export_css`, `export_full`, `export_json`, `import_json` |
 | **Config & History** | `set_breakpoints`, `reset_all`, `undo`, `redo` |

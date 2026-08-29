@@ -1,6 +1,6 @@
 # htmlCreator MCP Server
 
-Exposes the Pure Responsive DIV Generator as **20 MCP tools** for AI agents.
+Exposes the Pure Responsive DIV Generator as **21 MCP tools** for AI agents.
 
 All HTML/CSS emission lives in `../generator.js`, shared with the browser
 builder — the MCP server and the UI cannot produce different CSS for the same
@@ -33,6 +33,7 @@ Add to `~/.gemini/config/mcp_config.json`:
 ### Tree Management
 | Tool | Description |
 |---|---|
+| `build_tree` | **Create a whole subtree from one nested spec** — the fast path. `{ class, name?, desktop?, tablet?, mobile?, children?[] }`. Prefer this over dozens of `create_div`/`set_props` calls |
 | `create_div` | Create a child div (`parentId`, `name`, `customClass`) |
 | `delete_div` | Delete a div (`nodeId`) |
 | `move_div` | Reorder within siblings (`nodeId`, `direction`) |
@@ -85,6 +86,21 @@ set_props(nodeId, device: "mobile",  props: { hidden: false, display: "flex" })
 | `set_breakpoints` | Set tablet/mobile px values |
 | `reset_all` | Clear tree and restore default breakpoints |
 | `undo` / `redo` | 50-deep history. **Every mutating tool records history**, including `reset_device`, `import_json`, `set_breakpoints` and `reset_all` |
+
+## Example — one call instead of thirty
+
+```js
+build_tree({ spec: {
+  class: "app-shell",
+  desktop: { display: "grid", customColumns: "260px 1fr" },
+  mobile:  { customColumns: "1fr" },
+  children: [
+    { class: "sidebar", desktop: { position: "sticky", top: "0" }, mobile: { hidden: true } },
+    { class: "content", children: [{ class: "card" }, { class: "card" }] }
+  ]
+}})
+export_full()
+```
 
 ## Example
 
