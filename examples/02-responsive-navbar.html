@@ -147,7 +147,7 @@ html, body {
 @media (max-width: 576px) {
   .nav-container {
     flex-direction: column;
-    padding: 16px 16px 16px 16px;
+    padding: 16px;
   }
 
   .brand-logo {
@@ -155,8 +155,10 @@ html, body {
   }
 
   .nav-links {
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 8px;
+    width: 100%;
     min-width: auto;
   }
 
@@ -186,7 +188,7 @@ html, body {
   }
 
   .hero-banner {
-    padding: 16px 16px 16px 16px;
+    margin: 20px auto 20px auto;
   }
 }
   </style>

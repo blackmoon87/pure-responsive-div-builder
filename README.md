@@ -27,8 +27,8 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 
 | Feature | Description |
 |---|---|
-| **Modern Display Modes** | CSS Grid (1-12 columns, custom ratios `1fr 3fr`, auto-fit, auto-fill, justify-items, align-content), Flexbox (row/column, wrap, justify, align), Block |
-| **Self-Alignment** | Left, Center (`margin: 0 auto`), Right, Stretch |
+| **Modern Display Modes** | CSS Grid (1-12 columns, custom ratios `1fr 3fr`, auto-fit, auto-fill, `justify-items`, `align-content`, `justify-content`, `align-items`), Flexbox (row/column, wrap, `justify-content`, `align-items`, `align-content` on wrapped lines), Block |
+| **Self-Alignment** | Horizontal: Left, Center (`margin: 0 auto`), Right, Stretch (+ `justify-self` under a grid parent). Cross-axis: `align-self` (start/center/end/stretch/baseline) |
 | **Complete Sizing** | `width`, `height`, `min-height`, `max-width`, `max-height`, `aspect-ratio` presets (1:1, 4:3, 16:9, 21:9) |
 | **4-Side Spacing** | Individual Top/Right/Bottom/Left padding & margins with linked 🔗 toggle |
 | **Layer & Positioning** | `static`, `relative`, `absolute`, `fixed`, `sticky` + offsets (top/right/bottom/left) + `z-index` |
@@ -273,5 +273,7 @@ generator.js  ──┬──►  builder.js        (browser UI, ES module)
 ```
 
 Previously `builder.js` and `mcp-server/core.js` each carried their own copy of the emitter. They drifted: the MCP path silently dropped `overflow-x`/`overflow-y` and tablet/mobile `horizontalAlign`, so agents received a success response and CSS that ignored the properties they had set. **Any change to emitted CSS now belongs in `generator.js` and reaches both surfaces at once.**
+
+All 47 emittable declarations are produced by one ordered list in `generator.js`, used for desktop **and** both breakpoints — a breakpoint override block is computed by diffing that list against the wider device, so every property is overridable at every device and none can be forgotten. Clearing a property at a breakpoint emits a neutral value (`border: none`, `max-width: none`) rather than silently inheriting.
 
 Because `builder.js` is an ES module, the builder must be served over HTTP (`python3 -m http.server 8080`) — opening `index.html` via `file://` will not work.

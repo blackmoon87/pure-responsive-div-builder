@@ -23,6 +23,7 @@ export var defaultDesktopProps = {
 
     // Self alignment
     horizontalAlign: "stretch", // "left" | "center" | "right" | "stretch"
+  alignSelf: "",            // "" (inherit) | "start" | "center" | "end" | "stretch" | "baseline"
     textAlign: "left",
 
     // Sizing
@@ -172,6 +173,159 @@ export function generateCleanHtml(node, depth, classCount) {
   return out;
 }
 
+// Neutral values used to *undo* a declaration at a breakpoint. When a property
+// is emitted for one device and not the next, the cascade would otherwise leak
+// the wider rule down. Only consulted inside media blocks.
+var NEUTRAL = {
+  "width": "auto", "height": "auto", "max-width": "none", "max-height": "none",
+  "aspect-ratio": "auto", "margin": "0", "position": "static",
+  "top": "auto", "right": "auto", "bottom": "auto", "left": "auto", "z-index": "auto",
+  "overflow": "visible", "overflow-x": "visible", "overflow-y": "visible",
+  "background-color": "transparent", "border": "none", "border-radius": "0",
+  "box-shadow": "none", "opacity": "1", "min-width": "auto",
+  "grid-column": "auto", "order": "0", "flex-basis": "auto", "flex-grow": "0",
+  "justify-self": "stretch", "align-self": "auto", "justify-items": "stretch",
+  // Neutrals mirror this generator's own defaults, not the CSS-wide initial
+  // values, so undoing a rule lands back where the base block would have been.
+  "align-content": "start", "justify-content": "flex-start", "align-items": "stretch",
+  "text-align": "left", "direction": "inherit",
+  "flex-wrap": "nowrap", "grid-template-columns": "none"
+};
+
+// Every declaration this generator can emit, in output order. One list, used
+// for desktop AND for both breakpoints — a property added here is automatically
+// overridable at every device, so the override blocks can no longer fall behind
+// the base block the way two hand-maintained if-chains did.
+function declarationsFor(props, ctx) {
+  var p = props, o = [];
+
+  // --- display + container-level alignment --------------------------------
+  if (p.display === "grid") {
+    o.push("display: grid;");
+    if (p.gridAutoMode) {
+      o.push("grid-template-columns: repeat(" + p.gridAutoMode + ", minmax(min(" + (p.gridMinColWidth || "200px") + ", 100%), 1fr));");
+    } else if (p.customColumns) {
+      o.push("grid-template-columns: " + p.customColumns + ";");
+    } else {
+      o.push("grid-template-columns: repeat(" + (p.columns || 1) + ", 1fr);");
+    }
+    o.push("gap: " + (p.gap != null ? p.gap : 16) + "px;");
+    if (p.rowGap != null && p.rowGap !== p.gap) o.push("row-gap: " + p.rowGap + "px;");
+    if (p.justifyItems && p.justifyItems !== "stretch") o.push("justify-items: " + p.justifyItems + ";");
+    if (p.alignContent && p.alignContent !== "start") o.push("align-content: " + p.alignContent + ";");
+    // A grid distributes its tracks with justify-content and aligns items in
+    // their row with align-items, exactly like flex does.
+    if (p.justifyContent && p.justifyContent !== "flex-start") o.push("justify-content: " + p.justifyContent + ";");
+    if (p.alignItems && p.alignItems !== "stretch") o.push("align-items: " + p.alignItems + ";");
+  } else if (p.display === "flex") {
+    o.push("display: flex;");
+    if (p.flexDirection) o.push("flex-direction: " + p.flexDirection + ";");
+    if (p.flexWrap) o.push("flex-wrap: " + p.flexWrap + ";");
+    if (p.justifyContent) o.push("justify-content: " + p.justifyContent + ";");
+    if (p.alignItems) o.push("align-items: " + p.alignItems + ";");
+    o.push("gap: " + (p.gap != null ? p.gap : 16) + "px;");
+    // align-content only does anything once the lines can wrap.
+    if (p.flexWrap === "wrap" && p.alignContent && p.alignContent !== "start") {
+      o.push("align-content: " + p.alignContent + ";");
+    }
+  } else {
+    o.push("display: block;");
+  }
+
+  // --- self alignment ------------------------------------------------------
+  if (p.horizontalAlign === "center") {
+    o.push("margin-left: auto;", "margin-right: auto;");
+    if (ctx.gridParent) o.push("justify-self: center;");
+  } else if (p.horizontalAlign === "right") {
+    o.push("margin-left: auto;", "margin-right: 0;");
+    if (ctx.gridParent) o.push("justify-self: end;");
+  } else if (p.horizontalAlign === "left") {
+    o.push("margin-left: 0;", "margin-right: auto;");
+    if (ctx.gridParent) o.push("justify-self: start;");
+  }
+  // Cross-axis self alignment: lets one child opt out of the parent's
+  // align-items in either a flex or a grid container.
+  if (p.alignSelf) o.push("align-self: " + p.alignSelf + ";");
+
+  // --- sizing --------------------------------------------------------------
+  if (p.width) o.push("width: " + p.width + ";");
+  if (p.height) o.push("height: " + p.height + ";");
+  if (p.minHeight) o.push("min-height: " + p.minHeight + "px;");
+  if (p.maxWidth) o.push("max-width: " + p.maxWidth + ";");
+  if (p.maxHeight) o.push("max-height: " + p.maxHeight + ";");
+  if (p.aspectRatio) o.push("aspect-ratio: " + p.aspectRatio + ";");
+
+  // --- spacing -------------------------------------------------------------
+  if (p.paddingTop != null || p.paddingRight != null || p.paddingBottom != null || p.paddingLeft != null) {
+    var pt = p.paddingTop != null ? p.paddingTop : 16;
+    var pr = p.paddingRight != null ? p.paddingRight : 16;
+    var pb = p.paddingBottom != null ? p.paddingBottom : 16;
+    var pl = p.paddingLeft != null ? p.paddingLeft : 16;
+    if (pt === pr && pr === pb && pb === pl) o.push("padding: " + pt + "px;");
+    else o.push("padding: " + pt + "px " + pr + "px " + pb + "px " + pl + "px;");
+  } else if (p.padding != null) {
+    o.push("padding: " + p.padding + "px;");
+  }
+  if (p.marginTop || p.marginRight || p.marginBottom || p.marginLeft) {
+    o.push("margin: " + (p.marginTop || "0") + " " + (p.marginRight || "0") + " " +
+           (p.marginBottom || "0") + " " + (p.marginLeft || "0") + ";");
+  }
+
+  // --- position ------------------------------------------------------------
+  if (p.position && p.position !== "static") {
+    o.push("position: " + p.position + ";");
+    if (p.top) o.push("top: " + p.top + ";");
+    if (p.right) o.push("right: " + p.right + ";");
+    if (p.bottom) o.push("bottom: " + p.bottom + ";");
+    if (p.left) o.push("left: " + p.left + ";");
+    if (p.zIndex) o.push("z-index: " + p.zIndex + ";");
+  }
+  if (p.overflow && p.overflow !== "visible") o.push("overflow: " + p.overflow + ";");
+  if (p.overflowX) o.push("overflow-x: " + p.overflowX + ";");
+  if (p.overflowY) o.push("overflow-y: " + p.overflowY + ";");
+
+  // --- visual --------------------------------------------------------------
+  if (p.backgroundColor) o.push("background-color: " + p.backgroundColor + ";");
+  if (p.borderWidth && p.borderStyle && p.borderColor) o.push("border: " + p.borderWidth + " " + p.borderStyle + " " + p.borderColor + ";");
+  if (p.borderRadius) o.push("border-radius: " + p.borderRadius + ";");
+  if (p.boxShadow) o.push("box-shadow: " + p.boxShadow + ";");
+  if (p.opacity && p.opacity !== "1") o.push("opacity: " + p.opacity + ";");
+
+  // --- as a child of its parent -------------------------------------------
+  if (ctx.rowParent) o.push("min-width: 0;");
+  if (p.span && p.span > 1) o.push("grid-column: span " + p.span + ";");
+  if (p.display === "flex" && p.flexGrow != null) o.push("flex-grow: " + p.flexGrow + ";");
+  if (p.flexShrink != null && p.flexShrink !== 1) o.push("flex-shrink: " + p.flexShrink + ";");
+  if (p.flexBasis) o.push("flex-basis: " + p.flexBasis + ";");
+  if (p.order != null && p.order !== 0) o.push("order: " + p.order + ";");
+  if (p.textAlign && p.textAlign !== "left") o.push("text-align: " + p.textAlign + ";");
+  if (p.direction) o.push("direction: " + p.direction + ";");
+
+  return o;
+}
+
+function declMap(decls) {
+  var m = {};
+  for (var i = 0; i < decls.length; i++) {
+    var d = decls[i], c = d.indexOf(":");
+    m[d.slice(0, c)] = d.slice(c + 1, d.length - 1).trim();
+  }
+  return m;
+}
+
+// What a narrower breakpoint must restate to differ from the wider one.
+function overrideDecls(prevDecls, currDecls) {
+  var prev = declMap(prevDecls), curr = declMap(currDecls), out = [];
+  for (var i = 0; i < currDecls.length; i++) {
+    var d = currDecls[i], k = d.slice(0, d.indexOf(":"));
+    if (prev[k] !== curr[k]) out.push(d);
+  }
+  for (var k2 in prev) {
+    if (!(k2 in curr) && NEUTRAL[k2] !== undefined) out.push(k2 + ": " + NEUTRAL[k2] + ";");
+  }
+  return out;
+}
+
 export function generateResponsiveCss(root, breakpoints) {
   var rules = { desktop: [], tablet: [], mobile: [] };
   var classCount = {};
@@ -184,190 +338,29 @@ export function generateResponsiveCss(root, breakpoints) {
     classCount[baseClass]++;
     var clsName = classCount[baseClass] > 1 ? baseClass + "-" + classCount[baseClass] : baseClass;
 
-    var d = node.responsive.desktop || {};
-    var t = node.responsive.tablet || {};
-    var m = node.responsive.mobile || {};
-
-    // Flex-item shrink context, resolved per device because a parent can
-    // switch between row and column at a breakpoint.
-    var dRow = parent ? isFlexRow(getEffectiveProps(parent, "desktop")) : false;
-    var tRow = parent ? isFlexRow(getEffectiveProps(parent, "tablet")) : false;
-    var mRow = parent ? isFlexRow(getEffectiveProps(parent, "mobile")) : false;
-    var dGrid = parent ? isGrid(getEffectiveProps(parent, "desktop")) : false;
-    var tGrid = parent ? isGrid(getEffectiveProps(parent, "tablet")) : false;
-    var mGrid = parent ? isGrid(getEffectiveProps(parent, "mobile")) : false;
-
-    // --- Desktop ---
-    var dCss = [];
-    if (d.display === "grid") {
-      dCss.push("  display: grid;");
-      if (d.gridAutoMode) {
-        dCss.push("  grid-template-columns: repeat(" + d.gridAutoMode + ", minmax(min(" + (d.gridMinColWidth || "200px") + ", 100%), 1fr));");
-      } else if (d.customColumns) {
-        dCss.push("  grid-template-columns: " + d.customColumns + ";");
-      } else {
-        dCss.push("  grid-template-columns: repeat(" + (d.columns || 1) + ", 1fr);");
-      }
-      dCss.push("  gap: " + (d.gap != null ? d.gap : 16) + "px;");
-      if (d.rowGap != null && d.rowGap !== d.gap) dCss.push("  row-gap: " + d.rowGap + "px;");
-      if (d.justifyItems && d.justifyItems !== "stretch") dCss.push("  justify-items: " + d.justifyItems + ";");
-      if (d.alignContent && d.alignContent !== "start") dCss.push("  align-content: " + d.alignContent + ";");
-    } else if (d.display === "flex") {
-      dCss.push("  display: flex;");
-      if (d.flexDirection) dCss.push("  flex-direction: " + d.flexDirection + ";");
-      if (d.flexWrap) dCss.push("  flex-wrap: " + d.flexWrap + ";");
-      if (d.justifyContent) dCss.push("  justify-content: " + d.justifyContent + ";");
-      if (d.alignItems) dCss.push("  align-items: " + d.alignItems + ";");
-      dCss.push("  gap: " + (d.gap != null ? d.gap : 16) + "px;");
-    } else {
-      dCss.push("  display: block;");
+    // Parent context is resolved per device, because a parent can switch
+    // between grid, flex-row and flex-column at a breakpoint.
+    function ctxFor(device) {
+      var pp = parent ? getEffectiveProps(parent, device) : null;
+      return { gridParent: isGrid(pp), rowParent: isFlexRow(pp) };
     }
 
-    // Alignment
-    if (d.horizontalAlign === "center") dCss.push("  margin-left: auto;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: center;" : ""));
-    else if (d.horizontalAlign === "right") dCss.push("  margin-left: auto;\n  margin-right: 0;" + (dGrid ? "\n  justify-self: end;" : ""));
-    else if (d.horizontalAlign === "left") dCss.push("  margin-left: 0;\n  margin-right: auto;" + (dGrid ? "\n  justify-self: start;" : ""));
+    var dDecls = declarationsFor(getEffectiveProps(node, "desktop"), ctxFor("desktop"));
+    var tDecls = declarationsFor(getEffectiveProps(node, "tablet"), ctxFor("tablet"));
+    var mDecls = declarationsFor(getEffectiveProps(node, "mobile"), ctxFor("mobile"));
 
-    // Sizing
-    if (d.width) dCss.push("  width: " + d.width + ";");
-    if (d.height) dCss.push("  height: " + d.height + ";");
-    if (d.minHeight) dCss.push("  min-height: " + d.minHeight + "px;");
-    if (d.maxWidth) dCss.push("  max-width: " + d.maxWidth + ";");
-    if (d.maxHeight) dCss.push("  max-height: " + d.maxHeight + ";");
-    if (d.aspectRatio) dCss.push("  aspect-ratio: " + d.aspectRatio + ";");
+    if (dDecls.length) rules.desktop.push("." + clsName + " {\n  " + dDecls.join("\n  ") + "\n}");
 
-    // 4-side spacing
-    if (d.paddingTop != null || d.paddingRight != null || d.paddingBottom != null || d.paddingLeft != null) {
-      var pt = d.paddingTop != null ? d.paddingTop : 16;
-      var pr = d.paddingRight != null ? d.paddingRight : 16;
-      var pb = d.paddingBottom != null ? d.paddingBottom : 16;
-      var pl = d.paddingLeft != null ? d.paddingLeft : 16;
-      if (pt === pr && pr === pb && pb === pl) dCss.push("  padding: " + pt + "px;");
-      else dCss.push("  padding: " + pt + "px " + pr + "px " + pb + "px " + pl + "px;");
-    } else if (d.padding != null) {
-      dCss.push("  padding: " + d.padding + "px;");
-    }
-    if (d.marginTop || d.marginRight || d.marginBottom || d.marginLeft) {
-      dCss.push("  margin: " + (d.marginTop || "0") + " " + (d.marginRight || "0") + " " + (d.marginBottom || "0") + " " + (d.marginLeft || "0") + ";");
-    }
+    // Mobile diffs against tablet, not desktop: both media blocks are
+    // max-width, so at 400px the tablet rule applies and the mobile rule
+    // overrides it. Diffing against desktop would restate what tablet already said.
+    var t = overrideDecls(dDecls, tDecls);
+    if (node.responsive.tablet && node.responsive.tablet.hidden) t.push("display: none;");
+    if (t.length) rules.tablet.push("  ." + clsName + " {\n    " + t.join("\n    ") + "\n  }");
 
-    // Position
-    if (d.position && d.position !== "static") {
-      dCss.push("  position: " + d.position + ";");
-      if (d.top) dCss.push("  top: " + d.top + ";");
-      if (d.right) dCss.push("  right: " + d.right + ";");
-      if (d.bottom) dCss.push("  bottom: " + d.bottom + ";");
-      if (d.left) dCss.push("  left: " + d.left + ";");
-      if (d.zIndex) dCss.push("  z-index: " + d.zIndex + ";");
-    }
-    if (d.overflow && d.overflow !== "visible") dCss.push("  overflow: " + d.overflow + ";");
-    if (d.overflowX) dCss.push("  overflow-x: " + d.overflowX + ";");
-    if (d.overflowY) dCss.push("  overflow-y: " + d.overflowY + ";");
-
-    // Visual
-    if (d.backgroundColor) dCss.push("  background-color: " + d.backgroundColor + ";");
-    if (d.borderWidth && d.borderStyle && d.borderColor) dCss.push("  border: " + d.borderWidth + " " + d.borderStyle + " " + d.borderColor + ";");
-    if (d.borderRadius) dCss.push("  border-radius: " + d.borderRadius + ";");
-    if (d.boxShadow) dCss.push("  box-shadow: " + d.boxShadow + ";");
-    if (d.opacity && d.opacity !== "1") dCss.push("  opacity: " + d.opacity + ";");
-
-    // Grid/Flex child
-    if (dRow) dCss.push("  min-width: 0;");
-    if (d.span && d.span > 1) dCss.push("  grid-column: span " + d.span + ";");
-    if (d.display === "flex" && d.flexGrow != null) dCss.push("  flex-grow: " + d.flexGrow + ";");
-    if (d.flexShrink != null && d.flexShrink !== 1) dCss.push("  flex-shrink: " + d.flexShrink + ";");
-    if (d.flexBasis) dCss.push("  flex-basis: " + d.flexBasis + ";");
-    if (d.order != null && d.order !== 0) dCss.push("  order: " + d.order + ";");
-    if (d.textAlign && d.textAlign !== "left") dCss.push("  text-align: " + d.textAlign + ";");
-    if (d.direction) dCss.push("  direction: " + d.direction + ";");
-
-    if (dCss.length) rules.desktop.push("." + clsName + " {\n" + dCss.join("\n") + "\n}");
-
-    // --- Tablet overrides ---
-    var tCss = [];
-    if (t.display && t.display !== d.display) tCss.push("    display: " + t.display + ";");
-    if (t.customColumns && t.customColumns !== d.customColumns) {
-      tCss.push("    grid-template-columns: " + t.customColumns + ";");
-    } else if (t.gridAutoMode && t.gridAutoMode !== d.gridAutoMode) {
-      tCss.push("    grid-template-columns: repeat(" + t.gridAutoMode + ", minmax(min(" + (t.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
-    } else if (t.columns && t.columns !== d.columns) {
-      tCss.push("    grid-template-columns: repeat(" + t.columns + ", 1fr);");
-    }
-    if (t.flexDirection && t.flexDirection !== d.flexDirection) tCss.push("    flex-direction: " + t.flexDirection + ";");
-    if (t.horizontalAlign && t.horizontalAlign !== d.horizontalAlign) {
-      if (t.horizontalAlign === "center") tCss.push("    margin-left: auto;\n    margin-right: auto;" + (tGrid ? "\n    justify-self: center;" : ""));
-      else if (t.horizontalAlign === "right") tCss.push("    margin-left: auto;\n    margin-right: 0;" + (tGrid ? "\n    justify-self: end;" : ""));
-      else if (t.horizontalAlign === "left") tCss.push("    margin-left: 0;\n    margin-right: auto;" + (tGrid ? "\n    justify-self: start;" : ""));
-      else if (t.horizontalAlign === "stretch") tCss.push("    margin-left: 0;\n    margin-right: 0;" + (tGrid ? "\n    justify-self: stretch;" : ""));
-    }
-    if (t.width && t.width !== d.width) tCss.push("    width: " + t.width + ";");
-    if (t.height && t.height !== d.height) tCss.push("    height: " + t.height + ";");
-    if (t.gap != null && t.gap !== d.gap) tCss.push("    gap: " + t.gap + "px;");
-    if (t.paddingTop != null) tCss.push("    padding: " + (t.paddingTop||0) + "px " + (t.paddingRight||0) + "px " + (t.paddingBottom||0) + "px " + (t.paddingLeft||0) + "px;");
-    if (t.position && t.position !== d.position) tCss.push("    position: " + t.position + ";");
-    if (t.overflow && t.overflow !== d.overflow) tCss.push("    overflow: " + t.overflow + ";");
-    if (t.backgroundColor && t.backgroundColor !== d.backgroundColor) tCss.push("    background-color: " + t.backgroundColor + ";");
-    if (t.borderRadius && t.borderRadius !== d.borderRadius) tCss.push("    border-radius: " + t.borderRadius + ";");
-    if (t.span != null && t.span !== d.span) tCss.push("    grid-column: span " + t.span + ";");
-    if (t.order != null && t.order !== d.order) tCss.push("    order: " + t.order + ";");
-    if (t.direction && t.direction !== d.direction) tCss.push("    direction: " + t.direction + ";");
-    if (t.opacity && t.opacity !== d.opacity) tCss.push("    opacity: " + t.opacity + ";");
-    if (t.boxShadow && t.boxShadow !== d.boxShadow) tCss.push("    box-shadow: " + t.boxShadow + ";");
-    if (t.aspectRatio && t.aspectRatio !== d.aspectRatio) tCss.push("    aspect-ratio: " + t.aspectRatio + ";");
-    if (t.borderWidth && t.borderStyle && t.borderColor && (t.borderWidth !== d.borderWidth || t.borderStyle !== d.borderStyle || t.borderColor !== d.borderColor)) tCss.push("    border: " + t.borderWidth + " " + t.borderStyle + " " + t.borderColor + ";");
-    if (t.flexBasis && t.flexBasis !== d.flexBasis) tCss.push("    flex-basis: " + t.flexBasis + ";");
-    if (t.flexShrink != null && t.flexShrink !== d.flexShrink) tCss.push("    flex-shrink: " + t.flexShrink + ";");
-    if (t.textAlign && t.textAlign !== d.textAlign) tCss.push("    text-align: " + t.textAlign + ";");
-    if (t.maxHeight && t.maxHeight !== d.maxHeight) tCss.push("    max-height: " + t.maxHeight + ";");
-    if (t.minHeight && t.minHeight !== d.minHeight) tCss.push("    min-height: " + t.minHeight + "px;");
-    if (t.overflowX && t.overflowX !== d.overflowX) tCss.push("    overflow-x: " + t.overflowX + ";");
-    if (t.overflowY && t.overflowY !== d.overflowY) tCss.push("    overflow-y: " + t.overflowY + ";");
-    if (tRow !== dRow) tCss.push("    min-width: " + (tRow ? "0" : "auto") + ";");
-    if (t.hidden) tCss.push("    display: none;");
-    if (tCss.length) rules.tablet.push("  ." + clsName + " {\n" + tCss.join("\n") + "\n  }");
-
-    // --- Mobile overrides ---
-    var mCss = [];
-    if (m.display && m.display !== d.display) mCss.push("    display: " + m.display + ";");
-    if (m.customColumns && m.customColumns !== d.customColumns) {
-      mCss.push("    grid-template-columns: " + m.customColumns + ";");
-    } else if (m.gridAutoMode && m.gridAutoMode !== d.gridAutoMode) {
-      mCss.push("    grid-template-columns: repeat(" + m.gridAutoMode + ", minmax(min(" + (m.gridMinColWidth || d.gridMinColWidth || "200px") + ", 100%), 1fr));");
-    } else if (m.columns && m.columns !== d.columns) {
-      mCss.push("    grid-template-columns: repeat(" + m.columns + ", 1fr);");
-    }
-    if (m.flexDirection && m.flexDirection !== d.flexDirection) mCss.push("    flex-direction: " + m.flexDirection + ";");
-    if (m.horizontalAlign && m.horizontalAlign !== d.horizontalAlign) {
-      if (m.horizontalAlign === "center") mCss.push("    margin-left: auto;\n    margin-right: auto;" + (mGrid ? "\n    justify-self: center;" : ""));
-      else if (m.horizontalAlign === "right") mCss.push("    margin-left: auto;\n    margin-right: 0;" + (mGrid ? "\n    justify-self: end;" : ""));
-      else if (m.horizontalAlign === "left") mCss.push("    margin-left: 0;\n    margin-right: auto;" + (mGrid ? "\n    justify-self: start;" : ""));
-      else if (m.horizontalAlign === "stretch") mCss.push("    margin-left: 0;\n    margin-right: 0;" + (mGrid ? "\n    justify-self: stretch;" : ""));
-    }
-    if (m.width && m.width !== d.width) mCss.push("    width: " + m.width + ";");
-    if (m.height && m.height !== d.height) mCss.push("    height: " + m.height + ";");
-    if (m.gap != null && m.gap !== d.gap) mCss.push("    gap: " + m.gap + "px;");
-    if (m.paddingTop != null) mCss.push("    padding: " + (m.paddingTop||0) + "px " + (m.paddingRight||0) + "px " + (m.paddingBottom||0) + "px " + (m.paddingLeft||0) + "px;");
-    if (m.position && m.position !== d.position) mCss.push("    position: " + m.position + ";");
-    if (m.overflow && m.overflow !== d.overflow) mCss.push("    overflow: " + m.overflow + ";");
-    if (m.backgroundColor && m.backgroundColor !== d.backgroundColor) mCss.push("    background-color: " + m.backgroundColor + ";");
-    if (m.borderRadius && m.borderRadius !== d.borderRadius) mCss.push("    border-radius: " + m.borderRadius + ";");
-    if (m.span != null && m.span !== d.span) mCss.push("    grid-column: span " + m.span + ";");
-    if (m.order != null && m.order !== d.order) mCss.push("    order: " + m.order + ";");
-    if (m.direction && m.direction !== d.direction) mCss.push("    direction: " + m.direction + ";");
-    if (m.opacity && m.opacity !== d.opacity) mCss.push("    opacity: " + m.opacity + ";");
-    if (m.boxShadow && m.boxShadow !== d.boxShadow) mCss.push("    box-shadow: " + m.boxShadow + ";");
-    if (m.aspectRatio && m.aspectRatio !== d.aspectRatio) mCss.push("    aspect-ratio: " + m.aspectRatio + ";");
-    if (m.borderWidth && m.borderStyle && m.borderColor && (m.borderWidth !== d.borderWidth || m.borderStyle !== d.borderStyle || m.borderColor !== d.borderColor)) mCss.push("    border: " + m.borderWidth + " " + m.borderStyle + " " + m.borderColor + ";");
-    if (m.flexBasis && m.flexBasis !== d.flexBasis) mCss.push("    flex-basis: " + m.flexBasis + ";");
-    if (m.flexShrink != null && m.flexShrink !== d.flexShrink) mCss.push("    flex-shrink: " + m.flexShrink + ";");
-    if (m.textAlign && m.textAlign !== d.textAlign) mCss.push("    text-align: " + m.textAlign + ";");
-    if (m.maxHeight && m.maxHeight !== d.maxHeight) mCss.push("    max-height: " + m.maxHeight + ";");
-    if (m.minHeight && m.minHeight !== d.minHeight) mCss.push("    min-height: " + m.minHeight + "px;");
-    if (m.overflowX && m.overflowX !== d.overflowX) mCss.push("    overflow-x: " + m.overflowX + ";");
-    if (m.overflowY && m.overflowY !== d.overflowY) mCss.push("    overflow-y: " + m.overflowY + ";");
-    if (mRow !== tRow) mCss.push("    min-width: " + (mRow ? "0" : "auto") + ";");
-    if (m.hidden) mCss.push("    display: none;");
-    if (mCss.length) rules.mobile.push("  ." + clsName + " {\n" + mCss.join("\n") + "\n  }");
+    var m = overrideDecls(tDecls, mDecls);
+    if (node.responsive.mobile && node.responsive.mobile.hidden) m.push("display: none;");
+    if (m.length) rules.mobile.push("  ." + clsName + " {\n    " + m.join("\n    ") + "\n  }");
   });
 
   var cssText = "/* Reset & Global */\n*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\nhtml, body {\n  width: 100%;\n  min-height: 100vh;\n  background-color: #0a0d12;\n  color: #f0f6fc;\n  font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  overflow-x: hidden;\n}\n\n";

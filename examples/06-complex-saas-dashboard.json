@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdqo4jy_1",
+        "id": "div_mtdqwbmg_1",
         "type": "div",
         "name": "Dashboard Root",
         "customClass": "dashboard-layout",
@@ -47,6 +47,7 @@
             "justifyContent": "flex-start",
             "alignItems": "stretch",
             "horizontalAlign": "stretch",
+            "alignSelf": "",
             "textAlign": "left",
             "width": "",
             "maxWidth": "",
@@ -97,7 +98,7 @@
         },
         "children": [
           {
-            "id": "div_mtdqo4jy_2",
+            "id": "div_mtdqwbmg_2",
             "type": "div",
             "name": "Sidebar",
             "customClass": "dash-sidebar",
@@ -115,6 +116,7 @@
                 "justifyContent": "flex-start",
                 "alignItems": "stretch",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -165,7 +167,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jy_3",
+                "id": "div_mtdqwbmg_3",
                 "type": "div",
                 "name": "Brand",
                 "customClass": "brand-slot",
@@ -183,6 +185,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "100%",
                     "maxWidth": "",
@@ -232,7 +235,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdqo4jy_4",
+                "id": "div_mtdqwbmg_4",
                 "type": "div",
                 "name": "Nav List",
                 "customClass": "side-nav-list",
@@ -250,6 +253,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -298,7 +302,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jy_5",
+                    "id": "div_mtdqwbmg_5",
                     "type": "div",
                     "name": "Nav Item 1",
                     "customClass": "side-nav-item-active",
@@ -316,6 +320,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -365,7 +370,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_6",
+                    "id": "div_mtdqwbmg_6",
                     "type": "div",
                     "name": "Nav Item 2",
                     "customClass": "side-nav-item",
@@ -383,6 +388,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -432,7 +438,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_7",
+                    "id": "div_mtdqwbmg_7",
                     "type": "div",
                     "name": "Nav Item 3",
                     "customClass": "side-nav-item",
@@ -450,6 +456,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -499,7 +506,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_8",
+                    "id": "div_mtdqwbmg_8",
                     "type": "div",
                     "name": "Nav Item 4",
                     "customClass": "side-nav-item",
@@ -517,6 +524,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -568,7 +576,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jy_9",
+                "id": "div_mtdqwbmg_9",
                 "type": "div",
                 "name": "User Profile",
                 "customClass": "user-profile-slot",
@@ -586,6 +594,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "center",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -637,7 +646,7 @@
             ]
           },
           {
-            "id": "div_mtdqo4jy_10",
+            "id": "div_mtdqwbmg_10",
             "type": "div",
             "name": "Main Content",
             "customClass": "dash-main",
@@ -655,6 +664,7 @@
                 "justifyContent": "flex-start",
                 "alignItems": "stretch",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -709,7 +719,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jy_11",
+                "id": "div_mtdqwbmg_11",
                 "type": "div",
                 "name": "Topbar",
                 "customClass": "dash-topbar",
@@ -727,6 +737,7 @@
                     "justifyContent": "space-between",
                     "alignItems": "center",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -779,7 +790,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jy_12",
+                    "id": "div_mtdqwbmg_12",
                     "type": "div",
                     "name": "Search",
                     "customClass": "search-slot",
@@ -797,6 +808,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "320px",
                         "maxWidth": "",
@@ -848,7 +860,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_13",
+                    "id": "div_mtdqwbmg_13",
                     "type": "div",
                     "name": "Actions",
                     "customClass": "action-slot",
@@ -866,6 +878,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -917,7 +930,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jy_14",
+                "id": "div_mtdqwbmg_14",
                 "type": "div",
                 "name": "KPI Grid",
                 "customClass": "kpi-grid",
@@ -935,6 +948,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -987,7 +1001,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jy_15",
+                    "id": "div_mtdqwbmg_15",
                     "type": "div",
                     "name": "KPI 1",
                     "customClass": "kpi-card",
@@ -1005,6 +1019,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1054,7 +1069,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_16",
+                    "id": "div_mtdqwbmg_16",
                     "type": "div",
                     "name": "KPI 2",
                     "customClass": "kpi-card",
@@ -1072,6 +1087,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1121,7 +1137,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_17",
+                    "id": "div_mtdqwbmg_17",
                     "type": "div",
                     "name": "KPI 3",
                     "customClass": "kpi-card",
@@ -1139,6 +1155,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1188,7 +1205,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_18",
+                    "id": "div_mtdqwbmg_18",
                     "type": "div",
                     "name": "KPI 4",
                     "customClass": "kpi-card",
@@ -1206,6 +1223,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1257,7 +1275,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jy_19",
+                "id": "div_mtdqwbmg_19",
                 "type": "div",
                 "name": "Analytics Grid",
                 "customClass": "analytics-section",
@@ -1275,6 +1293,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -1323,7 +1342,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jy_20",
+                    "id": "div_mtdqwbmg_20",
                     "type": "div",
                     "name": "Chart Box",
                     "customClass": "chart-box",
@@ -1341,6 +1360,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1392,7 +1412,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_21",
+                    "id": "div_mtdqwbmg_21",
                     "type": "div",
                     "name": "Donut Box",
                     "customClass": "donut-box",
@@ -1410,6 +1430,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1463,7 +1484,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jy_22",
+                "id": "div_mtdqwbmg_22",
                 "type": "div",
                 "name": "Table Section",
                 "customClass": "table-section",
@@ -1481,6 +1502,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -1529,7 +1551,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jy_23",
+                    "id": "div_mtdqwbmg_23",
                     "type": "div",
                     "name": "Table Row 1",
                     "customClass": "table-row",
@@ -1547,6 +1569,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "center",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1599,7 +1622,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_24",
+                    "id": "div_mtdqwbmg_24",
                     "type": "div",
                     "name": "Table Row 2",
                     "customClass": "table-row",
@@ -1617,6 +1640,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "center",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1669,7 +1693,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jy_25",
+                    "id": "div_mtdqwbmg_25",
                     "type": "div",
                     "name": "Table Row 3",
                     "customClass": "table-row",
@@ -1687,6 +1711,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "center",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",

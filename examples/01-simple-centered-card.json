@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdqo4jj_1",
+        "id": "div_mtdqwbm4_1",
         "type": "div",
         "name": "Card Container",
         "customClass": "card-container",
@@ -47,6 +47,7 @@
             "justifyContent": "flex-start",
             "alignItems": "stretch",
             "horizontalAlign": "center",
+            "alignSelf": "",
             "textAlign": "left",
             "width": "100%",
             "maxWidth": "460px",
@@ -100,7 +101,7 @@
         },
         "children": [
           {
-            "id": "div_mtdqo4jj_2",
+            "id": "div_mtdqwbm4_2",
             "type": "div",
             "name": "Card Header",
             "customClass": "card-header",
@@ -118,6 +119,7 @@
                 "justifyContent": "space-between",
                 "alignItems": "center",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -166,7 +168,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jj_3",
+                "id": "div_mtdqwbm4_3",
                 "type": "div",
                 "name": "Badge",
                 "customClass": "card-badge",
@@ -184,6 +186,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "80px",
                     "maxWidth": "",
@@ -235,7 +238,7 @@
             ]
           },
           {
-            "id": "div_mtdqo4jj_4",
+            "id": "div_mtdqwbm4_4",
             "type": "div",
             "name": "Card Body",
             "customClass": "card-body",
@@ -253,6 +256,7 @@
                 "justifyContent": "flex-start",
                 "alignItems": "stretch",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -302,7 +306,7 @@
             "children": []
           },
           {
-            "id": "div_mtdqo4jj_5",
+            "id": "div_mtdqwbm4_5",
             "type": "div",
             "name": "Card Footer",
             "customClass": "card-footer",
@@ -320,6 +324,7 @@
                 "justifyContent": "flex-end",
                 "alignItems": "stretch",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -370,7 +375,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jj_6",
+                "id": "div_mtdqwbm4_6",
                 "type": "div",
                 "name": "Action Button",
                 "customClass": "btn-action",
@@ -388,6 +393,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "120px",
                     "maxWidth": "",

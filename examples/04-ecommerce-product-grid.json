@@ -29,7 +29,7 @@
     },
     "children": [
       {
-        "id": "div_mtdqo4jt_1",
+        "id": "div_mtdqwbmb_1",
         "type": "div",
         "name": "Catalog Wrapper",
         "customClass": "catalog-wrapper",
@@ -47,6 +47,7 @@
             "justifyContent": "flex-start",
             "alignItems": "stretch",
             "horizontalAlign": "center",
+            "alignSelf": "",
             "textAlign": "left",
             "width": "",
             "maxWidth": "1280px",
@@ -101,7 +102,7 @@
         },
         "children": [
           {
-            "id": "div_mtdqo4jt_2",
+            "id": "div_mtdqwbmb_2",
             "type": "div",
             "name": "Toolbar",
             "customClass": "catalog-toolbar",
@@ -119,6 +120,7 @@
                 "justifyContent": "space-between",
                 "alignItems": "center",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -174,7 +176,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jt_3",
+                "id": "div_mtdqwbmb_3",
                 "type": "div",
                 "name": "Search",
                 "customClass": "toolbar-search",
@@ -192,6 +194,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "260px",
                     "maxWidth": "",
@@ -243,7 +246,7 @@
                 "children": []
               },
               {
-                "id": "div_mtdqo4jt_4",
+                "id": "div_mtdqwbmb_4",
                 "type": "div",
                 "name": "Filters",
                 "customClass": "toolbar-filters",
@@ -261,6 +264,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -313,7 +317,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jt_5",
+                    "id": "div_mtdqwbmb_5",
                     "type": "div",
                     "name": "Filter 1",
                     "customClass": "filter-chip",
@@ -331,6 +335,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "80px",
                         "maxWidth": "",
@@ -383,7 +388,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_6",
+                    "id": "div_mtdqwbmb_6",
                     "type": "div",
                     "name": "Filter 2",
                     "customClass": "filter-chip",
@@ -401,6 +406,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "80px",
                         "maxWidth": "",
@@ -453,7 +459,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_7",
+                    "id": "div_mtdqwbmb_7",
                     "type": "div",
                     "name": "Filter 3",
                     "customClass": "filter-chip",
@@ -471,6 +477,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "80px",
                         "maxWidth": "",
@@ -527,7 +534,7 @@
             ]
           },
           {
-            "id": "div_mtdqo4jt_8",
+            "id": "div_mtdqwbmb_8",
             "type": "div",
             "name": "Product Grid",
             "customClass": "product-grid",
@@ -545,6 +552,7 @@
                 "justifyContent": "flex-start",
                 "alignItems": "stretch",
                 "horizontalAlign": "stretch",
+                "alignSelf": "",
                 "textAlign": "left",
                 "width": "",
                 "maxWidth": "",
@@ -597,7 +605,7 @@
             },
             "children": [
               {
-                "id": "div_mtdqo4jt_9",
+                "id": "div_mtdqwbmb_9",
                 "type": "div",
                 "name": "Product Card 1",
                 "customClass": "product-card",
@@ -615,6 +623,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -663,7 +672,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jt_10",
+                    "id": "div_mtdqwbmb_10",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
@@ -681,6 +690,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -730,7 +740,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_11",
+                    "id": "div_mtdqwbmb_11",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
@@ -748,6 +758,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -796,7 +807,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdqo4jt_12",
+                        "id": "div_mtdqwbmb_12",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
@@ -814,6 +825,7 @@
                             "justifyContent": "flex-start",
                             "alignItems": "stretch",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "75%",
                             "maxWidth": "",
@@ -863,7 +875,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdqo4jt_13",
+                        "id": "div_mtdqwbmb_13",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
@@ -881,6 +893,7 @@
                             "justifyContent": "space-between",
                             "alignItems": "center",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "",
                             "maxWidth": "",
@@ -929,7 +942,7 @@
                         },
                         "children": [
                           {
-                            "id": "div_mtdqo4jt_14",
+                            "id": "div_mtdqwbmb_14",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
@@ -947,6 +960,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "60px",
                                 "maxWidth": "",
@@ -996,7 +1010,7 @@
                             "children": []
                           },
                           {
-                            "id": "div_mtdqo4jt_15",
+                            "id": "div_mtdqwbmb_15",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
@@ -1014,6 +1028,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "90px",
                                 "maxWidth": "",
@@ -1069,7 +1084,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jt_16",
+                "id": "div_mtdqwbmb_16",
                 "type": "div",
                 "name": "Product Card 2",
                 "customClass": "product-card",
@@ -1087,6 +1102,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -1135,7 +1151,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jt_17",
+                    "id": "div_mtdqwbmb_17",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
@@ -1153,6 +1169,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -1202,7 +1219,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_18",
+                    "id": "div_mtdqwbmb_18",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
@@ -1220,6 +1237,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1268,7 +1286,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdqo4jt_19",
+                        "id": "div_mtdqwbmb_19",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
@@ -1286,6 +1304,7 @@
                             "justifyContent": "flex-start",
                             "alignItems": "stretch",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "75%",
                             "maxWidth": "",
@@ -1335,7 +1354,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdqo4jt_20",
+                        "id": "div_mtdqwbmb_20",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
@@ -1353,6 +1372,7 @@
                             "justifyContent": "space-between",
                             "alignItems": "center",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "",
                             "maxWidth": "",
@@ -1401,7 +1421,7 @@
                         },
                         "children": [
                           {
-                            "id": "div_mtdqo4jt_21",
+                            "id": "div_mtdqwbmb_21",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
@@ -1419,6 +1439,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "60px",
                                 "maxWidth": "",
@@ -1468,7 +1489,7 @@
                             "children": []
                           },
                           {
-                            "id": "div_mtdqo4jt_22",
+                            "id": "div_mtdqwbmb_22",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
@@ -1486,6 +1507,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "90px",
                                 "maxWidth": "",
@@ -1541,7 +1563,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jt_23",
+                "id": "div_mtdqwbmb_23",
                 "type": "div",
                 "name": "Product Card 3",
                 "customClass": "product-card",
@@ -1559,6 +1581,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -1607,7 +1630,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jt_24",
+                    "id": "div_mtdqwbmb_24",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
@@ -1625,6 +1648,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -1674,7 +1698,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_25",
+                    "id": "div_mtdqwbmb_25",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
@@ -1692,6 +1716,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -1740,7 +1765,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdqo4jt_26",
+                        "id": "div_mtdqwbmb_26",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
@@ -1758,6 +1783,7 @@
                             "justifyContent": "flex-start",
                             "alignItems": "stretch",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "75%",
                             "maxWidth": "",
@@ -1807,7 +1833,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdqo4jt_27",
+                        "id": "div_mtdqwbmb_27",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
@@ -1825,6 +1851,7 @@
                             "justifyContent": "space-between",
                             "alignItems": "center",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "",
                             "maxWidth": "",
@@ -1873,7 +1900,7 @@
                         },
                         "children": [
                           {
-                            "id": "div_mtdqo4jt_28",
+                            "id": "div_mtdqwbmb_28",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
@@ -1891,6 +1918,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "60px",
                                 "maxWidth": "",
@@ -1940,7 +1968,7 @@
                             "children": []
                           },
                           {
-                            "id": "div_mtdqo4jt_29",
+                            "id": "div_mtdqwbmb_29",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
@@ -1958,6 +1986,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "90px",
                                 "maxWidth": "",
@@ -2013,7 +2042,7 @@
                 ]
               },
               {
-                "id": "div_mtdqo4jt_30",
+                "id": "div_mtdqwbmb_30",
                 "type": "div",
                 "name": "Product Card 4",
                 "customClass": "product-card",
@@ -2031,6 +2060,7 @@
                     "justifyContent": "flex-start",
                     "alignItems": "stretch",
                     "horizontalAlign": "stretch",
+                    "alignSelf": "",
                     "textAlign": "left",
                     "width": "",
                     "maxWidth": "",
@@ -2079,7 +2109,7 @@
                 },
                 "children": [
                   {
-                    "id": "div_mtdqo4jt_31",
+                    "id": "div_mtdqwbmb_31",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
@@ -2097,6 +2127,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "100%",
                         "maxWidth": "",
@@ -2146,7 +2177,7 @@
                     "children": []
                   },
                   {
-                    "id": "div_mtdqo4jt_32",
+                    "id": "div_mtdqwbmb_32",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
@@ -2164,6 +2195,7 @@
                         "justifyContent": "flex-start",
                         "alignItems": "stretch",
                         "horizontalAlign": "stretch",
+                        "alignSelf": "",
                         "textAlign": "left",
                         "width": "",
                         "maxWidth": "",
@@ -2212,7 +2244,7 @@
                     },
                     "children": [
                       {
-                        "id": "div_mtdqo4jt_33",
+                        "id": "div_mtdqwbmb_33",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
@@ -2230,6 +2262,7 @@
                             "justifyContent": "flex-start",
                             "alignItems": "stretch",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "75%",
                             "maxWidth": "",
@@ -2279,7 +2312,7 @@
                         "children": []
                       },
                       {
-                        "id": "div_mtdqo4ju_34",
+                        "id": "div_mtdqwbmb_34",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
@@ -2297,6 +2330,7 @@
                             "justifyContent": "space-between",
                             "alignItems": "center",
                             "horizontalAlign": "stretch",
+                            "alignSelf": "",
                             "textAlign": "left",
                             "width": "",
                             "maxWidth": "",
@@ -2345,7 +2379,7 @@
                         },
                         "children": [
                           {
-                            "id": "div_mtdqo4ju_35",
+                            "id": "div_mtdqwbmb_35",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
@@ -2363,6 +2397,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "60px",
                                 "maxWidth": "",
@@ -2412,7 +2447,7 @@
                             "children": []
                           },
                           {
-                            "id": "div_mtdqo4ju_36",
+                            "id": "div_mtdqwbmb_36",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
@@ -2430,6 +2465,7 @@
                                 "justifyContent": "flex-start",
                                 "alignItems": "stretch",
                                 "horizontalAlign": "stretch",
+                                "alignSelf": "",
                                 "textAlign": "left",
                                 "width": "90px",
                                 "maxWidth": "",

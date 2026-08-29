@@ -488,7 +488,7 @@ html, body {
 
   .portal-nav {
     flex-direction: column;
-    padding: 16px 16px 16px 16px;
+    padding: 16px;
   }
 
   .portal-logo {
@@ -497,8 +497,10 @@ html, body {
   }
 
   .portal-menu {
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 8px;
+    width: 100%;
     min-width: auto;
   }
 
@@ -524,13 +526,12 @@ html, body {
   }
 
   .featured-grid {
-    grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .main-lead-story {
-    padding: 16px 16px 16px 16px;
     min-height: 260px;
+    padding: 16px;
   }
 
   .lead-headline {

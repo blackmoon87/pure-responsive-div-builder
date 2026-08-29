@@ -486,6 +486,8 @@ import {
       }
     }
 
+    if (eff.alignSelf) wrapper.style.alignSelf = eff.alignSelf;
+
     if (eff.width) wrapper.style.width = eff.width;
     if (eff.textAlign) wrapper.style.textAlign = eff.textAlign;
 
@@ -783,6 +785,14 @@ import {
     hAlGrp.appendChild(el("label", "prop-label", "Horizontal Alignment"));
     hAlGrp.appendChild(segBar([["left", "⭰ Left"], ["center", "⭿ Center"], ["right", "⭲ Right"], ["stretch", "⭄ Stretch"]], eff.horizontalAlign || "stretch", function (v) { setProp("horizontalAlign", v); }));
     alCard.appendChild(hAlGrp);
+
+    // Cross-axis self alignment — lets one child opt out of the parent's
+    // align-items, in either a flex or a grid container.
+    var sAlGrp = el("div", "prop-group");
+    sAlGrp.appendChild(el("label", "prop-label", "Align Self (cross axis)"));
+    sAlGrp.appendChild(segBar([["", "Auto"], ["start", "Start"], ["center", "Center"], ["end", "End"], ["stretch", "Stretch"], ["baseline", "Baseline"]],
+      eff.alignSelf || "", function (v) { setProp("alignSelf", v); }));
+    alCard.appendChild(sAlGrp);
 
     var wGrp = el("div", "prop-group");
     wGrp.appendChild(el("label", "prop-label", "Width"));

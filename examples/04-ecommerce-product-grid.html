@@ -431,7 +431,7 @@ html, body {
   .catalog-toolbar {
     flex-direction: column;
     gap: 12px;
-    padding: 12px 12px 12px 12px;
+    padding: 12px;
   }
 
   .toolbar-search {
@@ -440,8 +440,8 @@ html, body {
   }
 
   .toolbar-filters {
-    width: 100%;
     gap: 8px;
+    width: 100%;
     overflow-x: auto;
     min-width: auto;
   }
@@ -462,6 +462,7 @@ html, body {
   }
 
   .product-grid {
+    grid-template-columns: repeat(1, 1fr);
     gap: 16px;
   }
 }
