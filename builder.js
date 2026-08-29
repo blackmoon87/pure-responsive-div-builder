@@ -1314,24 +1314,31 @@
   // ==========================================================================
   // Live Code Generator (Pure Responsive HTML & CSS)
   // ==========================================================================
-  function generateCleanHtml(node, depth) {
+  function generateCleanHtml(node, depth, classCount) {
     if (!depth) depth = 0;
+    if (!classCount) classCount = {};
     var indent = "  ".repeat(depth);
-    var cls = node.customClass ? ' class="' + node.customClass + '"' : ' class="div-box"';
-    var dirAttr = (node.responsive.desktop && node.responsive.desktop.direction === "rtl") ? ' dir="rtl"' : '';
-    var out = "";
 
     if (node.id === "root") {
+      var out = "";
       node.children.forEach(function (child) {
-        out += generateCleanHtml(child, depth);
+        out += generateCleanHtml(child, depth, classCount);
       });
       return out;
     }
 
+    var baseClass = node.customClass || "div-box";
+    if (!classCount[baseClass]) classCount[baseClass] = 0;
+    classCount[baseClass]++;
+    var clsName = classCount[baseClass] > 1 ? baseClass + "-" + classCount[baseClass] : baseClass;
+    var cls = ' class="' + clsName + '"';
+    var dirAttr = (node.responsive.desktop && node.responsive.desktop.direction === "rtl") ? ' dir="rtl"' : '';
+    var out = "";
+
     out += indent + "<div" + cls + dirAttr + ">\n";
     if (node.children.length) {
       node.children.forEach(function (child) {
-        out += generateCleanHtml(child, depth + 1);
+        out += generateCleanHtml(child, depth + 1, classCount);
       });
     }
     out += indent + "</div>\n";
