@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pure Responsive DIV Layout Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="builder.css?v=5.0">
+<link rel="stylesheet" href="export-template.css?v=5.0">
+</head>
+<body>
+
+<header class="app-bar">
+  <div class="app-bar__group app-bar__group--start">
+    <div class="brand">
+      <span class="brand__icon">❖</span>
+      <span class="brand__title">DIV.STRUCT</span>
+    </div>
+    <div class="brand__tag">Pure Responsive Engine</div>
+  </div>
+
+  <div class="app-bar__group app-bar__group--center">
+    <div class="device-switch" role="group" aria-label="Screen Viewport Breakpoint" id="device-switch">
+      <button type="button" class="device-btn is-active" data-device="desktop" title="Desktop View (> 992px)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Desktop</span>
+        <small>1280px</small>
+      </button>
+      <button type="button" class="device-btn" data-device="tablet" title="Tablet Breakpoint (≤ 992px)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span>Tablet</span>
+        <small>768px</small>
+      </button>
+      <button type="button" class="device-btn" data-device="mobile" title="Mobile Breakpoint (≤ 576px)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span>Mobile</span>
+        <small>375px</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="app-bar__group app-bar__group--end">
+    <button type="button" class="btn btn--ghost" id="btn-undo" title="Undo (Cmd+Z)" disabled>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"/></svg>
+      Undo
+    </button>
+    <button type="button" class="btn btn--ghost" id="btn-redo" title="Redo (Cmd+Y)" disabled>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"/></svg>
+      Redo
+    </button>
+    <button type="button" class="btn btn--ghost" id="btn-clear" title="Clear Canvas">Clear</button>
+    <button type="button" class="btn btn--primary" id="btn-export">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Generate HTML / CSS
+    </button>
+  </div>
+</header>
+
+<main class="workbench">
+
+  <!-- Left Panel: Presets & Structure Tree -->
+  <aside class="panel panel--left" aria-label="Layout Elements & Structure Tree">
+    <div class="panel__nav">
+      <button type="button" class="panel__nav-btn is-active" data-tab="palette">
+        <span>+ Add Divs</span>
+      </button>
+      <button type="button" class="panel__nav-btn" data-tab="tree">
+        <span>🌳 DOM Tree</span>
+      </button>
+    </div>
+
+    <!-- Palette Tab -->
+    <div class="panel__tab-pane is-active" id="pane-palette">
+      <div class="panel__section">
+        <div class="panel__section-title">Standard Layout Containers</div>
+        <div class="div-preset-grid">
+          <button type="button" class="preset-card" data-preset="container">
+            <div class="preset-card__preview preview-container"><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Container Div</span>
+              <span class="preset-card__desc">Centered Max-Width wrapper</span>
+            </div>
+          </button>
+          
+          <button type="button" class="preset-card" data-preset="box">
+            <div class="preset-card__preview preview-box"><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Box / Block Div</span>
+              <span class="preset-card__desc">Single structural container</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel__section">
+        <div class="panel__section-title">Responsive CSS Grid Divs</div>
+        <div class="div-preset-grid">
+          <button type="button" class="preset-card" data-preset="grid2">
+            <div class="preset-card__preview preview-grid2"><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Grid · 2 Columns</span>
+              <span class="preset-card__desc">Auto-adapts to 1-col on mobile</span>
+            </div>
+          </button>
+
+          <button type="button" class="preset-card" data-preset="grid3">
+            <div class="preset-card__preview preview-grid3"><div></div><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Grid · 3 Columns</span>
+              <span class="preset-card__desc">Adapts 3 ➔ 2 ➔ 1 across breakpoints</span>
+            </div>
+          </button>
+
+          <button type="button" class="preset-card" data-preset="grid4">
+            <div class="preset-card__preview preview-grid4"><div></div><div></div><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Grid · 4 Columns</span>
+              <span class="preset-card__desc">Adapts 4 ➔ 2 ➔ 1 across breakpoints</span>
+            </div>
+          </button>
+
+          <button type="button" class="preset-card" data-preset="grid12">
+            <div class="preset-card__preview preview-grid12"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">12-Column Grid Div</span>
+              <span class="preset-card__desc">Flexible bootstrap-style grid</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel__section">
+        <div class="panel__section-title">Responsive Flexbox Divs</div>
+        <div class="div-preset-grid">
+          <button type="button" class="preset-card" data-preset="flex-row">
+            <div class="preset-card__preview preview-flex-row"><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Flex Row Div</span>
+              <span class="preset-card__desc">Horizontal flow with responsive wrap</span>
+            </div>
+          </button>
+
+          <button type="button" class="preset-card" data-preset="flex-col">
+            <div class="preset-card__preview preview-flex-col"><div></div><div></div></div>
+            <div class="preset-card__info">
+              <span class="preset-card__title">Flex Column Div</span>
+              <span class="preset-card__desc">Vertical stack container</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="panel__hint">
+        💡 <strong>100% Pure DIVs:</strong> All items are pure structural containers without any injected text or dummy tags.
+      </div>
+    </div>
+
+    <!-- Structure Tree Tab -->
+    <div class="panel__tab-pane" id="pane-tree">
+      <div class="tree-header">
+        <span>DOM Hierarchy</span>
+        <button type="button" class="btn-tree-action" id="btn-tree-expand" title="Expand All">Expand</button>
+      </div>
+      <div class="tree-body" id="dom-tree-container">
+        <!-- Live DOM Tree Rendered Here -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- Center Stage: Responsive Blueprint Viewport -->
+  <section class="stage">
+    <div class="stage__scroll">
+      <div class="stage__frame" id="stage-frame" data-device="desktop">
+        <div class="stage__header">
+          <span class="stage__badge" id="viewport-badge">Desktop (1280px Viewport)</span>
+          <span class="stage__info">Click any &lt;div&gt; to configure responsive rules</span>
+        </div>
+        <div class="canvas" id="canvas" dir="ltr"></div>
+      </div>
+    </div>
+
+    <div class="stage__status">
+      <div class="status-item">
+        <span class="status-dot"></span>
+        <span id="status-nodes">0 structural divs</span>
+      </div>
+      <div class="status-item" id="status-selection">
+        Selected: <em>None</em>
+      </div>
+      <div class="status-item" id="status-device">
+        Active Breakpoint: <strong>Desktop (Default Base)</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right Panel: Responsive Properties Inspector -->
+  <aside class="panel panel--right" aria-label="Properties Inspector">
+    <div class="panel__head">
+      <span>Responsive Div Inspector</span>
+    </div>
+    <div class="panel__body" id="props-body">
+      <!-- Live Property Inspector Rendered Here -->
+    </div>
+  </aside>
+
+</main>
+
+<!-- Code Export Modal -->
+<div class="modal-backdrop" id="export-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>Generated Responsive HTML & CSS</span>
+      </div>
+      <button type="button" class="modal-close" id="btn-modal-close">✕</button>
+    </div>
+
+    <div class="modal-tabs">
+      <button type="button" class="modal-tab is-active" data-tab="combined">Combined HTML + CSS</button>
+      <button type="button" class="modal-tab" data-tab="html">Pure HTML (&lt;div&gt;s only)</button>
+      <button type="button" class="modal-tab" data-tab="css">Responsive CSS (@media queries)</button>
+    </div>
+
+    <div class="modal-code-wrap">
+      <pre class="modal-code"><code id="code-output"></code></pre>
+    </div>
+
+    <div class="modal-foot">
+      <div class="modal-foot__info">
+        <span>✓ 100% Pure DIV hierarchy</span>
+        <span>✓ Full Desktop, Tablet (≤992px) & Mobile (≤576px) Media Queries</span>
+      </div>
+      <div class="modal-foot__actions">
+        <button type="button" class="btn btn--ghost" id="btn-copy-code">Copy Code</button>
+        <button type="button" class="btn btn--primary" id="btn-download-html">Download .html</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="builder.js?v=5.0"></script>
+</body>
+</html>

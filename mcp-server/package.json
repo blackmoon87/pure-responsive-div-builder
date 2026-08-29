@@ -1,0 +1,13 @@
+{
+  "name": "htmlcreator-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing Pure Responsive DIV Generator as programmable tools",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  }
+}

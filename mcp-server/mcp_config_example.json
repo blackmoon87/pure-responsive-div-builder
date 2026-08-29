@@ -1,0 +1,7 @@
+{
+  "htmlcreator": {
+    "command": "node",
+    "args": ["/Users/blackmoon/Downloads/htmlCreator/mcp-server/index.js"],
+    "transport": "stdio"
+  }
+}
