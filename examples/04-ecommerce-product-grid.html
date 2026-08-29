@@ -14,7 +14,18 @@ html, body {
   color: #f0f6fc;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  /* Content safety: whatever goes inside these divs must not burst them. */
+  overflow-wrap: break-word;
 }
+
+/* No div may exceed its container, whatever is placed inside it. An
+   element selector loses to every class rule below, so an authored
+   max-width still wins where one is set on purpose. */
+div { max-width: 100%; }
+
+/* Media never exceeds its container, whatever its intrinsic size. */
+img, video, canvas, iframe, svg, table { max-width: 100%; }
+img, video { height: auto; }
 
 /* Desktop Base Styles */
 .catalog-wrapper {
@@ -29,6 +40,7 @@ html, body {
   min-height: 60px;
   max-width: 1280px;
   padding: 40px 24px 40px 24px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -44,6 +56,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 10px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -107,6 +120,7 @@ html, body {
   row-gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .product-card {
@@ -133,6 +147,7 @@ html, body {
   aspect-ratio: 4/3;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .product-info {
@@ -144,6 +159,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -154,6 +170,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .product-meta {
@@ -165,6 +182,7 @@ html, body {
   gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -212,6 +230,7 @@ html, body {
   aspect-ratio: 4/3;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .product-info-2 {
@@ -223,6 +242,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -233,6 +253,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .product-meta-2 {
@@ -244,6 +265,7 @@ html, body {
   gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -291,6 +313,7 @@ html, body {
   aspect-ratio: 4/3;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .product-info-3 {
@@ -302,6 +325,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -312,6 +336,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .product-meta-3 {
@@ -323,6 +348,7 @@ html, body {
   gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -370,6 +396,7 @@ html, body {
   aspect-ratio: 4/3;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .product-info-4 {
@@ -381,6 +408,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -391,6 +419,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .product-meta-4 {
@@ -402,6 +431,7 @@ html, body {
   gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -440,14 +470,12 @@ html, body {
 
   .toolbar-search {
     width: 100%;
-    min-width: auto;
   }
 
   .toolbar-filters {
     gap: 8px;
     width: 100%;
     overflow-x: auto;
-    min-width: auto;
   }
 
   .filter-chip {

@@ -14,7 +14,18 @@ html, body {
   color: #f0f6fc;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  /* Content safety: whatever goes inside these divs must not burst them. */
+  overflow-wrap: break-word;
 }
+
+/* No div may exceed its container, whatever is placed inside it. An
+   element selector loses to every class rule below, so an authored
+   max-width still wins where one is set on purpose. */
+div { max-width: 100%; }
+
+/* Media never exceeds its container, whatever its intrinsic size. */
+img, video, canvas, iframe, svg, table { max-width: 100%; }
+img, video { height: auto; }
 
 /* Desktop Base Styles */
 .dashboard-layout {
@@ -23,6 +34,7 @@ html, body {
   gap: 16px;
   min-height: 600px;
   padding: 16px;
+  min-width: 0;
 }
 
 .dash-sidebar {
@@ -47,6 +59,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 8px;
+  min-width: 0;
 }
 
 .side-nav-list {
@@ -58,6 +71,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -69,6 +83,7 @@ html, body {
   background-color: #38bdf826;
   border: 1px solid #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .side-nav-item {
@@ -78,6 +93,7 @@ html, body {
   padding: 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .side-nav-item-2 {
@@ -87,6 +103,7 @@ html, body {
   padding: 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .side-nav-item-3 {
@@ -96,6 +113,7 @@ html, body {
   padding: 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .user-profile-slot {
@@ -109,6 +127,7 @@ html, body {
   padding: 12px;
   background-color: #18202d;
   border-radius: 8px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -135,6 +154,7 @@ html, body {
   gap: 16px;
   min-height: 52px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -169,6 +189,7 @@ html, body {
   row-gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .kpi-card {
@@ -242,6 +263,7 @@ html, body {
   row-gap: 16px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .chart-box {
@@ -290,6 +312,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 12px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -303,6 +326,7 @@ html, body {
   padding: 14px 16px 14px 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .table-row-2 {
@@ -315,6 +339,7 @@ html, body {
   padding: 14px 16px 14px 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .table-row-3 {
@@ -327,6 +352,7 @@ html, body {
   padding: 14px 16px 14px 16px;
   background-color: #18202d;
   border-radius: 6px;
+  min-width: 0;
 }
 
 /* Tablet (max-width: 992px) */
@@ -367,11 +393,6 @@ html, body {
 
   .search-slot {
     width: 100%;
-    min-width: auto;
-  }
-
-  .action-slot {
-    min-width: auto;
   }
 
   .kpi-grid {

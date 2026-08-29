@@ -530,10 +530,8 @@ import {
       if (eff.flexBasis) wrapper.style.flexBasis = eff.flexBasis;
     }
     // Mirror the exported min-width:0 so the preview clips exactly like the output.
-    // Grid items need it as much as flex-row items do.
-    if (parentNode) {
-      var pEffMin = getEffectiveProps(parentNode, State.device);
-      if (isFlexRow(pEffMin) || isGrid(pEffMin)) wrapper.style.minWidth = "0";
+    {
+      wrapper.style.minWidth = "0";
     }
     if (eff.order != null && eff.order !== 0) {
       wrapper.style.order = String(eff.order);

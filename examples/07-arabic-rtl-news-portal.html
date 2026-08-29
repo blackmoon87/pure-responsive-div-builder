@@ -14,7 +14,18 @@ html, body {
   color: #f0f6fc;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  /* Content safety: whatever goes inside these divs must not burst them. */
+  overflow-wrap: break-word;
 }
+
+/* No div may exceed its container, whatever is placed inside it. An
+   element selector loses to every class rule below, so an authored
+   max-width still wins where one is set on purpose. */
+div { max-width: 100%; }
+
+/* Media never exceeds its container, whatever its intrinsic size. */
+img, video, canvas, iframe, svg, table { max-width: 100%; }
+img, video { height: auto; }
 
 /* Desktop Base Styles */
 .portal-root {
@@ -26,6 +37,7 @@ html, body {
   gap: 0px;
   min-height: 600px;
   padding: 0px;
+  min-width: 0;
   flex-grow: 1;
   direction: rtl;
 }
@@ -40,6 +52,7 @@ html, body {
   min-height: 38px;
   padding: 8px 24px 8px 24px;
   background-color: #f43f5e;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -74,6 +87,7 @@ html, body {
   padding: 16px 32px 16px 32px;
   background-color: #111620;
   border: 1px solid #263447;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -153,6 +167,7 @@ html, body {
   min-height: 60px;
   max-width: 1360px;
   padding: 32px 24px 32px 24px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -164,6 +179,7 @@ html, body {
   width: 100%;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .main-lead-story {
@@ -190,6 +206,7 @@ html, body {
   padding: 16px;
   background-color: #f43f5e;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .lead-headline {
@@ -199,6 +216,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .lead-summary {
@@ -208,6 +226,7 @@ html, body {
   padding: 16px;
   background-color: #5a6b85;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .secondary-column {
@@ -237,6 +256,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 10px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -253,6 +273,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 10px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -269,6 +290,7 @@ html, body {
   background-color: #111620;
   border: 1px solid #263447;
   border-radius: 10px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -280,6 +302,7 @@ html, body {
   width: 100%;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .article-box {
@@ -307,6 +330,7 @@ html, body {
   aspect-ratio: 16/9;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .article-content {
@@ -318,6 +342,7 @@ html, body {
   gap: 12px;
   min-height: 80px;
   padding: 20px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -346,6 +371,7 @@ html, body {
   aspect-ratio: 16/9;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .article-content-2 {
@@ -357,6 +383,7 @@ html, body {
   gap: 12px;
   min-height: 80px;
   padding: 20px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -385,6 +412,7 @@ html, body {
   aspect-ratio: 16/9;
   padding: 16px;
   background-color: #1d2737;
+  min-width: 0;
 }
 
 .article-content-3 {
@@ -396,6 +424,7 @@ html, body {
   gap: 12px;
   min-height: 80px;
   padding: 20px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -410,6 +439,7 @@ html, body {
   margin: auto 0 0 0;
   background-color: #111620;
   border: 1px solid #263447;
+  min-width: 0;
 }
 
 .footer-col {
@@ -502,7 +532,6 @@ html, body {
 
   .portal-logo {
     width: 140px;
-    min-width: auto;
   }
 
   .portal-menu {
@@ -510,7 +539,6 @@ html, body {
     justify-content: center;
     gap: 8px;
     width: 100%;
-    min-width: auto;
   }
 
   .menu-link {

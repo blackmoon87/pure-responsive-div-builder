@@ -1026,6 +1026,29 @@ PASS 02-responsive-navbar             clean 57/57
 PASS 10-editorial-magazine-grid       clean 57/57
 ```
 
+### Content stress
+
+The examples ship **empty**, so the width sweep only proves that an empty
+skeleton holds. Since the project's contract is *"you build the structure, the
+developer fills it"*, `test/content-stress.html` injects an unbreakable long
+word, a bare URL, an oversized image, a wall of text and a wide table into every
+leaf div across five layouts at five widths, and measures again.
+
+Three guarantees in the exported reset make that pass:
+
+```css
+html, body { overflow-wrap: break-word; }        /* long words and URLs wrap  */
+div { max-width: 100%; }                         /* no div exceeds its parent */
+img, video, canvas, iframe, svg, table { max-width: 100%; }
+```
+
+`div { max-width: 100% }` is an *element* selector, so every class rule below it
+wins — an authored `max-width` still applies where one is set on purpose. It
+exists because `min-width: 0` is not enough on its own: a flex item in a
+`flex-direction: column` parent with `align-items: flex-start` is sized to
+max-content rather than shrunk, so a wide table inside it burst the layout by
+1100px. A cap fixes that; a minimum cannot.
+
 A property-coverage audit sets each property on each device and checks whether
 it reaches the CSS: **47/47 on desktop, tablet and mobile**.
 

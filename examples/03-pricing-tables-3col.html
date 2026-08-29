@@ -14,7 +14,18 @@ html, body {
   color: #f0f6fc;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  /* Content safety: whatever goes inside these divs must not burst them. */
+  overflow-wrap: break-word;
 }
+
+/* No div may exceed its container, whatever is placed inside it. An
+   element selector loses to every class rule below, so an authored
+   max-width still wins where one is set on purpose. */
+div { max-width: 100%; }
+
+/* Media never exceeds its container, whatever its intrinsic size. */
+img, video, canvas, iframe, svg, table { max-width: 100%; }
+img, video { height: auto; }
 
 /* Desktop Base Styles */
 .pricing-section {
@@ -29,6 +40,7 @@ html, body {
   min-height: 60px;
   max-width: 1200px;
   padding: 60px 24px 60px 24px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -42,6 +54,7 @@ html, body {
   min-height: 60px;
   max-width: 600px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -52,6 +65,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .pricing-subtitle {
@@ -61,6 +75,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .pricing-grid {
@@ -72,6 +87,7 @@ html, body {
   width: 100%;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
 }
 
 .plan-card {
@@ -97,6 +113,7 @@ html, body {
   padding: 16px;
   background-color: #5a6b85;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-price {
@@ -106,6 +123,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .plan-features {
@@ -117,6 +135,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -127,6 +146,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-2 {
@@ -136,6 +156,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-3 {
@@ -145,6 +166,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-btn {
@@ -154,6 +176,7 @@ html, body {
   padding: 16px;
   background-color: #263447;
   border-radius: 8px;
+  min-width: 0;
 }
 
 .plan-card-featured {
@@ -180,6 +203,7 @@ html, body {
   padding: 16px;
   background-color: #5a6b85;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-price-2 {
@@ -189,6 +213,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .plan-features-2 {
@@ -200,6 +225,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -210,6 +236,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-5 {
@@ -219,6 +246,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-6 {
@@ -228,6 +256,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-btn-primary {
@@ -237,6 +266,7 @@ html, body {
   padding: 16px;
   background-color: #38bdf8;
   border-radius: 8px;
+  min-width: 0;
 }
 
 .plan-card-2 {
@@ -262,6 +292,7 @@ html, body {
   padding: 16px;
   background-color: #5a6b85;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-price-3 {
@@ -271,6 +302,7 @@ html, body {
   padding: 16px;
   background-color: #f0f6fc;
   border-radius: 6px;
+  min-width: 0;
 }
 
 .plan-features-3 {
@@ -282,6 +314,7 @@ html, body {
   gap: 12px;
   min-height: 60px;
   padding: 16px;
+  min-width: 0;
   flex-grow: 1;
 }
 
@@ -292,6 +325,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-8 {
@@ -301,6 +335,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .feature-line-9 {
@@ -310,6 +345,7 @@ html, body {
   padding: 16px;
   background-color: #1d2737;
   border-radius: 4px;
+  min-width: 0;
 }
 
 .plan-btn-2 {
@@ -319,6 +355,7 @@ html, body {
   padding: 16px;
   background-color: #263447;
   border-radius: 8px;
+  min-width: 0;
 }
 
 /* Tablet (max-width: 992px) */

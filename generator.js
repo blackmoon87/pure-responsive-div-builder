@@ -187,7 +187,7 @@ var NEUTRAL = {
   "top": "auto", "right": "auto", "bottom": "auto", "left": "auto", "z-index": "auto",
   "overflow": "visible", "overflow-x": "visible", "overflow-y": "visible",
   "background-color": "transparent", "border": "none", "border-radius": "0",
-  "box-shadow": "none", "opacity": "1", "min-width": "auto",
+  "box-shadow": "none", "opacity": "1",
   "transform": "none", "transition": "none",
   "backdrop-filter": "none", "-webkit-backdrop-filter": "none",
   "grid-column": "auto", "order": "0", "flex-basis": "auto", "flex-grow": "0",
@@ -312,7 +312,13 @@ function declarationsFor(props, ctx) {
   }
 
   // --- as a child of its parent -------------------------------------------
-  if (ctx.rowParent || ctx.gridParent) o.push("min-width: 0;");
+  // Unconditional. A div must never be widened past its allotted space by
+  // whatever the developer drops inside it. On a block box this is already the
+  // computed default, so it costs nothing; on a flex or grid item it is the
+  // difference between holding and bursting. It is deliberately NOT
+  // context-dependent: when a parent flips from row to column at a breakpoint,
+  // a `min-width: auto` neutral would hand the burst straight back.
+  o.push("min-width: 0;");
   if (p.span && p.span > 1) o.push("grid-column: span " + p.span + ";");
   if (p.display === "flex" && p.flexGrow != null) o.push("flex-grow: " + p.flexGrow + ";");
   if (p.flexShrink != null && p.flexShrink !== 1) o.push("flex-shrink: " + p.flexShrink + ";");
@@ -381,7 +387,20 @@ export function generateResponsiveCss(root, breakpoints) {
     if (m.length) rules.mobile.push("  ." + clsName + " {\n    " + m.join("\n    ") + "\n  }");
   });
 
-  var cssText = "/* Reset & Global */\n*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\nhtml, body {\n  width: 100%;\n  min-height: 100vh;\n  background-color: #0a0d12;\n  color: #f0f6fc;\n  font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  overflow-x: hidden;\n}\n\n";
+  var cssText = "/* Reset & Global */\n" +
+    "*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n" +
+    "html, body {\n  width: 100%;\n  min-height: 100vh;\n  background-color: #0a0d12;\n  color: #f0f6fc;\n" +
+    "  font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n" +
+    "  overflow-x: hidden;\n" +
+    "  /* Content safety: whatever goes inside these divs must not burst them. */\n" +
+    "  overflow-wrap: break-word;\n}\n\n" +
+    "/* No div may exceed its container, whatever is placed inside it. An\n" +
+    "   element selector loses to every class rule below, so an authored\n" +
+    "   max-width still wins where one is set on purpose. */\n" +
+    "div { max-width: 100%; }\n\n" +
+    "/* Media never exceeds its container, whatever its intrinsic size. */\n" +
+    "img, video, canvas, iframe, svg, table { max-width: 100%; }\n" +
+    "img, video { height: auto; }\n\n";
   cssText += "/* Desktop Base Styles */\n";
   cssText += rules.desktop.join("\n\n") + "\n\n";
   if (rules.tablet.length) {

@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Content Stress — Pure Responsive DIV Generator</title><style>body{font:12px monospace;background:#0a0d12;color:#e6edf3;padding:12px}#o{white-space:pre-wrap}iframe{border:0;position:absolute;left:-9999px}</style></head>
+<h1 style="font:16px monospace;margin:0 0 4px">Content stress</h1>
+<p style="color:#8b9bb4;font:13px/1.5 monospace;margin:0 0 16px;max-width:74ch">
+Injects what a developer actually drops into a skeleton — an unbreakable long word, a bare
+URL, an oversized image, a wall of text, a wide table — into every leaf div, then measures
+whether any div is pushed past the viewport. The examples ship empty, so the ordinary sweep
+never exercises this.</p>
+<div id="o">running…</div><script>
+const F=["02-responsive-navbar","04-ecommerce-product-grid","06-complex-saas-dashboard","09-app-shell-collapsing-sidebar","10-editorial-magazine-grid"];
+const W=[360,600,768,1024,1400];
+// what a developer actually drops in
+const FILLERS={
+  "long word":"Pneumonoultramicroscopicsilicovolcanoconiosis_antidisestablishmentarianism_supercalifragilistic",
+  "URL":"https://example.com/a/very/long/path/that/never/breaks/anywhere/at/all/index.html?q=1234567890",
+  "wide image":'<img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22900%22 height=%22120%22%3E%3C/svg%3E">',
+  "long text":"Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ".repeat(3),
+  "table":'<table><tr>'+Array.from({length:12},(_,i)=>`<td>column_${i}_wide</td>`).join('')+'</tr></table>'
+};
+function test(file,w,fillerName){return new Promise(res=>{const x=document.createElement("iframe");
+ x.style.width=w+"px";x.style.height="900px";x.src="../examples/"+file+".html?cb="+Date.now()+Math.random();
+ x.onload=()=>{const d=x.contentDocument;
+  // inject into every LEAF div, the way a developer would
+  d.querySelectorAll("div").forEach(e=>{ if(!e.querySelector("div")) e.innerHTML=FILLERS[fillerName]; });
+  void d.body.offsetHeight;
+  let n=0,worst=null;
+  d.querySelectorAll("div").forEach(e=>{const r=e.getBoundingClientRect();
+   const o=r.right-w; if(o>1){n++;if(!worst||o>worst.v)worst={c:e.className,v:Math.round(o)};}});
+  res({n,worst});x.remove();};document.body.appendChild(x);});}
+(async()=>{let o="",tot=0;
+ for(const fn of Object.keys(FILLERS)){o+="\n═══ filler: "+fn+" ═══\n";
+  for(const f of F){const bad=[];
+   for(const w of W){const r=await test(f,w,fn);if(r.n){tot++;bad.push(w+"px ."+r.worst.c+" +"+r.worst.v+"px");}}
+   o+=(bad.length?"  FAIL ":"  PASS ")+f.padEnd(34)+(bad.length?bad.join(" | "):"clean")+"\n";}}
+ document.getElementById("o").textContent="TOTAL FAILING (file,width) PAIRS: "+tot+"\n"+o;
+ document.title=(tot?"FAIL":"PASS")+" — Content Stress";})();
+</script></body></html>

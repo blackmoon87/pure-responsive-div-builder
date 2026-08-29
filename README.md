@@ -16,6 +16,7 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 
 **Pure Responsive DIV Generator follows a strict zero-bloat philosophy:**
 - 🧱 **100% Pure `<div>` Tags:** Clean, predictable structural wireframes. No unauthorized tags or inline junk.
+- 🛡️ **Content-Agnostic by Design:** You build the *structure*; the developer fills it with anything. The exported reset guarantees no div bursts its container whatever goes inside — unbreakable words, bare URLs, oversized images, wide tables. Verified by a dedicated content-stress harness.
 - 📐 **Zero Dependencies:** Pure Vanilla JavaScript & CSS. No frameworks, no build step, no bundlers needed.
 - 📱 **Triple-Breakpoint Responsive Engine:** Desktop (>992px), tablet (≤992px), and mobile (≤576px) rules, with editable live breakpoints and a free-width ruler for previewing any viewport in between — the ranges where layouts actually break.
 - 🌐 **First-Class RTL (Right-to-Left) Support:** Native `dir="rtl"` and `direction: rtl` export for Arabic, Hebrew, and Persian layouts.
@@ -265,7 +266,9 @@ node test/run.js          # regression + property coverage + example integrity
 node mcp-server/test.js   # MCP tool smoke tests
 ```
 
-Then serve the repo and open **`test/responsive.html`** for the layout sweep: every
+Then serve the repo and open **`test/responsive.html`** for the empty-skeleton layout sweep,
+and **`test/content-stress.html`** to confirm the skeleton still holds once real content is
+dropped in: every
 example at each width from 320px to 1440px in 20px steps (570 checks), measuring
 every div against the viewport edge.
 

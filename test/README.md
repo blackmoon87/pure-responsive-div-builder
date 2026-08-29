@@ -27,7 +27,22 @@ Loads every example at each width from 320px to 1440px in 20px steps (570 checks
 and measures every div against the viewport edge. The page title becomes
 `PASS —` or `FAIL —` so it can be automated.
 
-**Why it isn't a Node test:** it measures real layout. And it deliberately does
+## Content stress
+
+```bash
+# open http://localhost:8080/test/content-stress.html
+```
+
+Injects what a developer actually puts in — an unbreakable long word, a bare URL,
+an oversized image, a wall of text, a wide table — into every leaf div of five
+layouts at five widths, then measures whether any div is pushed past the viewport.
+
+The examples ship **empty**, so the ordinary sweep never exercises this. The
+project's promise is that the skeleton stays responsive regardless of content, and
+this is the only check that tests that promise. It caught `.action-slot` bursting
+by 1100px with a table inside.
+
+**Why the sweep isn't a Node test:** it measures real layout. And it deliberately does
 not use `scrollWidth` — the exported reset sets `overflow-x: hidden` on `body`,
 so an overflowing element produces no scrollbar. The page looks clean while
 content is silently clipped; only per-element geometry finds it. Every layout
