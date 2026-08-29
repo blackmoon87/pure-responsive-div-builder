@@ -3,130 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Example 02: Responsive Sticky Navbar | Pure Responsive DIV Builder</title>
+  <title>Pure Responsive DIV Structure</title>
   <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: system-ui, sans-serif; }
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Desktop Base Styles */
-    .site-header {
-      display: block;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background-color: #111620;
-      border-bottom: 1px solid #263447;
-      z-index: 100;
-    }
+/* Desktop Base Styles */
+.site-header {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #111620;
+  border: 1px solid #263447;
+}
 
-    .nav-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 16px 24px;
-      min-height: 68px;
-    }
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-self: center;
+  min-height: 68px;
+  max-width: 1200px;
+  padding: 16px 24px 16px 24px;
+  flex-grow: 1;
+}
 
-    .brand-logo {
-      display: block;
-      width: 140px;
-      min-height: 36px;
-      background-color: #38bdf8;
-      border-radius: 6px;
-    }
+.brand-logo {
+  display: block;
+  width: 140px;
+  min-height: 36px;
+  padding: 16px;
+  background-color: #38bdf8;
+  border-radius: 6px;
+}
 
-    .nav-links {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-    }
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .nav-item {
-      display: block;
-      width: 70px;
-      min-height: 24px;
-      background-color: #1d2737;
-      border-radius: 4px;
-    }
+.nav-item {
+  display: block;
+  width: 70px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 4px;
+}
 
-    .nav-actions {
-      display: flex;
-      flex-direction: row;
-      gap: 12px;
-    }
+.nav-item-2 {
+  display: block;
+  width: 70px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 4px;
+}
 
-    .btn-cta {
-      display: block;
-      width: 100px;
-      min-height: 36px;
-      background-color: #6366f1;
-      border-radius: 6px;
-    }
+.nav-item-3 {
+  display: block;
+  width: 70px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 4px;
+}
 
-    .main-body {
-      display: flex;
-      flex-direction: column;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 40px 24px;
-      gap: 24px;
-    }
+.nav-item-4 {
+  display: block;
+  width: 70px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 4px;
+}
 
-    .hero-banner {
-      display: block;
-      min-height: 300px;
-      background-color: #18202d;
-      border: 1px solid #263447;
-      border-radius: 12px;
-    }
+.nav-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    /* Mobile Breakpoint (<= 576px) */
-    @media (max-width: 576px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 16px;
-        padding: 16px;
-      }
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .nav-actions {
-        width: 100%;
-      }
-      .btn-cta {
-        width: 100%;
-      }
-    }
+.btn-cta {
+  display: block;
+  width: 100px;
+  min-height: 36px;
+  padding: 16px;
+  background-color: #6366f1;
+  border-radius: 6px;
+}
+
+.hero-banner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  justify-self: center;
+  min-height: 300px;
+  max-width: 1200px;
+  padding: 16px;
+  margin: 40px auto 40px auto;
+  background-color: #18202d;
+  border: 1px solid #263447;
+  border-radius: 12px;
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .nav-container {
+    flex-direction: column;
+    padding: 16px 16px 16px 16px;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .nav-actions {
+    width: 100%;
+  }
+
+  .btn-cta {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <body>
-
-<div class="site-header">
-  <div class="nav-container">
-    <div class="brand-logo"></div>
-    <div class="nav-links">
-      <div class="nav-item"></div>
-      <div class="nav-item"></div>
-      <div class="nav-item"></div>
-      <div class="nav-item"></div>
-    </div>
-    <div class="nav-actions">
-      <div class="btn-cta"></div>
+  <div class="site-header">
+    <div class="nav-container">
+      <div class="brand-logo">
+      </div>
+      <div class="nav-links">
+        <div class="nav-item">
+        </div>
+        <div class="nav-item">
+        </div>
+        <div class="nav-item">
+        </div>
+        <div class="nav-item">
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="btn-cta">
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="main-body">
-  <div class="hero-banner"></div>
-</div>
-
+  <div class="hero-banner">
+  </div>
 </body>
 </html>

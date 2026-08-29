@@ -1,295 +1,536 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Example 07: Arabic RTL News Magazine Portal | Pure Responsive DIV Builder</title>
+  <title>Pure Responsive DIV Structure</title>
   <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: "Tajawal", "Almarai", system-ui, sans-serif; direction: rtl; }
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Desktop Base Styles */
-    .portal-root {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+/* Desktop Base Styles */
+.portal-root {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 600px;
+  padding: 16px;
+  flex-grow: 1;
+  direction: rtl;
+}
 
-    /* Top Bar & Breaking News */
-    .top-ticker-bar {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background-color: #f43f5e;
-      padding: 8px 24px;
-      min-height: 38px;
-      gap: 16px;
-    }
+.top-ticker-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  min-height: 38px;
+  padding: 8px 24px 8px 24px;
+  background-color: #f43f5e;
+  flex-grow: 1;
+}
 
-    .ticker-badge {
-      display: block;
-      width: 80px;
-      min-height: 24px;
-      background-color: #ffffff;
-      border-radius: 4px;
-    }
+.ticker-badge {
+  display: block;
+  width: 80px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
 
-    .ticker-text {
-      display: block;
-      flex-grow: 1;
-      min-height: 18px;
-      background-color: rgba(255, 255, 255, 0.4);
-      border-radius: 4px;
-    }
+.ticker-text {
+  display: block;
+  min-height: 18px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+}
 
-    /* Main Navigation */
-    .portal-nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 32px;
-      background-color: #111620;
-      border-bottom: 1px solid #263447;
-      min-height: 70px;
-    }
+.portal-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 70px;
+  padding: 16px 32px 16px 32px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  flex-grow: 1;
+}
 
-    .portal-logo {
-      display: block;
-      width: 160px;
-      min-height: 40px;
-      background-color: #38bdf8;
-      border-radius: 8px;
-    }
+.portal-logo {
+  display: block;
+  width: 160px;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #38bdf8;
+  border-radius: 8px;
+}
 
-    .portal-menu {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-    }
+.portal-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 20px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .menu-link {
-      display: block;
-      width: 80px;
-      min-height: 24px;
-      background-color: #18202d;
-      border-radius: 4px;
-    }
+.menu-link {
+  display: block;
+  width: 80px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 4px;
+}
 
-    /* Container Body */
-    .portal-body {
-      display: flex;
-      flex-direction: column;
-      max-width: 1360px;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 32px 24px;
-      gap: 32px;
-    }
+.menu-link-2 {
+  display: block;
+  width: 80px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 4px;
+}
 
-    /* Featured Section (2:1 Grid) */
-    .featured-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
-    }
+.menu-link-3 {
+  display: block;
+  width: 80px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 4px;
+}
 
-    .main-lead-story {
-      display: flex;
-      flex-direction: column;
-      min-height: 420px;
-      background-color: #18202d;
-      border: 1px solid #263447;
-      border-radius: 14px;
-      padding: 24px;
-      justify-content: flex-end;
-      gap: 12px;
-    }
+.menu-link-4 {
+  display: block;
+  width: 80px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 4px;
+}
 
-    .lead-tag {
-      display: block;
-      width: 90px;
-      min-height: 24px;
-      background-color: #f43f5e;
-      border-radius: 4px;
-    }
+.portal-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-self: center;
+  min-height: 60px;
+  max-width: 1360px;
+  padding: 32px 24px 32px 24px;
+  flex-grow: 1;
+}
 
-    .lead-headline {
-      display: block;
-      width: 80%;
-      min-height: 32px;
-      background-color: #f0f6fc;
-      border-radius: 6px;
-    }
+.featured-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+}
 
-    .lead-summary {
-      display: block;
-      width: 60%;
-      min-height: 20px;
-      background-color: #5a6b85;
-      border-radius: 4px;
-    }
+.main-lead-story {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 420px;
+  padding: 24px;
+  background-color: #18202d;
+  border: 1px solid #263447;
+  border-radius: 14px;
+  flex-grow: 1;
+}
 
-    /* Secondary News Column */
-    .secondary-column {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+.lead-tag {
+  display: block;
+  width: 90px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #f43f5e;
+  border-radius: 4px;
+}
 
-    .news-card-small {
-      display: flex;
-      flex-direction: column;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 10px;
-      padding: 16px;
-      gap: 8px;
-      min-height: 125px;
-    }
+.lead-headline {
+  display: block;
+  width: 80%;
+  min-height: 32px;
+  padding: 16px;
+  background-color: #f0f6fc;
+  border-radius: 6px;
+}
 
-    /* 3-Column Magazine Articles Grid */
-    .articles-3col-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
+.lead-summary {
+  display: block;
+  width: 60%;
+  min-height: 20px;
+  padding: 16px;
+  background-color: #5a6b85;
+  border-radius: 4px;
+}
 
-    .article-box {
-      display: flex;
-      flex-direction: column;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+.secondary-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .article-img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background-color: #1d2737;
-    }
+.news-card-small {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+  min-height: 125px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 10px;
+  flex-grow: 1;
+}
 
-    .article-content {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      gap: 12px;
-    }
+.news-card-small-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+  min-height: 125px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 10px;
+  flex-grow: 1;
+}
 
-    /* Footer */
-    .portal-footer {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      background-color: #111620;
-      border-top: 1px solid #263447;
-      padding: 40px 32px;
-      margin-top: auto;
-    }
+.news-card-small-3 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+  min-height: 125px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 10px;
+  flex-grow: 1;
+}
 
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+.articles-3col-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+}
 
-    /* Tablet Breakpoint (<= 992px) */
-    @media (max-width: 992px) {
-      .featured-grid {
-        grid-template-columns: 1fr;
-      }
-      .articles-3col-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .portal-footer {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+.article-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+  overflow: hidden;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
 
-    /* Mobile Breakpoint (<= 576px) */
-    @media (max-width: 576px) {
-      .portal-nav {
-        flex-direction: column;
-        gap: 16px;
-      }
-      .portal-menu {
-        width: 100%;
-        overflow-x: auto;
-      }
-      .articles-3col-grid {
-        grid-template-columns: 1fr;
-      }
-      .portal-footer {
-        grid-template-columns: 1fr;
-      }
-    }
+.article-img {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  aspect-ratio: 16/9;
+  padding: 16px;
+  background-color: #1d2737;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 80px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.article-box-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+  overflow: hidden;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
+
+.article-img-2 {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  aspect-ratio: 16/9;
+  padding: 16px;
+  background-color: #1d2737;
+}
+
+.article-content-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 80px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.article-box-3 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+  overflow: hidden;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
+
+.article-img-3 {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  aspect-ratio: 16/9;
+  padding: 16px;
+  background-color: #1d2737;
+}
+
+.article-content-3 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 80px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.portal-footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 40px 32px 40px 32px;
+  margin: auto 0 0 0;
+  background-color: #111620;
+  border: 1px solid #263447;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 100px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.footer-col-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 100px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.footer-col-3 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 100px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.footer-col-4 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 100px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .articles-3col-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portal-footer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .portal-nav {
+    flex-direction: column;
+  }
+
+  .portal-menu {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .articles-3col-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .portal-footer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
   </style>
 </head>
 <body>
-
-<div class="portal-root" dir="rtl">
-  <!-- Breaking News Ticker -->
-  <div class="top-ticker-bar">
-    <div class="ticker-badge"></div>
-    <div class="ticker-text"></div>
-  </div>
-
-  <!-- Main Navigation -->
-  <div class="portal-nav">
-    <div class="portal-logo"></div>
-    <div class="portal-menu">
-      <div class="menu-link"></div>
-      <div class="menu-link"></div>
-      <div class="menu-link"></div>
-      <div class="menu-link"></div>
-    </div>
-  </div>
-
-  <!-- Portal Body -->
-  <div class="portal-body">
-    <!-- Featured 2:1 Section -->
-    <div class="featured-grid">
-      <div class="main-lead-story">
-        <div class="lead-tag"></div>
-        <div class="lead-headline"></div>
-        <div class="lead-summary"></div>
+  <div class="portal-root" dir="rtl">
+    <div class="top-ticker-bar">
+      <div class="ticker-badge">
       </div>
-      <div class="secondary-column">
-        <div class="news-card-small"></div>
-        <div class="news-card-small"></div>
-        <div class="news-card-small"></div>
+      <div class="ticker-text">
       </div>
     </div>
-
-    <!-- 3-Column Magazine Articles -->
-    <div class="articles-3col-grid">
-      <div class="article-box">
-        <div class="article-img"></div>
-        <div class="article-content"></div>
+    <div class="portal-nav">
+      <div class="portal-logo">
       </div>
-      <div class="article-box">
-        <div class="article-img"></div>
-        <div class="article-content"></div>
+      <div class="portal-menu">
+        <div class="menu-link">
+        </div>
+        <div class="menu-link">
+        </div>
+        <div class="menu-link">
+        </div>
+        <div class="menu-link">
+        </div>
       </div>
-      <div class="article-box">
-        <div class="article-img"></div>
-        <div class="article-content"></div>
+    </div>
+    <div class="portal-body">
+      <div class="featured-grid">
+        <div class="main-lead-story">
+          <div class="lead-tag">
+          </div>
+          <div class="lead-headline">
+          </div>
+          <div class="lead-summary">
+          </div>
+        </div>
+        <div class="secondary-column">
+          <div class="news-card-small">
+          </div>
+          <div class="news-card-small">
+          </div>
+          <div class="news-card-small">
+          </div>
+        </div>
+      </div>
+      <div class="articles-3col-grid">
+        <div class="article-box">
+          <div class="article-img">
+          </div>
+          <div class="article-content">
+          </div>
+        </div>
+        <div class="article-box">
+          <div class="article-img">
+          </div>
+          <div class="article-content">
+          </div>
+        </div>
+        <div class="article-box">
+          <div class="article-img">
+          </div>
+          <div class="article-content">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="portal-footer">
+      <div class="footer-col">
+      </div>
+      <div class="footer-col">
+      </div>
+      <div class="footer-col">
+      </div>
+      <div class="footer-col">
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <div class="portal-footer">
-    <div class="footer-col"></div>
-    <div class="footer-col"></div>
-    <div class="footer-col"></div>
-    <div class="footer-col"></div>
-  </div>
-</div>
-
 </body>
 </html>

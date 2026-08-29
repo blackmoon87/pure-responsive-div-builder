@@ -3,267 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Example 06: Complex SaaS Analytics Dashboard | Pure Responsive DIV Builder</title>
+  <title>Pure Responsive DIV Structure</title>
   <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { width: 100%; min-height: 100vh; background: #0a0d12; color: #f0f6fc; font-family: system-ui, sans-serif; }
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Desktop Base Styles */
-    .dashboard-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      min-height: 100vh;
-    }
+/* Desktop Base Styles */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  min-height: 600px;
+  padding: 16px;
+}
 
-    .dash-sidebar {
-      display: flex;
-      flex-direction: column;
-      background-color: #111620;
-      border-right: 1px solid #263447;
-      padding: 24px;
-      gap: 24px;
-    }
+.dash-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 24px;
+  min-height: 60px;
+  padding: 24px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  flex-grow: 1;
+}
 
-    .brand-slot {
-      display: block;
-      width: 100%;
-      min-height: 44px;
-      background-color: #38bdf8;
-      border-radius: 8px;
-    }
+.brand-slot {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 16px;
+  background-color: #38bdf8;
+  border-radius: 8px;
+}
 
-    .side-nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-grow: 1;
-    }
+.side-nav-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .side-nav-item {
-      display: block;
-      width: 100%;
-      min-height: 38px;
-      background-color: #18202d;
-      border-radius: 6px;
-    }
+.side-nav-item-active {
+  display: block;
+  width: 100%;
+  min-height: 38px;
+  padding: 16px;
+  background-color: #38bdf826;
+  border: 1px solid #38bdf8;
+  border-radius: 6px;
+}
 
-    .side-nav-item--active {
-      background-color: #38bdf826;
-      border: 1px solid #38bdf8;
-    }
+.side-nav-item {
+  display: block;
+  width: 100%;
+  min-height: 38px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
 
-    .user-profile-slot {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background-color: #18202d;
-      border-radius: 8px;
-      min-height: 52px;
-    }
+.side-nav-item-2 {
+  display: block;
+  width: 100%;
+  min-height: 38px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
 
-    .dash-main {
-      display: flex;
-      flex-direction: column;
-      padding: 24px 32px;
-      gap: 28px;
-      overflow-y: auto;
-    }
+.side-nav-item-3 {
+  display: block;
+  width: 100%;
+  min-height: 38px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
 
-    .dash-topbar {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 52px;
-    }
+.user-profile-slot {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px;
+  background-color: #18202d;
+  border-radius: 8px;
+  flex-grow: 1;
+}
 
-    .search-slot {
-      display: block;
-      width: 320px;
-      min-height: 40px;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 8px;
-    }
+.dash-main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 28px;
+  min-height: 60px;
+  padding: 24px 32px 24px 32px;
+  overflow: auto;
+  flex-grow: 1;
+}
 
-    .action-slot {
-      display: flex;
-      flex-direction: row;
-      gap: 12px;
-    }
+.dash-topbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .btn-pill {
-      display: block;
-      width: 40px;
-      min-height: 40px;
-      background-color: #18202d;
-      border-radius: 50%;
-    }
+.search-slot {
+  display: block;
+  width: 320px;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 8px;
+}
 
-    /* KPI Row */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+.action-slot {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 60px;
+  padding: 16px;
+  flex-grow: 1;
+}
 
-    .kpi-card {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 12px;
-      gap: 12px;
-      min-height: 110px;
-    }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+}
 
-    /* Analytics Chart & Breakdown (12-Column Grid) */
-    .analytics-section {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
+.kpi-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 110px;
+  padding: 20px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
 
-    .chart-box {
-      grid-column: span 8;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 12px;
-      min-height: 360px;
-      gap: 16px;
-    }
+.kpi-card-2 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 110px;
+  padding: 20px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
 
-    .donut-box {
-      grid-column: span 4;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 12px;
-      min-height: 360px;
-      gap: 16px;
-    }
+.kpi-card-3 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 110px;
+  padding: 20px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
 
-    /* Data Table Section */
-    .table-section {
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      background-color: #111620;
-      border: 1px solid #263447;
-      border-radius: 12px;
-      gap: 16px;
-    }
+.kpi-card-4 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 110px;
+  padding: 20px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
 
-    .table-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      padding: 14px 16px;
-      background-color: #18202d;
-      border-radius: 6px;
-      align-items: center;
-      gap: 12px;
-    }
+.analytics-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 16px;
+}
 
-    /* Tablet Breakpoint (<= 992px) */
-    @media (max-width: 992px) {
-      .dashboard-layout {
-        grid-template-columns: 1fr;
-      }
-      .dash-sidebar {
-        display: none; /* Collapsible on tablet */
-      }
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .chart-box {
-        grid-column: span 12;
-      }
-      .donut-box {
-        grid-column: span 12;
-      }
-    }
+.chart-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 360px;
+  padding: 24px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  grid-column: span 8;
+  flex-grow: 1;
+}
 
-    /* Mobile Breakpoint (<= 576px) */
-    @media (max-width: 576px) {
-      .dash-main {
-        padding: 16px;
-        gap: 20px;
-      }
-      .dash-topbar {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-      .search-slot {
-        width: 100%;
-      }
-      .kpi-grid {
-        grid-template-columns: 1fr;
-      }
-      .table-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-    }
+.donut-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 360px;
+  padding: 24px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  grid-column: span 4;
+  flex-grow: 1;
+}
+
+.table-section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 60px;
+  padding: 24px;
+  background-color: #111620;
+  border: 1px solid #263447;
+  border-radius: 12px;
+  flex-grow: 1;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 14px 16px 14px 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
+
+.table-row-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 14px 16px 14px 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
+
+.table-row-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 12px;
+  row-gap: 16px;
+  min-height: 60px;
+  padding: 14px 16px 14px 16px;
+  background-color: #18202d;
+  border-radius: 6px;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .dash-sidebar {
+    display: none;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-box {
+    grid-column: span 12;
+  }
+
+  .donut-box {
+    grid-column: span 12;
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .dash-main {
+    gap: 20px;
+    padding: 16px 16px 16px 16px;
+  }
+
+  .dash-topbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .search-slot {
+    width: 100%;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .table-row {
+    gap: 8px;
+  }
+
+  .table-row-2 {
+    gap: 8px;
+  }
+
+  .table-row-3 {
+    gap: 8px;
+  }
+}
   </style>
 </head>
 <body>
-
-<div class="dashboard-layout">
-  <!-- Left Sidebar -->
-  <div class="dash-sidebar">
-    <div class="brand-slot"></div>
-    <div class="side-nav-list">
-      <div class="side-nav-item side-nav-item--active"></div>
-      <div class="side-nav-item"></div>
-      <div class="side-nav-item"></div>
-      <div class="side-nav-item"></div>
-      <div class="side-nav-item"></div>
-    </div>
-    <div class="user-profile-slot"></div>
-  </div>
-
-  <!-- Main Area -->
-  <div class="dash-main">
-    <div class="dash-topbar">
-      <div class="search-slot"></div>
-      <div class="action-slot">
-        <div class="btn-pill"></div>
-        <div class="btn-pill"></div>
+  <div class="dashboard-layout">
+    <div class="dash-sidebar">
+      <div class="brand-slot">
+      </div>
+      <div class="side-nav-list">
+        <div class="side-nav-item-active">
+        </div>
+        <div class="side-nav-item">
+        </div>
+        <div class="side-nav-item">
+        </div>
+        <div class="side-nav-item">
+        </div>
+      </div>
+      <div class="user-profile-slot">
       </div>
     </div>
-
-    <!-- 4 KPI Cards -->
-    <div class="kpi-grid">
-      <div class="kpi-card"></div>
-      <div class="kpi-card"></div>
-      <div class="kpi-card"></div>
-      <div class="kpi-card"></div>
-    </div>
-
-    <!-- Analytics 12-Col Grid -->
-    <div class="analytics-section">
-      <div class="chart-box"></div>
-      <div class="donut-box"></div>
-    </div>
-
-    <!-- Data Table -->
-    <div class="table-section">
-      <div class="table-row"></div>
-      <div class="table-row"></div>
-      <div class="table-row"></div>
+    <div class="dash-main">
+      <div class="dash-topbar">
+        <div class="search-slot">
+        </div>
+        <div class="action-slot">
+        </div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+        </div>
+        <div class="kpi-card">
+        </div>
+        <div class="kpi-card">
+        </div>
+        <div class="kpi-card">
+        </div>
+      </div>
+      <div class="analytics-section">
+        <div class="chart-box">
+        </div>
+        <div class="donut-box">
+        </div>
+      </div>
+      <div class="table-section">
+        <div class="table-row">
+        </div>
+        <div class="table-row">
+        </div>
+        <div class="table-row">
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
 </body>
 </html>
