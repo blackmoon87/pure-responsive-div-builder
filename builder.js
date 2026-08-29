@@ -1519,7 +1519,7 @@
       if (mCss.length) rules.mobile.push("  ." + clsName + " {\n" + mCss.join("\n") + "\n  }");
     });
 
-    var cssText = "/* Reset */\n*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n\n";
+    var cssText = "/* Reset & Global */\n*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\nhtml, body {\n  width: 100%;\n  min-height: 100vh;\n  background-color: #0a0d12;\n  color: #f0f6fc;\n  font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n}\n\n";
     cssText += "/* Desktop Base Styles */\n";
     cssText += rules.desktop.join("\n\n") + "\n\n";
     if (rules.tablet.length) {
@@ -1542,8 +1542,6 @@
       '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
       '  <title>Pure Responsive DIV Structure</title>\n' +
       '  <style>\n' +
-      '    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n' +
-      '    body { width: 100%; min-height: 100vh; background: #ffffff; color: #1e293b; font-family: system-ui, sans-serif; }\n\n' +
       responsiveCss +
       '  </style>\n</head>\n<body>\n\n' +
       pureHtml +
