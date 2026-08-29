@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Responsive DIV Structure</title>
+  <style>
+/* Reset & Global */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0a0d12;
+  color: #f0f6fc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Desktop Base Styles */
+.page-behind {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  row-gap: 16px;
+  min-height: 520px;
+  padding: 28px;
+}
+
+.behind-card {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.behind-card-2 {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.behind-card-3 {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.behind-card-4 {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.behind-card-5 {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.behind-card-6 {
+  display: block;
+  min-height: 140px;
+  padding: 16px;
+  background-color: #18202d;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.modal-backdrop {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  background-color: rgba(3, 6, 12, 0.62);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  flex-grow: 1;
+}
+
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 18px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 84vh;
+  padding: 26px;
+  overflow-y: auto;
+  background-color: #111620;
+  border: 1px solid #2b3a4f;
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62);
+  transform: translateY(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.dialog-title {
+  display: block;
+  width: 180px;
+  min-height: 22px;
+  padding: 16px;
+  background-color: #243044;
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.dialog-close {
+  display: block;
+  width: 32px;
+  height: 32px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 8px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  min-height: 160px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.dialog-field {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 16px;
+  background-color: #1b2534;
+  border-radius: 10px;
+}
+
+.dialog-field-2 {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 16px;
+  background-color: #1b2534;
+  border-radius: 10px;
+}
+
+.dialog-field-3 {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 16px;
+  background-color: #1b2534;
+  border-radius: 10px;
+}
+
+.dialog-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.btn-cancel {
+  display: block;
+  width: 110px;
+  min-height: 42px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.btn-confirm {
+  display: block;
+  width: 150px;
+  min-height: 42px;
+  padding: 16px;
+  background-color: #6366f1;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .page-behind {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .page-behind {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .modal-backdrop {
+    align-items: end;
+    padding: 0px;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .modal-dialog {
+    max-width: 100%;
+    max-height: 92vh;
+    padding: 20px 18px 20px 18px;
+    border-radius: 20px;
+    transform: none;
+    transition: none;
+  }
+
+  .dialog-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-cancel {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .btn-confirm {
+    width: 100%;
+    min-width: auto;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="page-behind">
+    <div class="behind-card">
+    </div>
+    <div class="behind-card-2">
+    </div>
+    <div class="behind-card-3">
+    </div>
+    <div class="behind-card-4">
+    </div>
+    <div class="behind-card-5">
+    </div>
+    <div class="behind-card-6">
+    </div>
+  </div>
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="dialog-header">
+        <div class="dialog-title">
+        </div>
+        <div class="dialog-close">
+        </div>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-field">
+        </div>
+        <div class="dialog-field-2">
+        </div>
+        <div class="dialog-field-3">
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <div class="btn-cancel">
+        </div>
+        <div class="btn-confirm">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -244,7 +244,7 @@ The agent will autonomously execute:
 ## 📚 Technical Documentation
 
 For an exhaustive technical breakdown of every function, algorithm, data structure, edge case, and guard in the codebase, read:
-👉 **[how.it.works.md](how.it.works.md)** *(Comprehensive 17-Section Reference)*
+👉 **[how.it.works.md](how.it.works.md)** *(Comprehensive 18-Section Reference)*
 
 ---
 

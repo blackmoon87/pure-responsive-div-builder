@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Responsive DIV Structure</title>
+  <style>
+/* Reset & Global */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0a0d12;
+  color: #f0f6fc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Desktop Base Styles */
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0px;
+  row-gap: 16px;
+  width: 100%;
+  min-height: 640px;
+  padding: 0px;
+}
+
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 10px;
+  height: 100vh;
+  padding: 20px 14px 20px 14px;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  background-color: #0d1219;
+  border: 1px solid #1c2534;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.rail-x8_brand {
+  display: block;
+  min-height: 40px;
+  padding: 16px;
+  margin: 0 0 14px 0;
+  background-color: #6366f1;
+  border-radius: 10px;
+}
+
+.rail-item {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-item-2 {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-item-3 {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-item-4 {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-item-5 {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-item-6 {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 16px;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.rail-footer {
+  display: block;
+  min-height: 44px;
+  padding: 16px;
+  margin: auto 0 0 0;
+  background-color: #151d29;
+  border-radius: 9px;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 20px;
+  padding: 24px 28px 24px 28px;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.mobile-nav {
+  display: none;
+  min-height: 60px;
+  padding: 16px;
+}
+
+.nav-burger {
+  display: block;
+  width: 40px;
+  height: 40px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
+.nav-x8_brand {
+  display: block;
+  width: 120px;
+  min-height: 24px;
+  padding: 16px;
+  background-color: #243044;
+  border-radius: 6px;
+}
+
+.nav-avatar {
+  display: block;
+  width: 36px;
+  height: 36px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #6366f1;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.content-topbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.topbar-title {
+  display: block;
+  width: 220px;
+  min-height: 26px;
+  padding: 16px;
+  background-color: #243044;
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.topbar-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 16px;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.topbar-btn {
+  display: block;
+  width: 38px;
+  height: 38px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 9px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.topbar-btn-2 {
+  display: block;
+  width: 38px;
+  height: 38px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 9px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.topbar-btn-3 {
+  display: block;
+  width: 38px;
+  height: 38px;
+  min-height: 60px;
+  padding: 16px;
+  background-color: #1d2737;
+  border-radius: 9px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  gap: 16px;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px;
+}
+
+.kpi-card {
+  display: block;
+  min-height: 104px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.kpi-card-2 {
+  display: block;
+  min-height: 104px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.kpi-card-3 {
+  display: block;
+  min-height: 104px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.kpi-card-4 {
+  display: block;
+  min-height: 104px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.panel-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px;
+}
+
+.panel-chart {
+  display: block;
+  min-height: 320px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 14px;
+  min-width: 0;
+  grid-column: span 2;
+}
+
+.panel-feed {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 10px;
+  min-height: 320px;
+  padding: 16px;
+  background-color: #111620;
+  border: 1px solid #232f42;
+  border-radius: 14px;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.feed-row {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 9px;
+}
+
+.feed-row-2 {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 9px;
+}
+
+.feed-row-3 {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 9px;
+}
+
+.feed-row-4 {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 16px;
+  background-color: #18202d;
+  border-radius: 9px;
+}
+
+/* Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .app-shell {
+    grid-template-columns: 76px 1fr;
+  }
+
+  .app-sidebar {
+    gap: 8px;
+    padding: 20px 10px 20px 10px;
+  }
+
+  .panel-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .panel-feed {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    display: none;
+  }
+
+  .app-content {
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 10px 12px 10px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background-color: rgba(13, 18, 25, 0.86);
+    border-radius: 12px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    flex-grow: 1;
+  }
+
+  .nav-burger {
+    min-width: 0;
+  }
+
+  .nav-x8_brand {
+    min-width: 0;
+  }
+
+  .nav-avatar {
+    min-width: 0;
+  }
+
+  .content-topbar {
+    display: none;
+  }
+
+  .panel-row {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .panel-chart {
+    min-height: 220px;
+    grid-column: auto;
+  }
+
+  .panel-feed {
+    min-height: 200px;
+    grid-column: auto;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="app-sidebar">
+      <div class="rail-x8_brand">
+      </div>
+      <div class="rail-item">
+      </div>
+      <div class="rail-item-2">
+      </div>
+      <div class="rail-item-3">
+      </div>
+      <div class="rail-item-4">
+      </div>
+      <div class="rail-item-5">
+      </div>
+      <div class="rail-item-6">
+      </div>
+      <div class="rail-footer">
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="mobile-nav">
+        <div class="nav-burger">
+        </div>
+        <div class="nav-x8_brand">
+        </div>
+        <div class="nav-avatar">
+        </div>
+      </div>
+      <div class="content-topbar">
+        <div class="topbar-title">
+        </div>
+        <div class="topbar-actions">
+          <div class="topbar-btn">
+          </div>
+          <div class="topbar-btn-2">
+          </div>
+          <div class="topbar-btn-3">
+          </div>
+        </div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+        </div>
+        <div class="kpi-card-2">
+        </div>
+        <div class="kpi-card-3">
+        </div>
+        <div class="kpi-card-4">
+        </div>
+      </div>
+      <div class="panel-row">
+        <div class="panel-chart">
+        </div>
+        <div class="panel-feed">
+          <div class="feed-row">
+          </div>
+          <div class="feed-row-2">
+          </div>
+          <div class="feed-row-3">
+          </div>
+          <div class="feed-row-4">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

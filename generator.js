@@ -83,8 +83,10 @@ export var defaultDesktopProps = {
     direction: ""            // "" (inherit) | "ltr" | "rtl"
   };
 
-// A flex item only shrinks below its content width when min-width is cleared.
-// Without this, a nowrap row bursts its container and the content is clipped.
+// A flex item or a grid item only shrinks below its content width when
+// min-width is cleared: both have an automatic minimum size of min-content.
+// Without this a nowrap row bursts its container, and a grid track is widened
+// by its widest item until the whole grid overflows.
 export function isGrid(props) {
   return !!props && props.display === "grid";
 }
@@ -310,7 +312,7 @@ function declarationsFor(props, ctx) {
   }
 
   // --- as a child of its parent -------------------------------------------
-  if (ctx.rowParent) o.push("min-width: 0;");
+  if (ctx.rowParent || ctx.gridParent) o.push("min-width: 0;");
   if (p.span && p.span > 1) o.push("grid-column: span " + p.span + ";");
   if (p.display === "flex" && p.flexGrow != null) o.push("flex-grow: " + p.flexGrow + ";");
   if (p.flexShrink != null && p.flexShrink !== 1) o.push("flex-shrink: " + p.flexShrink + ";");

@@ -23,6 +23,7 @@
 15. [MCP Server](#15-mcp-server)
 16. [Edge Cases & Guards](#16-edge-cases--guards)
 17. [Property Reference Table](#17-property-reference-table)
+18. [Verification](#18-verification)
 
 ---
 
@@ -43,21 +44,36 @@
 └──────────────────────────────────────────────────────┘
          │                    │
     builder.js           builder.css
-    (1739 lines)         (1060 lines)
+    (1563 lines)         (1122 lines)
          │
-    export-template.css
-         │
-    mcp-server/
-    ├── index.js  (MCP tools, 338 lines)
-    └── core.js   (server-side logic, 598 lines)
+         ├──────────────► generator.js ◄──────────────┐
+         │                (411 lines)                    │
+         │          THE SINGLE SOURCE OF TRUTH        │
+         │        for all HTML & CSS emission         │
+    export-template.css                               │
+                                                      │
+    mcp-server/                                       │
+    ├── index.js  (MCP tools, 344 lines)                  │
+    └── core.js   (server-side state, 373 lines) ───────────┘
 ```
+
+### Why `generator.js` exists
+`builder.js` and `mcp-server/core.js` used to carry **two copies** of the emitter.
+They drifted: the MCP copy silently dropped `overflow-x`/`overflow-y` and the
+tablet/mobile `horizontalAlign` blocks, so an agent calling `set_props` got a
+success response and CSS that ignored the properties it had set.
+
+`generator.js` is pure and state-free — every entry point takes the tree and
+breakpoints as arguments. Both surfaces import it and keep only thin
+state-bound wrappers. **A change to emitted CSS belongs in `generator.js` and
+reaches the browser and the MCP server at once.**
 
 ### Design Principle
 **Only `<div>` elements.** The user's rule: _"nothing just responsive div's need #do not upgrade by inject other elements."_ Every node in the tree renders as a `<div>`. No `<section>`, `<header>`, `<span>`, etc.
 
 ### Runtime
-- Pure vanilla JavaScript (ES5-compatible, no transpiler)
-- Wrapped in an IIFE `(function() { "use strict"; ... })()`
+- Pure vanilla JavaScript (ES5-style, no transpiler)
+- `builder.js` is an ES module whose body is wrapped in an IIFE `(function() { "use strict"; ... })()`
 - No framework, no build step, no npm for the browser app
 - Served via `python3 -m http.server 8080`
 
@@ -68,11 +84,13 @@
 | File | Lines | Purpose |
 |---|---|---|
 | `index.html` | 244 | Page structure: toolbar, left panel (presets + tree tabs), canvas frame, right panel (inspector), export modal, status bar |
-| `builder.js` | 1739 | All application logic: state, tree ops, rendering, events, export |
-| `builder.css` | 1060 | Dark theme UI styling, layout grid, component styles |
+| `builder.js` | 1563 | Browser app: state, tree ops, rendering, events, UI. An **ES module** — `index.html` loads it with `<script type="module">`, so the builder must be served over HTTP (`file://` will not work) |
+| `generator.js` | 411 | **Single source of truth for HTML & CSS emission.** Pure, state-free, shared by the browser and the MCP server |
+| `builder.css` | 1122 | Dark theme UI styling, layout grid, component styles |
 | `export-template.css` | ~20 | CSS reset template included in exported documents |
-| `mcp-server/index.js` | 338 | MCP server with 19 tools |
-| `mcp-server/core.js` | 598 | Server-side builder logic (no DOM) |
+| `mcp-server/index.js` | 344 | MCP server with 20 tools |
+| `mcp-server/core.js` | 373 | Server-side **state** (tree, history, breakpoints). Delegates all emission to `generator.js` |
+| `generate_examples.js` | ~1100 | Generates all 10 examples in `examples/` through `core.js` — no handwritten HTML |
 
 ---
 
@@ -129,7 +147,7 @@ State.root = {
 
 The root is **never exported as a `<div>`** — it's a virtual container. Its children are the actual top-level elements.
 
-### 3.3 defaultDesktopProps (55 Properties)
+### 3.3 defaultDesktopProps (58 Properties)
 
 Every new node gets these defaults merged into `responsive.desktop`:
 
@@ -141,7 +159,7 @@ Every new node gets these defaults merged into `responsive.desktop`:
 | **Spacing** | `paddingTop/Right/Bottom/Left`, `paddingLinked`, `marginTop/Right/Bottom/Left`, `marginLinked`, `gap`, `rowGap` |
 | **Position** | `position`, `top`, `right`, `bottom`, `left`, `zIndex` |
 | **Overflow** | `overflow`, `overflowX`, `overflowY` |
-| **Visual** | `backgroundColor`, `borderWidth`, `borderStyle`, `borderColor`, `borderRadius`, `boxShadow`, `opacity` |
+| **Visual** | `backgroundColor`, `borderWidth`, `borderStyle`, `borderColor`, `borderRadius`, `boxShadow`, `opacity`, `transform`, `transition`, `backdropFilter` |
 | **Child** | `span`, `flexGrow`, `flexShrink`, `flexBasis`, `order` |
 | **Misc** | `hidden`, `direction` |
 
@@ -580,61 +598,85 @@ Recursively generates pure HTML with proper indentation.
 </div>
 ```
 
-### 12.2 `generateResponsiveCss()` — Line 1292
+### 12.2 `generateResponsiveCss(root, breakpoints)` — `generator.js`
 
-Generates complete CSS with media queries.
+**Table-driven.** One function, `declarationsFor(props, ctx)`, produces the
+complete ordered declaration list for a device. Desktop writes it directly;
+each breakpoint is produced by *diffing* that list against the wider device.
 
-**Algorithm:**
-1. Walk the entire tree
-2. For each node, generate desktop CSS rules
-3. For each node, generate tablet overrides (only if different from desktop)
-4. For each node, generate mobile overrides (only if different from desktop)
-5. Assemble: desktop rules + `@media (max-width: 992px)` + `@media (max-width: 576px)`
-
-**Class name collision handling (BUG 6 FIX):**
-```javascript
-var classCount = {};
-// First "col" → ".col"
-// Second "col" → ".col-2"
-// Third "col" → ".col-3"
+```
+declarationsFor(effective(node,"desktop"), ctx("desktop"))  ─► base rule
+declarationsFor(effective(node,"tablet"),  ctx("tablet"))   ─┐
+                                                             ├─► diff ─► @media 992
+                                                            ─┘
+declarationsFor(effective(node,"mobile"),  ctx("mobile"))   ─┐
+                                                             ├─► diff ─► @media 576
+                                          (vs the TABLET list)┘
 ```
 
-**4-side padding smart shorthand:**
-```javascript
-if (pt === pr && pr === pb && pb === pl)
-  → "padding: 16px;"         // All equal: shorthand
-else
-  → "padding: 16px 24px 16px 24px;"  // Different: longhand
+Mobile diffs against **tablet**, not desktop: both media blocks are
+`max-width`, so at 400px the tablet rule applies and the mobile rule overrides
+it. Diffing against desktop would restate what tablet already said.
+
+#### Why this shape
+The breakpoint blocks used to be a hand-maintained chain of `if` statements
+running parallel to the desktop chain. Anything nobody remembered to add was
+dropped **without an error**, while `set_props` still reported success. An
+audit that set each property on each device and checked whether it reached the
+CSS measured 43/43 on desktop but only **27/43** at breakpoints — `top`,
+`right`, `bottom`, `left`, `zIndex`, `maxWidth`, `justifyContent`,
+`alignItems`, `flexWrap` and others were unreachable. Desktop and both
+breakpoints now run the same code, so a property added once is automatically
+overridable everywhere. The audit measures **47/47** at all three devices.
+
+#### Neutral values
+When a declaration is present at the wider device and absent at the narrower
+one, a neutral is emitted so the cascade cannot leak the wider rule down. This
+is what makes *clearing* a property at a breakpoint possible at all:
+
+```css
+@media (max-width: 576px) { .card { border: none; max-width: none; } }
 ```
 
-**Properties exported per node:**
-- Display mode (grid/flex/block + sub-properties)
-- Alignment (margin auto patterns)
-- Sizing (width, height, min-height, max-width, max-height, aspect-ratio)
-- Spacing (4-side padding, 4-side margin)
-- Position (+ offsets + z-index)
-- Overflow
-- Visual (bg, border, radius, shadow, opacity)
-- Grid/flex child (span, grow, shrink, basis, order)
-- Text-align, direction
+Neutrals mirror this generator's own defaults (`align-items: stretch`), not the
+CSS-wide initial values. `row-gap` deliberately has **no** neutral: `gap` is
+always emitted alongside it and already sets the row gap, so `row-gap: normal`
+would cancel it.
 
-### 12.3 `generateFullHtmlDocument()` — Line 1454
+#### Parent context (`ctx`)
+Resolved per device, because a parent can switch between grid, flex-row and
+flex-column at a breakpoint:
 
-Combines HTML + CSS into a complete `<!DOCTYPE html>` document with:
-- Meta charset + viewport
-- Embedded `<style>` with CSS reset + responsive rules
-- Body with all div structure
+| ctx | Effect |
+|---|---|
+| `gridParent` | `justify-self` is emitted **only** here. Chrome honours `justify-self` in block layout, where it forces shrink-to-fit and bursts the container — emitting it outside a grid collapsed every centered container |
+| `rowParent` \|\| `gridParent` | `min-width: 0`. Flex items **and** grid items both have an automatic minimum size of min-content; without this a nowrap row bursts its container and a grid track is widened by its widest item until the grid overflows |
 
-### 12.4 Export Modal
+#### `hidden` is the display value
+Not a flag appended after the diff. Being part of the declaration list is what
+lets a breakpoint turn a div back **on**: a div hidden on desktop emits
+`display: none` in the base rule and `display: flex` in its mobile block — the
+sidebar/hamburger pair.
 
-Three tabs:
-- **Combined:** Full HTML document
-- **HTML:** Just the div structure
-- **CSS:** Just the responsive CSS
+#### Auto-fit tracks
+`repeat(auto-fit, minmax(min(240px, 100%), 1fr))`. The inner `min()` is
+required: a raw `minmax(240px, 1fr)` track cannot shrink below 240px and
+overflows narrow viewports.
 
-Actions:
-- **Copy Code:** Uses `navigator.clipboard.writeText()`
-- **Download HTML:** Creates a Blob, triggers `<a download>` click
+### 12.3 `generateFullHtmlDocument(root, breakpoints)`
+
+Assembles `<!DOCTYPE html>` + `<meta viewport>` + inline `<style>` + the pure
+div body into one standalone, dependency-free file.
+
+### 12.4 Export warnings
+
+Before showing the code, the modal scans the tree for divs that carry mobile
+rules but no tablet rules and names the uncovered pixel range:
+
+> ⚠ 3 divs have mobile rules but no tablet rules (.card, .hero, .grid) — unstyled between 577px and 992px.
+
+This exists because the three fixed preview widths (1280 / 768 / 375) can all
+look correct while a whole band between them has no rules at all.
 
 ---
 
@@ -758,7 +800,11 @@ Agent ──stdio──> index.js ──calls──> core.js ──manages──
 - **SDK:** `@modelcontextprotocol/sdk` v1.12+
 - **State:** In-memory, no file persistence (resets on restart)
 
-### 15.2 All 19 Tools
+### 15.2 All 20 Tools
+
+Every mutating tool records history. Four of them (`reset_device`,
+`import_json`, `set_breakpoints`, `reset_all`) previously did not, so `undo`
+skipped straight past them — an agent could not undo a `reset_all`.
 
 | # | Tool | Category | Mutates? | Has Undo? |
 |---|---|---|---|---|
@@ -768,30 +814,70 @@ Agent ──stdio──> index.js ──calls──> core.js ──manages──
 | 4 | `clone_div` | Tree | ✅ | ✅ |
 | 5 | `wrap_div` | Tree | ✅ | ✅ |
 | 6 | `split_div` | Tree | ✅ | ✅ |
-| 7 | `list_tree` | Tree | ❌ | — |
-| 8 | `get_node` | Tree | ❌ | — |
-| 9 | `reparent_div` | Tree | ✅ | ✅ |
+| 7 | `reparent_div` | Tree | ✅ | ✅ |
+| 8 | `list_tree` | Tree | ❌ | — |
+| 9 | `get_node` | Tree | ❌ | — |
 | 10 | `set_props` | Props | ✅ | ✅ |
-| 11 | `reset_device` | Props | ❌ | — |
+| 11 | `reset_device` | Props | ✅ | ✅ |
 | 12 | `export_html` | Export | ❌ | — |
 | 13 | `export_css` | Export | ❌ | — |
 | 14 | `export_full` | Export | ❌ | — |
 | 15 | `export_json` | Export | ❌ | — |
-| 16 | `import_json` | Import | ✅ | ❌ |
-| 17 | `set_breakpoints` | Config | ✅ | ❌ |
-| 18 | `reset_all` | Config | ✅ | ❌ |
+| 16 | `import_json` | Import | ✅ | ✅ |
+| 17 | `set_breakpoints` | Config | ✅ | ✅ |
+| 18 | `reset_all` | Config | ✅ | ✅ |
 | 19 | `undo` | History | ✅ | — |
 | 20 | `redo` | History | ✅ | — |
 
+### 15.2.1 `export_json` / `import_json` envelope
+
+The tree alone is not the whole document: breakpoints live beside it and decide
+the `@media` values. `export_json` previously emitted the tree only, so a
+document exported at 768/480 reimported at 992/576 with different media
+queries. It now returns:
+
+```json
+{ "version": 2, "breakpoints": { "tablet": 992, "mobile": 576 }, "root": { ... } }
+```
+
+`import_json` accepts both this envelope and a bare legacy root node.
+
+### 15.2.2 Import validation
+
+`import_json` used to accept any shape and throw a `TypeError` out of a walk
+deep inside the generator. It now validates and returns the offending path,
+leaving state untouched:
+
+```
+Error: invalid tree — root.children[0] is missing responsive{}
+```
+
+### 15.2.3 History covers breakpoints
+
+`History.snapshot()` captured only the tree, which would have stranded
+`set_breakpoints`. It now snapshots `{ root, breakpoints }`. `reset_all` also
+restores the default breakpoints, so a fresh start cannot inherit the previous
+document's `@media` values.
+
 ### 15.3 MCP `core.js` vs Browser `builder.js`
+
+Both are thin shells around the same `generator.js`.
 
 | Feature | core.js (MCP) | builder.js (Browser) |
 |---|---|---|
 | DOM access | ❌ None | ✅ Full |
 | Rendering | ❌ No UI | ✅ Canvas, Tree, Inspector |
 | History | ✅ 50-deep stack | ✅ 50-deep stack |
+| HTML/CSS emission | → `generator.js` | → `generator.js` |
 | Export | ✅ HTML + CSS + JSON | ✅ HTML + CSS + Download |
 | State | Module-level `state` | IIFE-scoped `State` |
+
+Only the state wrappers differ:
+
+```javascript
+// mcp-server/core.js                    // builder.js
+buildCss(state.root, state.breakpoints)  buildCss(State.root, State.breakpoints)
+```
 
 ---
 
@@ -807,6 +893,14 @@ Agent ──stdio──> index.js ──calls──> core.js ──manages──
 | **BUG 5** | `flexGrow` applied to non-flex children | Guard: only apply when `parentDisplay === "flex"` |
 | **BUG 6** | Multiple nodes with same class produced duplicate CSS selectors | Auto-suffix: `.col`, `.col-2`, `.col-3` |
 | **BUG 7** | Block nodes had no `display` in CSS export | Always emit `display: block` |
+| **BUG 8** | `justify-self` was emitted for `horizontalAlign` regardless of parent. Chrome implements CSS Box Alignment for block layout, so it forced every centered container to shrink-to-fit and burst the viewport — an empty div collapsed to 34px, a wrapper expanded to its 662px min-content inside 552px. `overflow-x: hidden` in the reset hid the damage: content was clipped, not scrollable | Gated on a grid parent. `margin-inline: auto` already does the centering |
+| **BUG 9** | Flex-row children could not shrink below their content width, so a `nowrap` row burst its container | Emit `min-width: 0` on children of a flex row |
+| **BUG 10** | Grid items have the same automatic minimum size, so one wide item widened its track until the whole grid overflowed | `min-width: 0` also emitted for children of a grid |
+| **BUG 11** | `repeat(auto-fit, minmax(240px, 1fr))` cannot shrink below 240px | Emit `minmax(min(240px, 100%), 1fr)` |
+| **BUG 12** | The breakpoint blocks were a hand-maintained `if` chain parallel to desktop; 16 of 43 properties were silently unreachable at tablet/mobile | Table-driven emission — see 12.2 |
+| **BUG 13** | `hidden` was appended after the diff and read only raw overrides: no desktop support, and it could never be switched back on | `hidden` is the display value inside the declaration list |
+| **BUG 14** | The canvas preview applied `align-self` and `width: fit-content` that the export never emitted | Preview mirrors the exported declarations exactly |
+| **BUG 15** | The three fixed preview widths (1280/768/375) all sat outside the 580–720px band where layouts broke | Free-width ruler drives the breakpoint from `State.breakpoints`, using the same rule the `@media` queries use |
 
 ### 16.2 Safety Guards
 
@@ -869,6 +963,10 @@ Every CSS property the system can generate:
 | `border-radius` | Presets + custom input | ✅ | ✅ |
 | `box-shadow` | Presets: None/sm/md/lg | ✅ | ✅ |
 | `opacity` | Range slider 0-1 | ✅ | ✅ |
+| `transform` | Presets: None/Lift/Shrink/Off-canvas + free text | ✅ | ✅ |
+| `transition` | Presets: None/Fast/Base/Slow + free text | ✅ | ✅ |
+| `backdrop-filter` | Presets: None/sm/md/Glass + free text. Emits the `-webkit-` prefix too (Safari needed it until 18) | ✅ | ✅ |
+| `align-self` | Segmented: Auto/Start/Center/End/Stretch/Baseline | ✅ | ✅ |
 | `grid-column: span` | Number input 1-12 | ✅ | ✅ |
 | `flex-grow` | Number input | ✅ | ✅ |
 | `flex-shrink` | Number input | ✅ | ✅ |
@@ -876,7 +974,11 @@ Every CSS property the system can generate:
 | `order` | Number input | ✅ | ✅ |
 | `text-align` | Segmented: Left/Center/Right/Justify | ✅ | ✅ |
 | `direction` | Segmented: Inherit/LTR/RTL | ✅ | ✅ |
-| `display: none` (hidden) | Checkbox toggle (tablet/mobile) | ❌ | ✅ |
+| `display: none` (hidden) | Checkbox toggle on **every** device | ✅ | ✅ |
+
+Every one of the 47 emittable declarations is overridable at **every** device.
+`hidden` on desktop plus `hidden: false` at a breakpoint is the mobile-only
+panel pattern.
 
 ---
 
@@ -902,3 +1004,33 @@ Every CSS property the system can generate:
 ---
 
 *Generated for Pure Responsive DIV Generator v5.0 — 1739 lines of JS, 1060 lines of CSS, 19 MCP tools.*
+
+---
+
+## 18. Verification
+
+Layout correctness is measured, not eyeballed. The harness loads every example
+in an iframe at each width from **320px to 1440px in 20px steps** (57 widths ×
+10 examples = **570 checks**) and compares every div's `getBoundingClientRect()`
+against the viewport edge.
+
+This matters because the exported reset sets `overflow-x: hidden` on `body`, so
+an overflowing element produces **no scrollbar** — `document.scrollWidth` stays
+clean while content is silently clipped. Only per-element geometry finds it.
+
+```
+TOTAL FAILING WIDTHS: 0
+PASS 01-simple-centered-card          clean 57/57
+PASS 02-responsive-navbar             clean 57/57
+...
+PASS 10-editorial-magazine-grid       clean 57/57
+```
+
+A property-coverage audit sets each property on each device and checks whether
+it reaches the CSS: **47/47 on desktop, tablet and mobile**.
+
+`mcp-server/test.js` covers the 20 tools (10 smoke tests), and the examples are
+verified honest two ways: each committed `.json` reproduces its committed
+`.html` byte-for-byte through `importTreeJson` + `generateFullHtmlDocument`, and
+re-running `generate_examples.js` reproduces every file byte-for-byte apart from
+the timestamp-based node ids.
