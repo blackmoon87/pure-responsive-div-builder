@@ -762,15 +762,17 @@ import {
       var resetBtn = el("button", "btn-tree-action", isOverride ? "Reset to Desktop" : "Inherited");
       resetBtn.addEventListener("click", function () { commit(function () { node.responsive[dev] = {}; }); });
       idCard.appendChild(resetBtn);
-
-      // A3: Hidden per-breakpoint toggle
-      var hidGrp = el("div", "prop-group");
-      var hidLbl = el("label", "prop-label"); hidLbl.style.display = "flex"; hidLbl.style.alignItems = "center"; hidLbl.style.gap = "6px";
-      var hidCb = el("input"); hidCb.type = "checkbox"; hidCb.checked = !!eff.hidden;
-      hidCb.addEventListener("change", function (e) { setProp("hidden", e.target.checked); });
-      hidLbl.appendChild(hidCb); hidLbl.appendChild(document.createTextNode("Hidden on " + dev)); hidGrp.appendChild(hidLbl);
-      idCard.appendChild(hidGrp);
     }
+
+    // Hidden is available on every device, desktop included: a mobile-only
+    // panel is hidden on desktop and switched back on at its breakpoint.
+    var hidGrp = el("div", "prop-group");
+    var hidLbl = el("label", "prop-label"); hidLbl.style.display = "flex"; hidLbl.style.alignItems = "center"; hidLbl.style.gap = "6px";
+    var hidCb = el("input"); hidCb.type = "checkbox"; hidCb.checked = !!eff.hidden;
+    hidCb.addEventListener("change", function (e) { setProp("hidden", e.target.checked); });
+    hidLbl.appendChild(hidCb); hidLbl.appendChild(document.createTextNode("Hidden on " + dev)); hidGrp.appendChild(hidLbl);
+    idCard.appendChild(hidGrp);
+
     propsBody.appendChild(idCard);
 
     // ========================================================================

@@ -200,8 +200,13 @@ function declarationsFor(props, ctx) {
   var p = props, o = [];
 
   // --- display + container-level alignment --------------------------------
+  // `hidden` is the display value, not a separate flag appended after the diff.
+  // Being part of the declaration list is what lets a breakpoint turn a div
+  // back ON: a div hidden on desktop and visible on mobile emits display:none
+  // in the base rule and display:flex in the mobile block.
+  var shown = p.hidden ? "none" : null;
   if (p.display === "grid") {
-    o.push("display: grid;");
+    o.push("display: " + (shown || "grid") + ";");
     if (p.gridAutoMode) {
       o.push("grid-template-columns: repeat(" + p.gridAutoMode + ", minmax(min(" + (p.gridMinColWidth || "200px") + ", 100%), 1fr));");
     } else if (p.customColumns) {
@@ -218,7 +223,7 @@ function declarationsFor(props, ctx) {
     if (p.justifyContent && p.justifyContent !== "flex-start") o.push("justify-content: " + p.justifyContent + ";");
     if (p.alignItems && p.alignItems !== "stretch") o.push("align-items: " + p.alignItems + ";");
   } else if (p.display === "flex") {
-    o.push("display: flex;");
+    o.push("display: " + (shown || "flex") + ";");
     if (p.flexDirection) o.push("flex-direction: " + p.flexDirection + ";");
     if (p.flexWrap) o.push("flex-wrap: " + p.flexWrap + ";");
     if (p.justifyContent) o.push("justify-content: " + p.justifyContent + ";");
@@ -229,7 +234,7 @@ function declarationsFor(props, ctx) {
       o.push("align-content: " + p.alignContent + ";");
     }
   } else {
-    o.push("display: block;");
+    o.push("display: " + (shown || "block") + ";");
   }
 
   // --- self alignment ------------------------------------------------------
@@ -355,11 +360,9 @@ export function generateResponsiveCss(root, breakpoints) {
     // max-width, so at 400px the tablet rule applies and the mobile rule
     // overrides it. Diffing against desktop would restate what tablet already said.
     var t = overrideDecls(dDecls, tDecls);
-    if (node.responsive.tablet && node.responsive.tablet.hidden) t.push("display: none;");
     if (t.length) rules.tablet.push("  ." + clsName + " {\n    " + t.join("\n    ") + "\n  }");
 
     var m = overrideDecls(tDecls, mDecls);
-    if (node.responsive.mobile && node.responsive.mobile.hidden) m.push("display: none;");
     if (m.length) rules.mobile.push("  ." + clsName + " {\n    " + m.join("\n    ") + "\n  }");
   });
 

@@ -36,6 +36,7 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 | **Visual Styling** | Color picker + Hex background, custom borders (width/style/color), border-radius presets, box-shadows, opacity slider |
 | **Child Rules** | Column span (1-12), `flex-grow`, `flex-shrink`, `flex-basis`, `order` |
 | **Instant Export** | Clean HTML, responsive CSS with media queries, or single-file combined HTML with download & clipboard copy |
+| **Show / Hide** | `hidden` per device on every breakpoint including desktop — hide a sidebar on phones, or keep a mobile-only panel `display: none` on desktop and switch it back on at its breakpoint |
 | **Undo / Redo** | 50-deep snapshot history with keyboard shortcuts (`Ctrl+Z`, `Ctrl+Y`, `Del`) |
 
 ---
