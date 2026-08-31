@@ -9,9 +9,10 @@
 // ============================================================================
 import { runSuites } from "./lib/harness.js";
 import regression from "./suites/regression.js";
+import deviceLadder from "./suites/device-ladder.js";
 import propertyCoverage from "./suites/property-coverage.js";
 import examples from "./suites/examples.js";
 
 console.log("Pure Responsive DIV Generator — test suite");
 console.log("=".repeat(58));
-await runSuites([regression, propertyCoverage, examples]);
+await runSuites([regression, deviceLadder, propertyCoverage, examples]);

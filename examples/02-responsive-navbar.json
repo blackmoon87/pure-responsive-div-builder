@@ -1,8 +1,11 @@
 {
   "version": 2,
   "breakpoints": {
+    "ultrawide": 1600,
+    "laptop": 1200,
     "tablet": 992,
-    "mobile": 576
+    "mobile": 576,
+    "mobileSm": 400
   },
   "root": {
     "id": "root",
@@ -10,6 +13,7 @@
     "name": "Page Root",
     "customClass": "page-layout",
     "responsive": {
+      "ultrawide": {},
       "desktop": {
         "display": "flex",
         "flexDirection": "column",
@@ -24,16 +28,19 @@
         "horizontalAlign": "stretch",
         "maxWidth": ""
       },
+      "laptop": {},
       "tablet": {},
-      "mobile": {}
+      "mobile": {},
+      "mobileSm": {}
     },
     "children": [
       {
-        "id": "div_mtdtrekx_1",
+        "id": "div_mtg6xe0x_1",
         "type": "div",
         "name": "Site Header",
         "customClass": "site-header",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "block",
             "columns": 1,
@@ -94,16 +101,19 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {},
-          "mobile": {}
+          "mobile": {},
+          "mobileSm": {}
         },
         "children": [
           {
-            "id": "div_mtdtrekx_2",
+            "id": "div_mtg6xe0x_2",
             "type": "div",
             "name": "Nav Container",
             "customClass": "nav-container",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "flex",
                 "columns": 1,
@@ -164,6 +174,7 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
               "mobile": {
                 "flexDirection": "column",
@@ -172,15 +183,17 @@
                 "paddingRight": 16,
                 "paddingBottom": 16,
                 "paddingLeft": 16
-              }
+              },
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtrekx_3",
+                "id": "div_mtg6xe0x_3",
                 "type": "div",
                 "name": "Brand Logo",
                 "customClass": "brand-logo",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -241,17 +254,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrekx_4",
+                "id": "div_mtg6xe0x_4",
                 "type": "div",
                 "name": "Nav Links",
                 "customClass": "nav-links",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -312,21 +328,24 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "width": "100%",
                     "flexWrap": "wrap",
                     "gap": 8,
                     "justifyContent": "space-between"
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrekx_5",
+                    "id": "div_mtg6xe0x_5",
                     "type": "div",
                     "name": "Nav Item 1",
                     "customClass": "nav-item",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -387,19 +406,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "60px"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrekx_6",
+                    "id": "div_mtg6xe0x_6",
                     "type": "div",
                     "name": "Nav Item 2",
                     "customClass": "nav-item",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -460,19 +482,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "60px"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrekx_7",
+                    "id": "div_mtg6xe0x_7",
                     "type": "div",
                     "name": "Nav Item 3",
                     "customClass": "nav-item",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -533,19 +558,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "60px"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrekx_8",
+                    "id": "div_mtg6xe0x_8",
                     "type": "div",
                     "name": "Nav Item 4",
                     "customClass": "nav-item",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -606,21 +634,24 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "60px"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   }
                 ]
               },
               {
-                "id": "div_mtdtrekx_9",
+                "id": "div_mtg6xe0x_9",
                 "type": "div",
                 "name": "Nav Actions",
                 "customClass": "nav-actions",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -681,18 +712,21 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "width": "100%"
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrekx_10",
+                    "id": "div_mtg6xe0x_10",
                     "type": "div",
                     "name": "CTA Button",
                     "customClass": "btn-cta",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -753,10 +787,12 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "100%"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   }
@@ -767,11 +803,12 @@
         ]
       },
       {
-        "id": "div_mtdtrekx_11",
+        "id": "div_mtg6xe0x_11",
         "type": "div",
         "name": "Hero Section",
         "customClass": "hero-banner",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "block",
             "columns": 1,
@@ -832,6 +869,7 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {},
           "mobile": {
             "paddingTop": 16,
@@ -840,7 +878,8 @@
             "paddingLeft": 16,
             "marginTop": "20px",
             "marginBottom": "20px"
-          }
+          },
+          "mobileSm": {}
         },
         "children": []
       }

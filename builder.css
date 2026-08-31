@@ -129,14 +129,23 @@ button { cursor: pointer; }
   border: 1px solid var(--line-base);
   border-radius: var(--radius-md);
   padding: 3px;
-  gap: 4px;
+  gap: 2px;
+  /* Six tiers on the ladder, not three: the switch scrolls rather than
+     shoving the rest of the app bar off-screen on a narrow window. */
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+
+.device-switch::-webkit-scrollbar { display: none; }
 
 .device-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
+  flex: 0 0 auto;
+  gap: 5px;
+  padding: 5px 9px;
+  white-space: nowrap;
   border-radius: var(--radius-sm);
   background: transparent;
   color: var(--fg-muted);
@@ -166,6 +175,35 @@ button { cursor: pointer; }
 .device-btn.is-active small {
   color: var(--accent);
   opacity: 0.8;
+}
+
+/* Below this the six labels no longer fit; the icon plus the active label
+   still identify the tier, and every button keeps its tooltip. */
+@media (max-width: 1500px) {
+  .device-btn small { display: none; }
+}
+
+@media (max-width: 1240px) {
+  .device-btn span { display: none; }
+  .device-btn.is-active span { display: inline; }
+}
+
+/* One breakpoint number input per tier, in the status bar. */
+.bp-input {
+  width: 52px;
+  margin: 0 2px;
+  background: var(--bg-card);
+  color: var(--fg-base);
+  border: 1px solid var(--line-base);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.bp-input:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
 /* Header Action Buttons */

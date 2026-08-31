@@ -5,6 +5,14 @@
 
 import {
   defaultDesktopProps,
+  DEVICES,
+  DEVICE_KEYS,
+  isDevice,
+  deviceMeta,
+  deviceChain,
+  defaultBreakpoints,
+  normalizeBreakpoints,
+  emptyResponsive,
   walk,
   isGrid,
   isFlexRow,
@@ -15,7 +23,11 @@ import {
 } from "../generator.js";
 
 // Re-exported so the MCP tools and generate_examples.js keep their imports.
-export { defaultDesktopProps, walk, isGrid, isFlexRow, getEffectiveProps, generateCleanHtml };
+export {
+  defaultDesktopProps, walk, isGrid, isFlexRow, getEffectiveProps, generateCleanHtml,
+  DEVICES, DEVICE_KEYS, isDevice, deviceMeta, deviceChain,
+  defaultBreakpoints, normalizeBreakpoints, emptyResponsive
+};
 
 var idCounter = 0;
 
@@ -64,16 +76,15 @@ export function historyStatus() { return { canUndo: History.canUndo(), canRedo: 
 // ============================================================================
 // State
 // ============================================================================
-export var state = {
-  device: "desktop",
-  selectedId: null,
-  breakpoints: { tablet: 992, mobile: 576 },
-  root: {
+// The page root is created in exactly one place, so a fresh document and a
+// reset document cannot drift apart the way two copied literals did.
+function makeRoot() {
+  return {
     id: "root",
     type: "div",
     name: "Page Root",
     customClass: "page-layout",
-    responsive: {
+    responsive: Object.assign(emptyResponsive(), {
       desktop: {
         display: "flex",
         flexDirection: "column",
@@ -87,12 +98,17 @@ export var state = {
         alignItems: "stretch",
         horizontalAlign: "stretch",
         maxWidth: ""
-      },
-      tablet: {},
-      mobile: {}
-    },
+      }
+    }),
     children: []
-  }
+  };
+}
+
+export var state = {
+  device: "desktop",
+  selectedId: null,
+  breakpoints: defaultBreakpoints(),
+  root: makeRoot()
 };
 
 // ============================================================================
@@ -132,17 +148,22 @@ export function findParent(id, node) {
 // ============================================================================
 // Tree Mutations
 // ============================================================================
-export function createPureDiv(name, customClass, desktopProps, tabletProps, mobileProps) {
+// deviceProps is keyed by device: { desktop, laptop, tablet, mobile, ... }.
+// Every tier on the ladder is seeded, so a node created today already has a
+// slot for a breakpoint the caller has not touched yet.
+export function createPureDiv(name, customClass, deviceProps) {
+  var dp = deviceProps || {};
+  var responsive = emptyResponsive();
+  DEVICE_KEYS.forEach(function (k) {
+    responsive[k] = Object.assign({}, dp[k] || {});
+  });
+  responsive.desktop = Object.assign({}, defaultDesktopProps, dp.desktop || {});
   return {
     id: uid(),
     type: "div",
     name: name || "Structural DIV",
     customClass: customClass || "",
-    responsive: {
-      desktop: Object.assign({}, defaultDesktopProps, desktopProps || {}),
-      tablet: tabletProps || {},
-      mobile: mobileProps || {}
-    },
+    responsive: responsive,
     children: []
   };
 }
@@ -227,6 +248,9 @@ export function wrapInParent(id) {
 export function setProps(nodeId, device, props) {
   var node = findNode(nodeId);
   if (!node) return false;
+  // An unknown key would silently create a slot no emitter ever reads, so the
+  // props would vanish without an error. Reject it instead.
+  if (!isDevice(device)) return false;
   if (!node.responsive[device]) node.responsive[device] = {};
   Object.assign(node.responsive[device], props);
   return true;
@@ -235,6 +259,7 @@ export function setProps(nodeId, device, props) {
 export function resetDevice(nodeId, device) {
   var node = findNode(nodeId);
   if (!node) return false;
+  if (!isDevice(device)) return false;
   node.responsive[device] = {};
   return true;
 }
@@ -267,7 +292,7 @@ function validateTree(node, path) {
   if (!node || typeof node !== "object") return path + " is not an object";
   if (typeof node.id !== "string" || !node.id) return path + " is missing a string id";
   if (!node.responsive || typeof node.responsive !== "object") return path + " is missing responsive{}";
-  for (var dev of ["desktop", "tablet", "mobile"]) {
+  for (var dev of DEVICE_KEYS) {
     if (node.responsive[dev] != null && typeof node.responsive[dev] !== "object") {
       return path + ".responsive." + dev + " must be an object";
     }
@@ -286,10 +311,18 @@ export function importTreeJson(payload) {
   var err = validateTree(tree, "root");
   if (err) return { ok: false, error: err };
   state.root = JSON.parse(JSON.stringify(tree));
+  // A document saved before a tier existed simply has no value for it; the
+  // ladder default fills the hole rather than leaving it undefined in a query.
   if (payload.breakpoints && typeof payload.breakpoints === "object") {
-    var bp = payload.breakpoints;
-    if (typeof bp.tablet === "number") state.breakpoints.tablet = bp.tablet;
-    if (typeof bp.mobile === "number") state.breakpoints.mobile = bp.mobile;
+    var incoming = {};
+    DEVICES.forEach(function (d) {
+      if (d.defaultPx != null && typeof payload.breakpoints[d.key] === "number") {
+        incoming[d.key] = payload.breakpoints[d.key];
+      }
+    });
+    state.breakpoints = normalizeBreakpoints(Object.assign({}, state.breakpoints, incoming));
+  } else {
+    state.breakpoints = normalizeBreakpoints(state.breakpoints);
   }
   return { ok: true, breakpoints: state.breakpoints };
 }
@@ -312,7 +345,7 @@ export function buildTree(spec, parentId, replace) {
 
   var created = 0;
   function add(node, parentNode) {
-    var made = createPureDiv(node.name || node.class || "Div", node.class || "", node.desktop, node.tablet, node.mobile);
+    var made = createPureDiv(node.name || node.class || "Div", node.class || "", node);
     parentNode.children.push(made);
     created++;
     (node.children || []).forEach(function (c) { add(c, made); });
@@ -328,7 +361,7 @@ function validateSpec(specs, path) {
   for (var i = 0; i < specs.length; i++) {
     var s = specs[i], p = path + "[" + i + "]";
     if (!s || typeof s !== "object" || Array.isArray(s)) return p + " must be an object";
-    for (var k of ["desktop", "tablet", "mobile"]) {
+    for (var k of DEVICE_KEYS) {
       if (s[k] != null && (typeof s[k] !== "object" || Array.isArray(s[k]))) return p + "." + k + " must be an object";
     }
     if (s.children != null) {
@@ -340,39 +373,31 @@ function validateSpec(specs, path) {
   return null;
 }
 
-export function setBreakpoints(tablet, mobile) {
-  if (tablet != null) state.breakpoints.tablet = tablet;
-  if (mobile != null) state.breakpoints.mobile = mobile;
+// Accepts either an object keyed by device — setBreakpoints({ laptop: 1280 }) —
+// or the original positional (tablet, mobile) pair, which predates the ladder.
+export function setBreakpoints(a, b) {
+  var incoming = {};
+  if (a && typeof a === "object") {
+    incoming = a;
+  } else {
+    if (a != null) incoming.tablet = a;
+    if (b != null) incoming.mobile = b;
+  }
+  DEVICES.forEach(function (d) {
+    if (d.defaultPx == null) return;
+    var v = incoming[d.key];
+    if (typeof v === "number" && isFinite(v) && v > 0) state.breakpoints[d.key] = Math.round(v);
+  });
+  state.breakpoints = normalizeBreakpoints(state.breakpoints);
   return state.breakpoints;
 }
 
 export function resetAll() {
   idCounter = 0;
-  // Breakpoints are part of the document now, so a fresh start resets them too;
+  // Breakpoints are part of the document, so a fresh start resets them too;
   // otherwise reset_all would leave the previous document's @media values behind.
-  state.breakpoints = { tablet: 992, mobile: 576 };
-  state.root = {
-    id: "root",
-    type: "div",
-    name: "Page Root",
-    customClass: "page-layout",
-    responsive: {
-      desktop: {
-        display: "flex",
-        flexDirection: "column",
-        gap: 20,
-        paddingTop: 20, paddingRight: 20, paddingBottom: 20, paddingLeft: 20,
-        minHeight: 600,
-        justifyContent: "flex-start",
-        alignItems: "stretch",
-        horizontalAlign: "stretch",
-        maxWidth: ""
-      },
-      tablet: {},
-      mobile: {}
-    },
-    children: []
-  };
+  state.breakpoints = defaultBreakpoints();
+  state.root = makeRoot();
   return true;
 }
 

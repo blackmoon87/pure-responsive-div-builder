@@ -1,8 +1,11 @@
 {
   "version": 2,
   "breakpoints": {
+    "ultrawide": 1600,
+    "laptop": 1200,
     "tablet": 992,
-    "mobile": 576
+    "mobile": 576,
+    "mobileSm": 400
   },
   "root": {
     "id": "root",
@@ -10,6 +13,7 @@
     "name": "Page Root",
     "customClass": "page-layout",
     "responsive": {
+      "ultrawide": {},
       "desktop": {
         "display": "flex",
         "flexDirection": "column",
@@ -24,16 +28,19 @@
         "horizontalAlign": "stretch",
         "maxWidth": ""
       },
+      "laptop": {},
       "tablet": {},
-      "mobile": {}
+      "mobile": {},
+      "mobileSm": {}
     },
     "children": [
       {
-        "id": "div_mtdtreld_1",
+        "id": "div_mtg6xe1p_1",
         "type": "div",
         "name": "Page Behind",
         "customClass": "page-behind",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "grid",
             "columns": 3,
@@ -94,6 +101,7 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {
             "columns": 2
           },
@@ -104,15 +112,17 @@
             "paddingRight": 16,
             "paddingBottom": 16,
             "paddingLeft": 16
-          }
+          },
+          "mobileSm": {}
         },
         "children": [
           {
-            "id": "div_mtdtreld_2",
+            "id": "div_mtg6xe1p_2",
             "type": "div",
             "name": "Behind Card 1",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -173,17 +183,20 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           },
           {
-            "id": "div_mtdtreld_3",
+            "id": "div_mtg6xe1p_3",
             "type": "div",
             "name": "Behind Card 2",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -244,17 +257,20 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           },
           {
-            "id": "div_mtdtreld_4",
+            "id": "div_mtg6xe1p_4",
             "type": "div",
             "name": "Behind Card 3",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -315,17 +331,20 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           },
           {
-            "id": "div_mtdtreld_5",
+            "id": "div_mtg6xe1p_5",
             "type": "div",
             "name": "Behind Card 4",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -386,17 +405,20 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           },
           {
-            "id": "div_mtdtreld_6",
+            "id": "div_mtg6xe1p_6",
             "type": "div",
             "name": "Behind Card 5",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -457,17 +479,20 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           },
           {
-            "id": "div_mtdtreld_7",
+            "id": "div_mtg6xe1p_7",
             "type": "div",
             "name": "Behind Card 6",
             "customClass": "behind-card",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "block",
                 "columns": 1,
@@ -528,19 +553,22 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": []
           }
         ]
       },
       {
-        "id": "div_mtdtreld_8",
+        "id": "div_mtg6xe1p_8",
         "type": "div",
         "name": "Modal Backdrop",
         "customClass": "modal-backdrop",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "flex",
             "columns": 1,
@@ -601,6 +629,7 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {},
           "mobile": {
             "alignItems": "end",
@@ -609,15 +638,17 @@
             "paddingBottom": 0,
             "paddingLeft": 0,
             "backdropFilter": ""
-          }
+          },
+          "mobileSm": {}
         },
         "children": [
           {
-            "id": "div_mtdtreld_9",
+            "id": "div_mtg6xe1p_9",
             "type": "div",
             "name": "Dialog",
             "customClass": "modal-dialog",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "flex",
                 "columns": 1,
@@ -678,6 +709,7 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
               "mobile": {
                 "maxWidth": "100%",
@@ -689,15 +721,17 @@
                 "paddingRight": 18,
                 "paddingBottom": 20,
                 "paddingLeft": 18
-              }
+              },
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtreld_10",
+                "id": "div_mtg6xe1p_10",
                 "type": "div",
                 "name": "Dialog Header",
                 "customClass": "dialog-header",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -758,16 +792,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreld_11",
+                    "id": "div_mtg6xe1p_11",
                     "type": "div",
                     "name": "Title",
                     "customClass": "dialog-title",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -828,17 +865,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreld_12",
+                    "id": "div_mtg6xe1p_12",
                     "type": "div",
                     "name": "Close",
                     "customClass": "dialog-close",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -899,19 +939,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   }
                 ]
               },
               {
-                "id": "div_mtdtreld_13",
+                "id": "div_mtg6xe1p_13",
                 "type": "div",
                 "name": "Dialog Body",
                 "customClass": "dialog-body",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -972,16 +1015,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreld_14",
+                    "id": "div_mtg6xe1p_14",
                     "type": "div",
                     "name": "Field 1",
                     "customClass": "dialog-field",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1042,17 +1088,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreld_15",
+                    "id": "div_mtg6xe1p_15",
                     "type": "div",
                     "name": "Field 2",
                     "customClass": "dialog-field",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1113,17 +1162,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreld_16",
+                    "id": "div_mtg6xe1p_16",
                     "type": "div",
                     "name": "Field 3",
                     "customClass": "dialog-field",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1184,19 +1236,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   }
                 ]
               },
               {
-                "id": "div_mtdtreld_17",
+                "id": "div_mtg6xe1p_17",
                 "type": "div",
                 "name": "Dialog Footer",
                 "customClass": "dialog-footer",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -1257,20 +1312,23 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "flexDirection": "column-reverse",
                     "alignItems": "stretch",
                     "gap": 10
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreld_18",
+                    "id": "div_mtg6xe1p_18",
                     "type": "div",
                     "name": "Cancel",
                     "customClass": "btn-cancel",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1331,19 +1389,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "100%"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreld_19",
+                    "id": "div_mtg6xe1p_19",
                     "type": "div",
                     "name": "Confirm",
                     "customClass": "btn-confirm",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1404,10 +1465,12 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "100%"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   }

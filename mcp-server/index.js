@@ -7,6 +7,16 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import * as core from "./core.js";
 
+// The device enums are derived from the ladder in generator.js, so adding a
+// tier there reaches every tool here without a second edit.
+const DEVICE_ENUM = core.DEVICE_KEYS;
+const OVERRIDE_ENUM = core.DEVICE_KEYS.filter((k) => k !== "desktop");
+const LADDER = core.DEVICES.map((d) =>
+  d.type === "base"
+    ? `${d.key} (base, no media query)`
+    : `${d.key} (${d.type}-width: ${d.defaultPx}px)`
+).join(", ");
+
 const server = new McpServer({
   name: "htmlcreator",
   version: "1.0.0"
@@ -151,10 +161,11 @@ server.tool(
 // ============================================================================
 server.tool(
   "set_props",
-  "Set responsive properties on a div for a specific device breakpoint. Props can include: display, columns, gap, flexDirection, flexWrap, justifyContent, alignItems, horizontalAlign, alignSelf, width, height, maxWidth, maxHeight, minHeight, aspectRatio, paddingTop/Right/Bottom/Left, marginTop/Right/Bottom/Left, position, top/right/bottom/left, zIndex, overflow, backgroundColor, borderWidth, borderStyle, borderColor, borderRadius, boxShadow, opacity, transform, transition, backdropFilter, span, flexGrow, flexShrink, flexBasis, order, hidden, direction, gridAutoMode, gridMinColWidth, justifyItems, alignContent",
+  "Set responsive properties on a div for one tier of the device ladder (" + LADDER + "). " +
+  "Each max-width tier inherits from the tier above it, so you only set what differs. Props can include: display, columns, gap, flexDirection, flexWrap, justifyContent, alignItems, horizontalAlign, alignSelf, width, height, maxWidth, maxHeight, minHeight, aspectRatio, paddingTop/Right/Bottom/Left, marginTop/Right/Bottom/Left, position, top/right/bottom/left, zIndex, overflow, backgroundColor, borderWidth, borderStyle, borderColor, borderRadius, boxShadow, opacity, transform, transition, backdropFilter, span, flexGrow, flexShrink, flexBasis, order, hidden, direction, gridAutoMode, gridMinColWidth, justifyItems, alignContent",
   {
     nodeId: z.string().describe("ID of the node"),
-    device: z.enum(["desktop", "tablet", "mobile"]).describe("Device breakpoint"),
+    device: z.enum(DEVICE_ENUM).describe("Device tier on the ladder: " + LADDER),
     props: z.record(z.any()).describe("Object of property key-value pairs to set")
   },
   async ({ nodeId, device, props }) => {
@@ -172,8 +183,9 @@ server.tool(
 server.tool(
   "build_tree",
   "Create a whole subtree from one compact nested spec — the fast path for building a page. " +
-  "Each node is { class, name?, desktop?, tablet?, mobile?, children?[] } where the device " +
-  "objects take the same properties as set_props. Prefer this over dozens of create_div/" +
+  "Each node is { class, name?, children?[] } plus an optional props object for any tier of " +
+  "the device ladder (" + LADDER + "), e.g. { class: 'hero', desktop: {...}, tablet: {...}, " +
+  "mobileSm: {...} }. Those objects take the same properties as set_props. Prefer this over dozens of create_div/" +
   "set_props calls: the shipped examples would otherwise need 31-64 round trips each.",
   {
     spec: z.union([z.record(z.any()), z.array(z.record(z.any()))])
@@ -200,7 +212,7 @@ server.tool(
   "Clear all responsive overrides for a device breakpoint on a node",
   {
     nodeId: z.string().describe("ID of the node"),
-    device: z.enum(["tablet", "mobile"]).describe("Device to reset (cannot reset desktop)")
+    device: z.enum(OVERRIDE_ENUM).describe("Tier to reset (cannot reset desktop, which is the base rule)")
   },
   async ({ nodeId, device }) => {
     core.pushHistory();
@@ -229,10 +241,13 @@ server.tool(
   "export_css",
   "Export responsive CSS with media queries",
   {
-    tabletBreakpoint: z.number().optional().describe("Tablet breakpoint in px (default 992)"),
-    mobileBreakpoint: z.number().optional().describe("Mobile breakpoint in px (default 576)")
+    breakpoints: z.record(z.number()).optional()
+      .describe("Optional breakpoint overrides keyed by tier, e.g. { laptop: 1280, mobileSm: 380 }"),
+    tabletBreakpoint: z.number().optional().describe("Deprecated alias for breakpoints.tablet"),
+    mobileBreakpoint: z.number().optional().describe("Deprecated alias for breakpoints.mobile")
   },
-  async ({ tabletBreakpoint, mobileBreakpoint }) => {
+  async ({ breakpoints, tabletBreakpoint, mobileBreakpoint }) => {
+    if (breakpoints) core.setBreakpoints(breakpoints);
     if (tabletBreakpoint || mobileBreakpoint) {
       core.setBreakpoints(tabletBreakpoint, mobileBreakpoint);
     }
@@ -281,8 +296,8 @@ server.tool(
     const res = core.importTreeJson(tree);
     if (!res.ok) return { content: [{ type: "text", text: "Error: invalid tree — " + res.error }] };
     const count = core.listTree().length;
-    return { content: [{ type: "text", text: "Imported tree with " + count + " nodes (breakpoints: tablet=" +
-      res.breakpoints.tablet + "px, mobile=" + res.breakpoints.mobile + "px)" }] };
+    const bpText = Object.keys(res.breakpoints).map((k) => k + "=" + res.breakpoints[k] + "px").join(", ");
+    return { content: [{ type: "text", text: "Imported tree with " + count + " nodes (breakpoints: " + bpText + ")" }] };
   }
 );
 
@@ -291,15 +306,41 @@ server.tool(
 // ============================================================================
 server.tool(
   "set_breakpoints",
-  "Set custom tablet and mobile breakpoint pixel values",
-  {
-    tablet: z.number().optional().describe("Tablet breakpoint (default 992)"),
-    mobile: z.number().optional().describe("Mobile breakpoint (default 576)")
-  },
-  async ({ tablet, mobile }) => {
+  "Set the pixel value of any tier on the device ladder (" + LADDER + "). " +
+  "Pass only the tiers you want to change.",
+  Object.fromEntries(
+    core.DEVICES.filter((d) => d.defaultPx != null).map((d) => [
+      d.key,
+      z.number().optional().describe(d.label + " " + d.type + "-width breakpoint (default " + d.defaultPx + ")")
+    ])
+  ),
+  async (args) => {
     core.pushHistory();
-    const bp = core.setBreakpoints(tablet, mobile);
-    return { content: [{ type: "text", text: "Breakpoints: tablet=" + bp.tablet + "px, mobile=" + bp.mobile + "px" }] };
+    const bp = core.setBreakpoints(args);
+    return { content: [{ type: "text", text: "Breakpoints: " +
+      Object.keys(bp).map((k) => k + "=" + bp[k] + "px").join(", ") }] };
+  }
+);
+
+// ============================================================================
+// Tool: list_devices
+// ============================================================================
+server.tool(
+  "list_devices",
+  "List every tier of the responsive device ladder: its key, the media query it " +
+  "emits, and which tier it inherits from. Use this to discover valid device keys.",
+  {},
+  async () => {
+    const bp = core.state.breakpoints;
+    const rows = core.DEVICES.map((d) => ({
+      key: d.key,
+      label: d.label,
+      query: d.type === "base" ? "(base rule — no media query)"
+        : "@media (" + (d.type === "min" ? "min-width" : "max-width") + ": " + bp[d.key] + "px)",
+      inheritsFrom: d.inherits || "(none — this is the base)",
+      previewWidth: d.previewWidth + "px"
+    }));
+    return { content: [{ type: "text", text: JSON.stringify(rows, null, 2) }] };
   }
 );
 

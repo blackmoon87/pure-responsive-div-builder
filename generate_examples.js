@@ -295,8 +295,13 @@ for (let i = 1; i <= 3; i++) {
     minHeight: 380
   });
   if (isFeatured) {
-    core.setProps(card.id, "tablet", { span: 2 });
-    core.setProps(card.id, "mobile", { span: 1, minHeight: 380 });
+    // At tablet the grid is 2 columns, so span 2 is the FULL row: the featured
+    // card can never sit beside a sibling. Left in source order that strands
+    // plan 1 and plan 3 on half-empty rows of their own. order:-1 lifts it to
+    // the top as a full-width banner and lets the other two pair up cleanly
+    // underneath — the emphasis the span was reaching for, without the holes.
+    core.setProps(card.id, "tablet", { span: 2, order: -1 });
+    core.setProps(card.id, "mobile", { span: 1, order: 0, minHeight: 380 });
   }
 
   const pName = core.addChildDiv(card.id, "Plan Name", "plan-name");

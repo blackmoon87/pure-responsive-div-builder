@@ -118,10 +118,77 @@ export function walk(node, visit, parent, index) {
 }
 
 // ==========================================================================
+// The Device Ladder
+//
+// One ordered list drives everything downstream: the property resolver, the
+// media-query emission order, the breakpoint diff chain, the builder's device
+// buttons and the MCP device enums. Adding a tier here adds it everywhere.
+// The old desktop/tablet/mobile trio was hardcoded in eight separate places,
+// so it could not be extended without one of them being missed.
+//
+// `desktop` is the base rule and carries no media query. Every `max` tier
+// inherits from the tier directly above it, which is what lets a phone rule
+// restate only what actually differs from the tablet instead of repeating the
+// whole cascade. `ultrawide` is a `min` tier: it branches off the base
+// directly, because nothing narrower ever feeds into it.
+// ==========================================================================
+export var DEVICES = [
+  { key: "ultrawide", label: "Ultrawide", short: "UW", type: "min",  inherits: "desktop", defaultPx: 1600, previewWidth: 1920 },
+  { key: "desktop",   label: "Desktop",   short: "DT", type: "base", inherits: null,      defaultPx: null, previewWidth: 1280 },
+  { key: "laptop",    label: "Laptop",    short: "LT", type: "max",  inherits: "desktop", defaultPx: 1200, previewWidth: 1100 },
+  { key: "tablet",    label: "Tablet",    short: "TB", type: "max",  inherits: "laptop",  defaultPx:  992, previewWidth:  768 },
+  { key: "mobile",    label: "Mobile",    short: "MB", type: "max",  inherits: "tablet",  defaultPx:  576, previewWidth:  375 },
+  { key: "mobileSm",  label: "Small",     short: "SM", type: "max",  inherits: "mobile",  defaultPx:  400, previewWidth:  360 }
+];
+
+export var DEVICE_KEYS = DEVICES.map(function (d) { return d.key; });
+
+export function deviceMeta(key) {
+  for (var i = 0; i < DEVICES.length; i++) {
+    if (DEVICES[i].key === key) return DEVICES[i];
+  }
+  return null;
+}
+
+export function isDevice(key) {
+  return !!deviceMeta(key);
+}
+
+export function defaultBreakpoints() {
+  var bp = {};
+  DEVICES.forEach(function (d) { if (d.defaultPx != null) bp[d.key] = d.defaultPx; });
+  return bp;
+}
+
+// Fills in any tier a stored document predates, so a saved v2 file that only
+// knows tablet and mobile still resolves the full ladder.
+export function normalizeBreakpoints(bp) {
+  return Object.assign(defaultBreakpoints(), bp || {});
+}
+
+// base -> ... -> device. Applying this chain in order IS the cascade.
+export function deviceChain(key) {
+  var chain = [], cur = isDevice(key) ? key : "desktop";
+  while (cur) {
+    chain.unshift(cur);
+    var m = deviceMeta(cur);
+    cur = m ? m.inherits : null;
+  }
+  return chain;
+}
+
+// An empty override object per tier, used when creating a node.
+export function emptyResponsive() {
+  var r = {};
+  DEVICE_KEYS.forEach(function (k) { r[k] = {}; });
+  return r;
+}
+
+// ==========================================================================
 // Responsive Property Resolver
 // ==========================================================================
 export function getEffectiveProps(node, device) {
-  var dev = device || "desktop";
+  var chain = deviceChain(device || "desktop");
   var base = Object.assign({}, defaultDesktopProps, node.responsive.desktop || {});
 
   // BUG 2 FIX: Use hasOwnProperty so that 0, false, and "" are valid overrides
@@ -136,11 +203,9 @@ export function getEffectiveProps(node, device) {
     }
   }
 
-  if (dev === "tablet") {
-    applyOverrides(node.responsive.tablet);
-  } else if (dev === "mobile") {
-    applyOverrides(node.responsive.tablet);
-    applyOverrides(node.responsive.mobile);
+  // chain[0] is always the base, already folded into `base` above.
+  for (var ci = 1; ci < chain.length; ci++) {
+    applyOverrides(node.responsive[chain[ci]]);
   }
 
   // Phase 2 Migration: old single-value padding → 4-side
@@ -373,9 +438,10 @@ function overrideDecls(prevDecls, currDecls) {
 }
 
 export function generateResponsiveCss(root, breakpoints) {
-  var rules = { desktop: [], tablet: [], mobile: [] };
+  var bp = normalizeBreakpoints(breakpoints);
+  var rules = {};
+  DEVICE_KEYS.forEach(function (k) { rules[k] = []; });
   var classCount = {};
-  var bp = breakpoints || { tablet: 992, mobile: 576 };
 
   walk(root, function (node, parent) {
     if (node.id === "root") return;
@@ -385,7 +451,7 @@ export function generateResponsiveCss(root, breakpoints) {
     var clsName = classCount[baseClass] > 1 ? baseClass + "-" + classCount[baseClass] : baseClass;
 
     // Parent context is resolved per device, because a parent can switch
-    // between grid, flex-row and flex-column at a breakpoint.
+    // between grid, flex-row and flex-column at any tier of the ladder.
     function ctxFor(device) {
       var pp = parent ? getEffectiveProps(parent, device) : null;
       return {
@@ -395,20 +461,24 @@ export function generateResponsiveCss(root, breakpoints) {
       };
     }
 
-    var dDecls = declarationsFor(getEffectiveProps(node, "desktop"), ctxFor("desktop"));
-    var tDecls = declarationsFor(getEffectiveProps(node, "tablet"), ctxFor("tablet"));
-    var mDecls = declarationsFor(getEffectiveProps(node, "mobile"), ctxFor("mobile"));
+    var decls = {};
+    DEVICE_KEYS.forEach(function (k) {
+      decls[k] = declarationsFor(getEffectiveProps(node, k), ctxFor(k));
+    });
 
-    if (dDecls.length) rules.desktop.push("." + clsName + " {\n  " + dDecls.join("\n  ") + "\n}");
-
-    // Mobile diffs against tablet, not desktop: both media blocks are
-    // max-width, so at 400px the tablet rule applies and the mobile rule
-    // overrides it. Diffing against desktop would restate what tablet already said.
-    var t = overrideDecls(dDecls, tDecls);
-    if (t.length) rules.tablet.push("  ." + clsName + " {\n    " + t.join("\n    ") + "\n  }");
-
-    var m = overrideDecls(tDecls, mDecls);
-    if (m.length) rules.mobile.push("  ." + clsName + " {\n    " + m.join("\n    ") + "\n  }");
+    // Each tier diffs against the tier it inherits from, never against the
+    // base: at 400px the mobile rule is already in force, so a small-phone
+    // rule that restated the whole cascade would just repeat it.
+    DEVICES.forEach(function (d) {
+      if (d.type === "base") {
+        if (decls[d.key].length) {
+          rules[d.key].push("." + clsName + " {\n  " + decls[d.key].join("\n  ") + "\n}");
+        }
+        return;
+      }
+      var o = overrideDecls(decls[d.inherits], decls[d.key]);
+      if (o.length) rules[d.key].push("  ." + clsName + " {\n    " + o.join("\n    ") + "\n  }");
+    });
   });
 
   var cssText = "/* Reset & Global */\n" +
@@ -427,15 +497,18 @@ export function generateResponsiveCss(root, breakpoints) {
     "img, video { height: auto; }\n\n";
   cssText += "/* Desktop Base Styles */\n";
   cssText += rules.desktop.join("\n\n") + "\n\n";
-  if (rules.tablet.length) {
-    cssText += "/* Tablet (max-width: " + bp.tablet + "px) */\n";
-    cssText += "@media (max-width: " + bp.tablet + "px) {\n" + rules.tablet.join("\n\n") + "\n}\n\n";
-  }
-  if (rules.mobile.length) {
-    cssText += "/* Mobile (max-width: " + bp.mobile + "px) */\n";
-    cssText += "@media (max-width: " + bp.mobile + "px) {\n" + rules.mobile.join("\n\n") + "\n}\n";
-  }
-  return cssText;
+
+  // Ladder order: the `min` tier sits directly after the base (no `max` block
+  // applies at that width anyway), then every `max` tier widest-first so a
+  // narrower one always overrides the one above it.
+  DEVICES.forEach(function (d) {
+    if (d.type === "base" || !rules[d.key].length) return;
+    var query = (d.type === "min" ? "min-width: " : "max-width: ") + bp[d.key] + "px";
+    cssText += "/* " + d.label + " (" + query + ") */\n";
+    cssText += "@media (" + query + ") {\n" + rules[d.key].join("\n\n") + "\n}\n\n";
+  });
+
+  return cssText.replace(/\n+$/, "\n");
 }
 
 export function generateFullHtmlDocument(root, breakpoints) {

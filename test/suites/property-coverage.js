@@ -1,7 +1,9 @@
 // ============================================================================
-// property-coverage.js — sets every property on every device and asserts it
-// reaches the CSS. This is the guard that stops the override blocks silently
-// falling behind the base block; it once measured 27/43 at breakpoints.
+// property-coverage.js — sets every property on every tier of the device
+// ladder and asserts it reaches the CSS. This is the guard that stops the
+// override blocks silently falling behind the base block; it once measured
+// 27/43 at breakpoints. It runs over core.DEVICE_KEYS, so a tier added to the
+// ladder is covered here the moment it exists.
 // ============================================================================
 import * as core from "../../mcp-server/core.js";
 
@@ -65,17 +67,20 @@ const CASES = {
   hidden: [true, "display: none", {}]
 };
 
+// Isolate one tier's block so a needle found in the base rule cannot be
+// mistaken for a breakpoint override that was never emitted.
 const seg = (css, device) => {
-  if (device === "desktop") return css.split("@media")[0];
-  const bp = device === "tablet" ? 992 : 576;
-  const i = css.indexOf(`@media (max-width: ${bp}px)`);
+  const d = core.deviceMeta(device);
+  if (d.type === "base") return css.split("@media")[0];
+  const px = core.defaultBreakpoints()[device];
+  const i = css.indexOf(`@media (${d.type === "min" ? "min" : "max"}-width: ${px}px)`);
   return i < 0 ? "" : css.slice(i, css.indexOf("\n}\n", i));
 };
 
 export default {
   name: "property coverage — every property on every device",
   run(t) {
-    for (const device of ["desktop", "tablet", "mobile"]) {
+    for (const device of core.DEVICE_KEYS) {
       const missing = [];
       for (const [label, [value, needle, pre, realKey, parentProps]] of Object.entries(CASES)) {
         const key = realKey || label;

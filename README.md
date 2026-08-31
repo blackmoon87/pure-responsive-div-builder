@@ -18,9 +18,9 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 - 🧱 **100% Pure `<div>` Tags:** Clean, predictable structural wireframes. No unauthorized tags or inline junk.
 - 🛡️ **Content-Agnostic by Design:** You build the *structure*; the developer fills it with anything. The exported reset guarantees no div bursts its container whatever goes inside — unbreakable words, bare URLs, oversized images, wide tables. Verified by a dedicated content-stress harness.
 - 📐 **Zero Dependencies:** Pure Vanilla JavaScript & CSS. No frameworks, no build step, no bundlers needed.
-- 📱 **Triple-Breakpoint Responsive Engine:** Desktop (>992px), tablet (≤992px), and mobile (≤576px) rules, with editable live breakpoints and a free-width ruler for previewing any viewport in between — the ranges where layouts actually break.
+- 📱 **Six-Tier Responsive Engine:** Ultrawide (≥1600px), desktop (base), laptop (≤1200px), tablet (≤992px), mobile (≤576px) and small-phone (≤400px) rules — every tier's pixel value editable live, plus a free-width ruler for previewing any viewport in between. Each tier inherits from the one above it, so a narrow rule restates only what actually differs.
 - 🌐 **First-Class RTL (Right-to-Left) Support:** Native `dir="rtl"` and `direction: rtl` export for Arabic, Hebrew, and Persian layouts.
-- 🤖 **Model Context Protocol (MCP) Server:** Exposes 21 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
+- 🤖 **Model Context Protocol (MCP) Server:** Exposes 22 programmatic layout tools for AI agents (Claude, Cursor, Antigravity, Windsurf) to generate and edit responsive layouts autonomously.
 
 ---
 
@@ -38,6 +38,7 @@ Most website builders inject bloated wrappers, framework dependencies, non-seman
 | **Child Rules** | Column span (1-12), `flex-grow`, `flex-shrink`, `flex-basis`, `order` |
 | **Instant Export** | Clean HTML, responsive CSS with media queries, or single-file combined HTML with download & clipboard copy |
 | **Overlays** | Modals, drawers and popovers: fixed full-viewport backdrop with `rgba()` scrim + `backdrop-filter`, flex-centred dialog, `transform`/`transition` for entrance states. Ship it `hidden` and open it from your own JS with `el.style.display = 'flex'` — every other declaration survives |
+| **Device Ladder** | Six breakpoint tiers — `ultrawide`, `desktop` (base), `laptop`, `tablet`, `mobile`, `mobileSm` — each inheriting from the tier above, with every pixel value editable |
 | **Show / Hide** | `hidden` per device on every breakpoint including desktop — hide a sidebar on phones, or keep a mobile-only panel `display: none` on desktop and switch it back on at its breakpoint |
 | **Autosave** | The browser builder persists to `localStorage` on every change and restores on load — a refresh no longer destroys your tree |
 | **Undo / Redo** | 50-deep snapshot history with keyboard shortcuts (`Ctrl+Z`, `Ctrl+Y`, `Del`) |
@@ -208,7 +209,7 @@ Native RTL support with `dir="rtl"` and responsive flow:
 
 The project includes a standalone **Model Context Protocol (MCP)** server under `mcp-server/` allowing LLMs like Claude, Cursor, Antigravity, and Windsurf to create and manipulate responsive layouts programmatically.
 
-### MCP Tools List (21 Tools)
+### MCP Tools List (22 Tools)
 
 | Category | Tools |
 |---|---|

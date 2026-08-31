@@ -60,4 +60,4 @@ core.resetAll();
 core.importTreeJson(json);
 console.log("✓ JSON round-trip OK, tree size:", core.listTree().length);
 
-console.log("\n✅ ALL 10 SMOKE TESTS PASSED — 21 tools at 100% coverage");
+console.log("\n✅ ALL 10 SMOKE TESTS PASSED — 22 tools at 100% coverage");

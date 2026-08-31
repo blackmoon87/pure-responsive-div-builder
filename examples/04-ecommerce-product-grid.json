@@ -1,8 +1,11 @@
 {
   "version": 2,
   "breakpoints": {
+    "ultrawide": 1600,
+    "laptop": 1200,
     "tablet": 992,
-    "mobile": 576
+    "mobile": 576,
+    "mobileSm": 400
   },
   "root": {
     "id": "root",
@@ -10,6 +13,7 @@
     "name": "Page Root",
     "customClass": "page-layout",
     "responsive": {
+      "ultrawide": {},
       "desktop": {
         "display": "flex",
         "flexDirection": "column",
@@ -24,16 +28,19 @@
         "horizontalAlign": "stretch",
         "maxWidth": ""
       },
+      "laptop": {},
       "tablet": {},
-      "mobile": {}
+      "mobile": {},
+      "mobileSm": {}
     },
     "children": [
       {
-        "id": "div_mtdtrel2_1",
+        "id": "div_mtg6xe16_1",
         "type": "div",
         "name": "Catalog Wrapper",
         "customClass": "catalog-wrapper",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "flex",
             "columns": 1,
@@ -94,6 +101,7 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {},
           "mobile": {
             "paddingTop": 20,
@@ -101,15 +109,17 @@
             "paddingBottom": 20,
             "paddingLeft": 16,
             "gap": 20
-          }
+          },
+          "mobileSm": {}
         },
         "children": [
           {
-            "id": "div_mtdtrel2_2",
+            "id": "div_mtg6xe16_2",
             "type": "div",
             "name": "Toolbar",
             "customClass": "catalog-toolbar",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "flex",
                 "columns": 1,
@@ -170,6 +180,7 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
               "mobile": {
                 "flexDirection": "column",
@@ -178,15 +189,17 @@
                 "paddingRight": 12,
                 "paddingBottom": 12,
                 "paddingLeft": 12
-              }
+              },
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtrel2_3",
+                "id": "div_mtg6xe16_3",
                 "type": "div",
                 "name": "Search",
                 "customClass": "toolbar-search",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -247,19 +260,22 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "width": "100%"
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrel2_4",
+                "id": "div_mtg6xe16_4",
                 "type": "div",
                 "name": "Filters",
                 "customClass": "toolbar-filters",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -320,20 +336,23 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "width": "100%",
                     "overflowX": "auto",
                     "gap": 8
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrel2_5",
+                    "id": "div_mtg6xe16_5",
                     "type": "div",
                     "name": "Filter 1",
                     "customClass": "filter-chip",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -394,20 +413,23 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "70px",
                         "flexShrink": 0
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_6",
+                    "id": "div_mtg6xe16_6",
                     "type": "div",
                     "name": "Filter 2",
                     "customClass": "filter-chip",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -468,20 +490,23 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "70px",
                         "flexShrink": 0
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_7",
+                    "id": "div_mtg6xe16_7",
                     "type": "div",
                     "name": "Filter 3",
                     "customClass": "filter-chip",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -542,11 +567,13 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "width": "70px",
                         "flexShrink": 0
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   }
@@ -555,11 +582,12 @@
             ]
           },
           {
-            "id": "div_mtdtrel2_8",
+            "id": "div_mtg6xe16_8",
             "type": "div",
             "name": "Product Grid",
             "customClass": "product-grid",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "grid",
                 "columns": 1,
@@ -620,20 +648,23 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
               "mobile": {
                 "gridAutoMode": "",
                 "columns": 1,
                 "gap": 16
-              }
+              },
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtrel2_9",
+                "id": "div_mtg6xe16_9",
                 "type": "div",
                 "name": "Product Card 1",
                 "customClass": "product-card",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -694,16 +725,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrel2_10",
+                    "id": "div_mtg6xe16_10",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -764,17 +798,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_11",
+                    "id": "div_mtg6xe16_11",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -835,16 +872,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrel2_12",
+                        "id": "div_mtg6xe16_12",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -905,17 +945,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrel2_13",
+                        "id": "div_mtg6xe16_13",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -976,16 +1019,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrel2_14",
+                            "id": "div_mtg6xe16_14",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1046,17 +1092,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrel2_15",
+                            "id": "div_mtg6xe16_15",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1117,8 +1166,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -1129,11 +1180,12 @@
                 ]
               },
               {
-                "id": "div_mtdtrel2_16",
+                "id": "div_mtg6xe16_16",
                 "type": "div",
                 "name": "Product Card 2",
                 "customClass": "product-card",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -1194,16 +1246,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrel2_17",
+                    "id": "div_mtg6xe16_17",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1264,17 +1319,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_18",
+                    "id": "div_mtg6xe16_18",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -1335,16 +1393,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrel2_19",
+                        "id": "div_mtg6xe16_19",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1405,17 +1466,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrel2_20",
+                        "id": "div_mtg6xe16_20",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -1476,16 +1540,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrel2_21",
+                            "id": "div_mtg6xe16_21",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1546,17 +1613,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrel2_22",
+                            "id": "div_mtg6xe16_22",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1617,8 +1687,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -1629,11 +1701,12 @@
                 ]
               },
               {
-                "id": "div_mtdtrel2_23",
+                "id": "div_mtg6xe16_23",
                 "type": "div",
                 "name": "Product Card 3",
                 "customClass": "product-card",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -1694,16 +1767,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrel2_24",
+                    "id": "div_mtg6xe16_24",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -1764,17 +1840,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_25",
+                    "id": "div_mtg6xe16_25",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -1835,16 +1914,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrel2_26",
+                        "id": "div_mtg6xe16_26",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1905,17 +1987,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrel2_27",
+                        "id": "div_mtg6xe16_27",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -1976,16 +2061,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrel2_28",
+                            "id": "div_mtg6xe16_28",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2046,17 +2134,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrel2_29",
+                            "id": "div_mtg6xe16_29",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2117,8 +2208,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -2129,11 +2222,12 @@
                 ]
               },
               {
-                "id": "div_mtdtrel2_30",
+                "id": "div_mtg6xe16_30",
                 "type": "div",
                 "name": "Product Card 4",
                 "customClass": "product-card",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -2194,16 +2288,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrel2_31",
+                    "id": "div_mtg6xe16_31",
                     "type": "div",
                     "name": "Image",
                     "customClass": "product-image-box",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -2264,17 +2361,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtrel2_32",
+                    "id": "div_mtg6xe16_32",
                     "type": "div",
                     "name": "Info",
                     "customClass": "product-info",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -2335,16 +2435,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrel2_33",
+                        "id": "div_mtg6xe16_33",
                         "type": "div",
                         "name": "Title",
                         "customClass": "product-title",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -2405,17 +2508,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrel2_34",
+                        "id": "div_mtg6xe16_34",
                         "type": "div",
                         "name": "Meta",
                         "customClass": "product-meta",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -2476,16 +2582,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrel2_35",
+                            "id": "div_mtg6xe16_35",
                             "type": "div",
                             "name": "Price",
                             "customClass": "product-price",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2546,17 +2655,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrel2_36",
+                            "id": "div_mtg6xe16_36",
                             "type": "div",
                             "name": "Buy Button",
                             "customClass": "btn-buy",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2617,8 +2729,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }

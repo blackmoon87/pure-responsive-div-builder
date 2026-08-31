@@ -1,8 +1,11 @@
 {
   "version": 2,
   "breakpoints": {
+    "ultrawide": 1600,
+    "laptop": 1200,
     "tablet": 992,
-    "mobile": 576
+    "mobile": 576,
+    "mobileSm": 400
   },
   "root": {
     "id": "root",
@@ -10,6 +13,7 @@
     "name": "Page Root",
     "customClass": "page-layout",
     "responsive": {
+      "ultrawide": {},
       "desktop": {
         "display": "flex",
         "flexDirection": "column",
@@ -24,16 +28,19 @@
         "horizontalAlign": "stretch",
         "maxWidth": ""
       },
+      "laptop": {},
       "tablet": {},
-      "mobile": {}
+      "mobile": {},
+      "mobileSm": {}
     },
     "children": [
       {
-        "id": "div_mtdtreli_1",
+        "id": "div_mtg6xe1z_1",
         "type": "div",
         "name": "Magazine",
         "customClass": "magazine",
         "responsive": {
+          "ultrawide": {},
           "desktop": {
             "display": "flex",
             "columns": 1,
@@ -94,6 +101,7 @@
             "hidden": false,
             "direction": ""
           },
+          "laptop": {},
           "tablet": {},
           "mobile": {
             "gap": 18,
@@ -101,15 +109,17 @@
             "paddingRight": 14,
             "paddingBottom": 28,
             "paddingLeft": 14
-          }
+          },
+          "mobileSm": {}
         },
         "children": [
           {
-            "id": "div_mtdtreli_2",
+            "id": "div_mtg6xe1z_2",
             "type": "div",
             "name": "Masthead",
             "customClass": "masthead",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "grid",
                 "columns": 1,
@@ -170,20 +180,23 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
               "mobile": {
                 "customColumns": "1fr",
                 "gap": 12,
                 "justifyItems": "center"
-              }
+              },
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtreli_3",
+                "id": "div_mtg6xe1z_3",
                 "type": "div",
                 "name": "Meta",
                 "customClass": "masthead-meta",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -244,17 +257,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtreli_4",
+                "id": "div_mtg6xe1z_4",
                 "type": "div",
                 "name": "Logo",
                 "customClass": "masthead-logo",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -315,17 +331,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtreli_5",
+                "id": "div_mtg6xe1z_5",
                 "type": "div",
                 "name": "Utilities",
                 "customClass": "masthead-utils",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -386,18 +405,21 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
                   "mobile": {
                     "justifyContent": "center"
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreli_6",
+                    "id": "div_mtg6xe1z_6",
                     "type": "div",
                     "name": "Util 1",
                     "customClass": "masthead-util",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -458,17 +480,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreli_7",
+                    "id": "div_mtg6xe1z_7",
                     "type": "div",
                     "name": "Util 2",
                     "customClass": "masthead-util",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -529,17 +554,20 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreli_8",
+                    "id": "div_mtg6xe1z_8",
                     "type": "div",
                     "name": "Util 3",
                     "customClass": "masthead-util",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -600,8 +628,10 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": []
                   }
@@ -610,11 +640,12 @@
             ]
           },
           {
-            "id": "div_mtdtreli_9",
+            "id": "div_mtg6xe1z_9",
             "type": "div",
             "name": "Hero",
             "customClass": "editorial-hero",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "grid",
                 "columns": 1,
@@ -675,18 +706,21 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {
                 "customColumns": "1fr"
               },
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtreli_10",
+                "id": "div_mtg6xe1z_10",
                 "type": "div",
                 "name": "Lead",
                 "customClass": "hero-lead",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -747,16 +781,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreli_11",
+                    "id": "div_mtg6xe1z_11",
                     "type": "div",
                     "name": "Hero Image",
                     "customClass": "hero-image",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "block",
                         "columns": 1,
@@ -817,19 +854,22 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "aspectRatio": "4/3"
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": []
                   },
                   {
-                    "id": "div_mtdtreli_12",
+                    "id": "div_mtg6xe1z_12",
                     "type": "div",
                     "name": "Hero Copy",
                     "customClass": "hero-copy",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -890,16 +930,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_13",
+                        "id": "div_mtg6xe1z_13",
                         "type": "div",
                         "name": "Kicker",
                         "customClass": "hero-kicker",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -960,17 +1003,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_14",
+                        "id": "div_mtg6xe1z_14",
                         "type": "div",
                         "name": "Headline",
                         "customClass": "hero-headline",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1031,17 +1077,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_15",
+                        "id": "div_mtg6xe1z_15",
                         "type": "div",
                         "name": "Standfirst",
                         "customClass": "hero-standfirst",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1102,8 +1151,10 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       }
@@ -1112,11 +1163,12 @@
                 ]
               },
               {
-                "id": "div_mtdtreli_16",
+                "id": "div_mtg6xe1z_16",
                 "type": "div",
                 "name": "Secondary",
                 "customClass": "hero-secondary",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -1177,6 +1229,7 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {
                     "display": "grid",
                     "columns": 3,
@@ -1186,15 +1239,17 @@
                     "display": "flex",
                     "flexDirection": "column",
                     "gap": 12
-                  }
+                  },
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreli_17",
+                    "id": "div_mtg6xe1z_17",
                     "type": "div",
                     "name": "Secondary 1",
                     "customClass": "secondary-story",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -1255,18 +1310,21 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "minHeight": 88
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_18",
+                        "id": "div_mtg6xe1z_18",
                         "type": "div",
                         "name": "Thumb",
                         "customClass": "secondary-thumb",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1327,17 +1385,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_19",
+                        "id": "div_mtg6xe1z_19",
                         "type": "div",
                         "name": "Text",
                         "customClass": "secondary-text",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -1398,16 +1459,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_20",
+                            "id": "div_mtg6xe1z_20",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1468,17 +1532,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_21",
+                            "id": "div_mtg6xe1z_21",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1539,8 +1606,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -1549,11 +1618,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_22",
+                    "id": "div_mtg6xe1z_22",
                     "type": "div",
                     "name": "Secondary 2",
                     "customClass": "secondary-story",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -1614,18 +1684,21 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "minHeight": 88
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_23",
+                        "id": "div_mtg6xe1z_23",
                         "type": "div",
                         "name": "Thumb",
                         "customClass": "secondary-thumb",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -1686,17 +1759,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_24",
+                        "id": "div_mtg6xe1z_24",
                         "type": "div",
                         "name": "Text",
                         "customClass": "secondary-text",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -1757,16 +1833,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_25",
+                            "id": "div_mtg6xe1z_25",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1827,17 +1906,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_26",
+                            "id": "div_mtg6xe1z_26",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -1898,8 +1980,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -1908,11 +1992,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_27",
+                    "id": "div_mtg6xe1z_27",
                     "type": "div",
                     "name": "Secondary 3",
                     "customClass": "secondary-story",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -1973,18 +2058,21 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
                       "mobile": {
                         "minHeight": 88
-                      }
+                      },
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_28",
+                        "id": "div_mtg6xe1z_28",
                         "type": "div",
                         "name": "Thumb",
                         "customClass": "secondary-thumb",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -2045,17 +2133,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_29",
+                        "id": "div_mtg6xe1z_29",
                         "type": "div",
                         "name": "Text",
                         "customClass": "secondary-text",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -2116,16 +2207,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_30",
+                            "id": "div_mtg6xe1z_30",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2186,17 +2280,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_31",
+                            "id": "div_mtg6xe1z_31",
                             "type": "div",
                             "name": "Line",
                             "customClass": "secondary-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2257,8 +2354,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -2271,11 +2370,12 @@
             ]
           },
           {
-            "id": "div_mtdtreli_32",
+            "id": "div_mtg6xe1z_32",
             "type": "div",
             "name": "Body",
             "customClass": "editorial-body",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "grid",
                 "columns": 1,
@@ -2336,18 +2436,21 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {
                 "customColumns": "1fr"
               },
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtreli_33",
+                "id": "div_mtg6xe1z_33",
                 "type": "div",
                 "name": "Stream",
                 "customClass": "story-stream",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "grid",
                     "columns": 1,
@@ -2408,16 +2511,19 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtreli_34",
+                    "id": "div_mtg6xe1z_34",
                     "type": "div",
                     "name": "Story 1",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -2478,16 +2584,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_35",
+                        "id": "div_mtg6xe1z_35",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -2548,17 +2657,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_36",
+                        "id": "div_mtg6xe1z_36",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -2619,16 +2731,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_37",
+                            "id": "div_mtg6xe1z_37",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2689,17 +2804,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_38",
+                            "id": "div_mtg6xe1z_38",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2760,17 +2878,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_39",
+                            "id": "div_mtg6xe1z_39",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -2831,8 +2952,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -2841,11 +2964,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_40",
+                    "id": "div_mtg6xe1z_40",
                     "type": "div",
                     "name": "Story 2",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -2906,16 +3030,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_41",
+                        "id": "div_mtg6xe1z_41",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -2976,17 +3103,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_42",
+                        "id": "div_mtg6xe1z_42",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -3047,16 +3177,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_43",
+                            "id": "div_mtg6xe1z_43",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3117,17 +3250,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_44",
+                            "id": "div_mtg6xe1z_44",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3188,17 +3324,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_45",
+                            "id": "div_mtg6xe1z_45",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3259,8 +3398,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -3269,11 +3410,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_46",
+                    "id": "div_mtg6xe1z_46",
                     "type": "div",
                     "name": "Story 3",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -3334,16 +3476,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_47",
+                        "id": "div_mtg6xe1z_47",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -3404,17 +3549,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_48",
+                        "id": "div_mtg6xe1z_48",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -3475,16 +3623,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_49",
+                            "id": "div_mtg6xe1z_49",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3545,17 +3696,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_50",
+                            "id": "div_mtg6xe1z_50",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3616,17 +3770,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_51",
+                            "id": "div_mtg6xe1z_51",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3687,8 +3844,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -3697,11 +3856,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_52",
+                    "id": "div_mtg6xe1z_52",
                     "type": "div",
                     "name": "Story 4",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -3762,16 +3922,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtreli_53",
+                        "id": "div_mtg6xe1z_53",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -3832,17 +3995,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtreli_54",
+                        "id": "div_mtg6xe1z_54",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -3903,16 +4069,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtreli_55",
+                            "id": "div_mtg6xe1z_55",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -3973,17 +4142,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_56",
+                            "id": "div_mtg6xe1z_56",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4044,17 +4216,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtreli_57",
+                            "id": "div_mtg6xe1z_57",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4115,8 +4290,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -4125,11 +4302,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtreli_58",
+                    "id": "div_mtg6xe1z_58",
                     "type": "div",
                     "name": "Story 5",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -4190,16 +4368,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrelj_59",
+                        "id": "div_mtg6xe1z_59",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -4260,17 +4441,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_60",
+                        "id": "div_mtg6xe1z_60",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -4331,16 +4515,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrelj_61",
+                            "id": "div_mtg6xe1z_61",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4401,17 +4588,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrelj_62",
+                            "id": "div_mtg6xe1z_62",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4472,17 +4662,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrelj_63",
+                            "id": "div_mtg6xe1z_63",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4543,8 +4736,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -4553,11 +4748,12 @@
                     ]
                   },
                   {
-                    "id": "div_mtdtrelj_64",
+                    "id": "div_mtg6xe1z_64",
                     "type": "div",
                     "name": "Story 6",
                     "customClass": "story-card",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -4618,16 +4814,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrelj_65",
+                        "id": "div_mtg6xe1z_65",
                         "type": "div",
                         "name": "Image",
                         "customClass": "story-image",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -4688,17 +4887,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_66",
+                        "id": "div_mtg6xe1z_66",
                         "type": "div",
                         "name": "Copy",
                         "customClass": "story-copy",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "flex",
                             "columns": 1,
@@ -4759,16 +4961,19 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": [
                           {
-                            "id": "div_mtdtrelj_67",
+                            "id": "div_mtg6xe1z_67",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4829,17 +5034,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrelj_68",
+                            "id": "div_mtg6xe1z_68",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4900,17 +5108,20 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           },
                           {
-                            "id": "div_mtdtrelj_69",
+                            "id": "div_mtg6xe1z_69",
                             "type": "div",
                             "name": "Line",
                             "customClass": "story-line",
                             "responsive": {
+                              "ultrawide": {},
                               "desktop": {
                                 "display": "block",
                                 "columns": 1,
@@ -4971,8 +5182,10 @@
                                 "hidden": false,
                                 "direction": ""
                               },
+                              "laptop": {},
                               "tablet": {},
-                              "mobile": {}
+                              "mobile": {},
+                              "mobileSm": {}
                             },
                             "children": []
                           }
@@ -4983,11 +5196,12 @@
                 ]
               },
               {
-                "id": "div_mtdtrelj_70",
+                "id": "div_mtg6xe1z_70",
                 "type": "div",
                 "name": "Aside",
                 "customClass": "editorial-aside",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "flex",
                     "columns": 1,
@@ -5048,19 +5262,22 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {
                     "position": "static",
                     "top": ""
                   },
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": [
                   {
-                    "id": "div_mtdtrelj_71",
+                    "id": "div_mtg6xe1z_71",
                     "type": "div",
                     "name": "Widget 1",
                     "customClass": "aside-widget",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -5121,16 +5338,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrelj_72",
+                        "id": "div_mtg6xe1z_72",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5191,17 +5411,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_73",
+                        "id": "div_mtg6xe1z_73",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5262,17 +5485,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_74",
+                        "id": "div_mtg6xe1z_74",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5333,17 +5559,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_75",
+                        "id": "div_mtg6xe1z_75",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5404,19 +5633,22 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       }
                     ]
                   },
                   {
-                    "id": "div_mtdtrelj_76",
+                    "id": "div_mtg6xe1z_76",
                     "type": "div",
                     "name": "Widget 2",
                     "customClass": "aside-widget",
                     "responsive": {
+                      "ultrawide": {},
                       "desktop": {
                         "display": "flex",
                         "columns": 1,
@@ -5477,16 +5709,19 @@
                         "hidden": false,
                         "direction": ""
                       },
+                      "laptop": {},
                       "tablet": {},
-                      "mobile": {}
+                      "mobile": {},
+                      "mobileSm": {}
                     },
                     "children": [
                       {
-                        "id": "div_mtdtrelj_77",
+                        "id": "div_mtg6xe1z_77",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5547,17 +5782,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_78",
+                        "id": "div_mtg6xe1z_78",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5618,17 +5856,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_79",
+                        "id": "div_mtg6xe1z_79",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5689,17 +5930,20 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       },
                       {
-                        "id": "div_mtdtrelj_80",
+                        "id": "div_mtg6xe1z_80",
                         "type": "div",
                         "name": "Row",
                         "customClass": "aside-row",
                         "responsive": {
+                          "ultrawide": {},
                           "desktop": {
                             "display": "block",
                             "columns": 1,
@@ -5760,8 +6004,10 @@
                             "hidden": false,
                             "direction": ""
                           },
+                          "laptop": {},
                           "tablet": {},
-                          "mobile": {}
+                          "mobile": {},
+                          "mobileSm": {}
                         },
                         "children": []
                       }
@@ -5772,11 +6018,12 @@
             ]
           },
           {
-            "id": "div_mtdtrelj_81",
+            "id": "div_mtg6xe1z_81",
             "type": "div",
             "name": "Tag Strip",
             "customClass": "tag-strip",
             "responsive": {
+              "ultrawide": {},
               "desktop": {
                 "display": "flex",
                 "columns": 1,
@@ -5837,16 +6084,19 @@
                 "hidden": false,
                 "direction": ""
               },
+              "laptop": {},
               "tablet": {},
-              "mobile": {}
+              "mobile": {},
+              "mobileSm": {}
             },
             "children": [
               {
-                "id": "div_mtdtrelj_82",
+                "id": "div_mtg6xe1z_82",
                 "type": "div",
                 "name": "Tag 1",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -5907,17 +6157,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_83",
+                "id": "div_mtg6xe1z_83",
                 "type": "div",
                 "name": "Tag 2",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -5978,17 +6231,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_84",
+                "id": "div_mtg6xe1z_84",
                 "type": "div",
                 "name": "Tag 3",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6049,17 +6305,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_85",
+                "id": "div_mtg6xe1z_85",
                 "type": "div",
                 "name": "Tag 4",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6120,17 +6379,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_86",
+                "id": "div_mtg6xe1z_86",
                 "type": "div",
                 "name": "Tag 5",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6191,17 +6453,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_87",
+                "id": "div_mtg6xe1z_87",
                 "type": "div",
                 "name": "Tag 6",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6262,17 +6527,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_88",
+                "id": "div_mtg6xe1z_88",
                 "type": "div",
                 "name": "Tag 7",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6333,17 +6601,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_89",
+                "id": "div_mtg6xe1z_89",
                 "type": "div",
                 "name": "Tag 8",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6404,17 +6675,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_90",
+                "id": "div_mtg6xe1z_90",
                 "type": "div",
                 "name": "Tag 9",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6475,17 +6749,20 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               },
               {
-                "id": "div_mtdtrelj_91",
+                "id": "div_mtg6xe1z_91",
                 "type": "div",
                 "name": "Tag 10",
                 "customClass": "tag-chip",
                 "responsive": {
+                  "ultrawide": {},
                   "desktop": {
                     "display": "block",
                     "columns": 1,
@@ -6546,8 +6823,10 @@
                     "hidden": false,
                     "direction": ""
                   },
+                  "laptop": {},
                   "tablet": {},
-                  "mobile": {}
+                  "mobile": {},
+                  "mobileSm": {}
                 },
                 "children": []
               }

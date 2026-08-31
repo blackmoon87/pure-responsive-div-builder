@@ -1,6 +1,6 @@
 # htmlCreator MCP Server
 
-Exposes the Pure Responsive DIV Generator as **21 MCP tools** for AI agents.
+Exposes the Pure Responsive DIV Generator as **22 MCP tools** for AI agents.
 
 All HTML/CSS emission lives in `../generator.js`, shared with the browser
 builder — the MCP server and the UI cannot produce different CSS for the same
@@ -46,8 +46,26 @@ Add to `~/.gemini/config/mcp_config.json`:
 ### Properties
 | Tool | Description |
 |---|---|
-| `set_props` | Set responsive props (`nodeId`, `device`, `props`) — **all 47 emittable declarations are overridable on every device** |
-| `reset_device` | Clear device overrides (`nodeId`, `device`) |
+| `set_props` | Set responsive props (`nodeId`, `device`, `props`) — **all 47 emittable declarations are overridable on every tier** |
+| `reset_device` | Clear a tier's overrides (`nodeId`, `device`) |
+| `list_devices` | List the device ladder: every tier's key, media query and parent |
+
+### The device ladder
+
+`device` on `set_props` / `reset_device`, and the per-tier objects on `build_tree`,
+take any of these keys. Each `max` tier inherits from the tier above it, so an
+override restates only what differs from the wider tier — not the whole cascade.
+
+| Tier | Media query | Inherits from | Preview |
+|---|---|---|---|
+| `ultrawide` | `@media (min-width: 1600px)` | desktop | 1920px |
+| `desktop` | *(base rule — no media query)* | — | 1280px |
+| `laptop` | `@media (max-width: 1200px)` | desktop | 1100px |
+| `tablet` | `@media (max-width: 992px)` | laptop | 768px |
+| `mobile` | `@media (max-width: 576px)` | tablet | 375px |
+| `mobileSm` | `@media (max-width: 400px)` | mobile | 360px |
+
+`set_breakpoints` moves any of these pixel values: `set_breakpoints({ laptop: 1280, mobileSm: 380 })`.
 
 ### Property groups accepted by `set_props`
 

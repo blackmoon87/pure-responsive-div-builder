@@ -1,5 +1,12 @@
 import {
   defaultDesktopProps,
+  DEVICES,
+  DEVICE_KEYS,
+  isDevice,
+  deviceMeta,
+  defaultBreakpoints,
+  normalizeBreakpoints,
+  emptyResponsive,
   walk,
   isGrid,
   isFlexRow,
@@ -66,13 +73,13 @@ import {
     selectedId: null,
     activeTab: "palette",
     exportTab: "combined",
-    breakpoints: { tablet: 992, mobile: 576 },
+    breakpoints: defaultBreakpoints(),
     root: {
       id: "root",
       type: "div",
       name: "Page Root",
       customClass: "page-layout",
-      responsive: {
+      responsive: Object.assign(emptyResponsive(), {
         desktop: {
           display: "flex",
           flexDirection: "column",
@@ -83,10 +90,8 @@ import {
           alignItems: "stretch",
           horizontalAlign: "stretch",
           maxWidth: ""
-        },
-        tablet: {},
-        mobile: {}
-      },
+        }
+      }),
       children: []
     }
   };
@@ -152,7 +157,16 @@ import {
       var saved = JSON.parse(raw);
       if (!saved || !saved.root || !Array.isArray(saved.root.children)) return false;
       State.root = saved.root;
-      if (saved.breakpoints) State.breakpoints = saved.breakpoints;
+      // A tree saved before a tier existed has no slot for it; seed the
+      // missing ones so the props panel can write to them.
+      walk(State.root, function (n) {
+        if (!n.responsive || typeof n.responsive !== "object") n.responsive = {};
+        DEVICE_KEYS.forEach(function (k) {
+          if (!n.responsive[k] || typeof n.responsive[k] !== "object") n.responsive[k] = {};
+        });
+      });
+      State.breakpoints = normalizeBreakpoints(saved.breakpoints);
+      if (!isDevice(State.device)) State.device = "desktop";
       State.selectedId = saved.selectedId || null;
       return true;
     } catch (err) {
@@ -179,11 +193,11 @@ import {
       type: "div",
       name: name || "Div Container",
       customClass: customClass || "",
-      responsive: {
+      responsive: Object.assign(emptyResponsive(), {
         desktop: Object.assign({}, defaultDesktopProps, desktopProps || {}),
         tablet: Object.assign({}, tabletProps || {}),
         mobile: Object.assign({}, mobileProps || {})
-      },
+      }),
       children: []
     };
   }
@@ -441,7 +455,8 @@ import {
   var vpRange = document.getElementById("vp-range");
   var vpWidth = document.getElementById("vp-width");
   var vpReset = document.getElementById("vp-reset");
-  var PRESET_WIDTH = { desktop: 1280, tablet: 768, mobile: 375 };
+  var PRESET_WIDTH = {};
+  DEVICES.forEach(function (d) { PRESET_WIDTH[d.key] = d.previewWidth; });
 
   // ==========================================================================
   // Canvas Rendering (Pure Structural Wireframes)
@@ -1277,8 +1292,15 @@ import {
   // rule the exported @media queries use, so the preview cannot disagree with them.
   function deviceForWidth(w) {
     var bp = State.breakpoints;
-    if (w <= bp.mobile) return "mobile";
-    if (w <= bp.tablet) return "tablet";
+    // Narrowest max tier first: the last @media block that matches is the one
+    // in force, and the ladder is ordered widest-to-narrowest.
+    for (var i = DEVICES.length - 1; i >= 0; i--) {
+      var d = DEVICES[i];
+      if (d.type === "max" && w <= bp[d.key]) return d.key;
+    }
+    for (var j = 0; j < DEVICES.length; j++) {
+      if (DEVICES[j].type === "min" && w >= bp[DEVICES[j].key]) return DEVICES[j].key;
+    }
     return "desktop";
   }
 
@@ -1290,25 +1312,38 @@ import {
   // look correct while a whole range between them has no rules at all.
   function collectExportWarnings() {
     var warns = [];
-    var anyTablet = false, anyMobile = false;
-    var mobileOnly = [];
+    var maxTiers = DEVICES.filter(function (d) { return d.type === "max"; });
+    var bp = State.breakpoints;
+
+    // Which tiers carry any rule at all, and which divs style a narrow tier
+    // while leaving the wider one it inherits from untouched.
+    var used = {}, orphans = {};
+    DEVICE_KEYS.forEach(function (k) { used[k] = false; orphans[k] = []; });
+
     walk(State.root, function (node) {
       if (node.id === "root") return;
-      var hasT = node.responsive.tablet && Object.keys(node.responsive.tablet).length > 0;
-      var hasM = node.responsive.mobile && Object.keys(node.responsive.mobile).length > 0;
-      if (hasT) anyTablet = true;
-      if (hasM) anyMobile = true;
-      if (hasM && !hasT) mobileOnly.push(node.customClass || node.name || node.id);
+      DEVICE_KEYS.forEach(function (k) {
+        var o = node.responsive[k];
+        if (o && Object.keys(o).length > 0) used[k] = true;
+      });
     });
-    var bp = State.breakpoints;
-    if (!anyTablet && anyMobile) {
-      warns.push("No tablet rules anywhere — every width from " + (bp.mobile + 1) + "px to " +
-        bp.tablet + "px falls straight through to the desktop layout.");
-    } else if (mobileOnly.length) {
-      warns.push(mobileOnly.length + " div" + (mobileOnly.length > 1 ? "s have" : " has") +
-        " mobile rules but no tablet rules (." + mobileOnly.slice(0, 3).join(", .") +
-        (mobileOnly.length > 3 ? ", …" : "") + ") — unstyled between " +
-        (bp.mobile + 1) + "px and " + bp.tablet + "px.");
+
+    // A tier with no rules anywhere is a width band that falls straight through
+    // to whatever it inherits from — usually the exact range where a layout breaks.
+    maxTiers.forEach(function (d, i) {
+      if (used[d.key]) return;
+      var narrower = maxTiers[i + 1];
+      var lower = narrower ? bp[narrower.key] + 1 : 0;
+      var anyNarrower = maxTiers.slice(i + 1).some(function (x) { return used[x.key]; });
+      if (!anyNarrower) return;   // nothing below it is styled either — not a gap, just unused
+      warns.push("No " + d.label.toLowerCase() + " rules anywhere \u2014 every width from " +
+        lower + "px to " + bp[d.key] + "px falls through to the " +
+        deviceMeta(d.inherits).label.toLowerCase() + " layout.");
+    });
+
+    if (!used.ultrawide) {
+      warns.push("No ultrawide rules \u2014 above " + bp.ultrawide +
+        "px the desktop layout just keeps stretching. Set a max-width there if that is not what you want.");
     }
     return warns;
   }
@@ -1318,13 +1353,58 @@ import {
     exportWarnings.innerHTML = "";
     var warns = collectExportWarnings();
     if (!warns.length) {
-      exportWarnings.appendChild(el("span", "export-ok", "\u2713 Pure DIV hierarchy \u00b7 desktop, tablet and mobile breakpoints all covered"));
+      exportWarnings.appendChild(el("span", "export-ok", "\u2713 Pure DIV hierarchy \u00b7 all " + DEVICES.length + " breakpoint tiers covered"));
       return;
     }
     warns.forEach(function (w) {
       exportWarnings.appendChild(el("span", "export-warn", "\u26a0 " + w));
     });
     exportWarnings.appendChild(el("span", "export-ok", "\u2713 Pure DIV hierarchy \u00b7 drag the width ruler to check the gap."));
+  }
+
+  // A human label for a tier, built from the live breakpoint values so the
+  // status bar and the viewport badge cannot disagree with the emitted CSS.
+  function deviceLabel(key) {
+    var d = deviceMeta(key);
+    if (!d) return key;
+    var bp = State.breakpoints;
+    if (d.type === "base") {
+      var widest = null;
+      DEVICES.forEach(function (x) { if (x.type === "max" && (widest === null || bp[x.key] > widest)) widest = bp[x.key]; });
+      return d.label + " (Base > " + widest + "px)";
+    }
+    return d.label + (d.type === "min" ? " (\u2265 " : " (\u2264 ") + bp[d.key] + "px)";
+  }
+
+  // The device switch is built from the ladder rather than written out in the
+  // markup, so a tier can never exist in the engine but be unreachable in the UI.
+  var DEVICE_ICON = {
+    ultrawide: '<rect x="1" y="4" width="22" height="13" rx="2"/><line x1="7" y1="21" x2="17" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+    desktop:   '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+    laptop:    '<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="1" y1="20" x2="23" y2="20"/>',
+    tablet:    '<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+    mobile:    '<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+    mobileSm:  '<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>'
+  };
+
+  function renderDeviceSwitch() {
+    var host = document.getElementById("device-switch");
+    if (!host) return;
+    host.innerHTML = "";
+    DEVICES.forEach(function (d) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "device-btn";
+      btn.dataset.device = d.key;
+      btn.title = deviceLabel(d.key);
+      btn.innerHTML =
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+        (DEVICE_ICON[d.key] || DEVICE_ICON.desktop) + '</svg>' +
+        '<span></span><small></small>';
+      btn.querySelector("span").textContent = d.label;
+      btn.querySelector("small").textContent = d.previewWidth + "px";
+      host.appendChild(btn);
+    });
   }
 
   function renderChrome() {
@@ -1334,35 +1414,54 @@ import {
 
     var selNode = findNode(State.selectedId);
     if (selNode) {
-      statusSelection.innerHTML = "Selected: <strong>&lt;div." + (selNode.customClass || selNode.id) + "&gt;</strong>";
+      // textContent, not innerHTML: customClass is free text and can arrive
+      // from an imported tree or restored localStorage.
+      statusSelection.textContent = "";
+      statusSelection.appendChild(el("span", null, "Selected: "));
+      statusSelection.appendChild(el("strong", null, "<div." + (selNode.customClass || selNode.id) + ">"));
     } else {
-      statusSelection.innerHTML = "Selected: <em>None</em>";
+      statusSelection.textContent = "";
+      statusSelection.appendChild(el("span", null, "Selected: "));
+      statusSelection.appendChild(el("em", null, "None"));
     }
 
     var bp = State.breakpoints;
-    var devNames = {
-      desktop: "Desktop (Base > " + bp.tablet + "px)",
-      tablet: "Tablet (≤ " + bp.tablet + "px)",
-      mobile: "Mobile (≤ " + bp.mobile + "px)"
-    };
-    statusDevice.innerHTML = "Active: <strong>" + devNames[State.device] + "</strong>" +
-      " &nbsp;|&nbsp; BP: Tablet <input id='bp-tab' type='number' value='" + bp.tablet + "' style='width:52px;background:var(--bg-card);color:var(--fg-base);border:1px solid var(--line-base);border-radius:3px;padding:1px 4px;font-size:11px;'>px" +
-      " Mobile <input id='bp-mob' type='number' value='" + bp.mobile + "' style='width:52px;background:var(--bg-card);color:var(--fg-base);border:1px solid var(--line-base);border-radius:3px;padding:1px 4px;font-size:11px;'>px";
 
-    var bpTabEl = document.getElementById("bp-tab");
-    var bpMobEl = document.getElementById("bp-mob");
-    if (bpTabEl) bpTabEl.addEventListener("change", function (e) { State.breakpoints.tablet = parseInt(e.target.value, 10) || 992; render(); });
-    if (bpMobEl) bpMobEl.addEventListener("change", function (e) { State.breakpoints.mobile = parseInt(e.target.value, 10) || 576; render(); });
+    // One number input per tier that owns a media query. Built as DOM rather
+    // than an innerHTML string so a class name can never be interpolated into
+    // markup, and so adding a tier needs no new markup at all.
+    statusDevice.textContent = "";
+    var act = el("span", null, "Active: ");
+    act.appendChild(el("strong", null, deviceLabel(State.device)));
+    statusDevice.appendChild(act);
+    statusDevice.appendChild(el("span", null, " \u00a0|\u00a0 BP: "));
+
+    DEVICES.forEach(function (d) {
+      if (d.defaultPx == null) return;
+      statusDevice.appendChild(el("span", null, " " + d.label + " "));
+      var inp = document.createElement("input");
+      inp.type = "number";
+      inp.className = "bp-input";
+      inp.value = String(bp[d.key]);
+      inp.title = d.label + " " + d.type + "-width breakpoint";
+      inp.addEventListener("change", function (e) {
+        var v = parseInt(e.target.value, 10);
+        State.breakpoints[d.key] = (isFinite(v) && v > 0) ? v : d.defaultPx;
+        render();
+      });
+      statusDevice.appendChild(inp);
+      statusDevice.appendChild(el("span", null, "px"));
+    });
 
     var w = currentWidth();
     if (State.customWidth != null) {
       frame.classList.add("is-custom-width");
       frame.style.width = w + "px";
-      viewportBadge.textContent = w + "px \u2192 " + devNames[State.device] + " rules";
+      viewportBadge.textContent = w + "px \u2192 " + deviceLabel(State.device) + " rules";
     } else {
       frame.classList.remove("is-custom-width");
       frame.style.width = "";
-      viewportBadge.textContent = devNames[State.device] + " \u00b7 " + w + "px";
+      viewportBadge.textContent = deviceLabel(State.device) + " \u00b7 " + w + "px";
     }
     frame.dataset.device = State.device;
 
@@ -1597,6 +1696,7 @@ import {
     State.selectedId = grid3.id;
   })();
 
+  renderDeviceSwitch();
   render();
 
 })();

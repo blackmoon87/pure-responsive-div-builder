@@ -12,7 +12,7 @@ Every file in this folder is **100% pure `<div>`s only**, standalone, fully resp
 |---|---|---|---|
 | **01** | [`01-simple-centered-card.html`](01-simple-centered-card.html) | 🟢 Simple | Viewport centering, max-width constraints, box shadows, 4-side padding, mobile button stack |
 | **02** | [`02-responsive-navbar.html`](02-responsive-navbar.html) | 🟡 Medium | `position: sticky`, `z-index: 100`, flex space-between, desktop row to mobile column stack |
-| **03** | [`03-pricing-tables-3col.html`](03-pricing-tables-3col.html) | 🟡 Medium | 3-column grid, featured card with custom border/glow, tablet 2-col wrap, mobile 1-col |
+| **03** | [`03-pricing-tables-3col.html`](03-pricing-tables-3col.html) | 🟡 Medium | 3-column grid, featured card with custom border/glow; at tablet the grid drops to 2 columns and the featured card becomes a full-width banner (`span 2` + `order: -1`) with the other two paired beneath it; mobile 1-col |
 | **04** | [`04-ecommerce-product-grid.html`](04-ecommerce-product-grid.html) | 🟠 Advanced | Intrinsic `repeat(auto-fit, minmax(260px, 1fr))`, `aspect-ratio: 4/3`, toolbar search/filter |
 | **05** | [`05-holy-grail-layout.html`](05-holy-grail-layout.html) | 🟠 Advanced | Holy Grail 3-column grid (`240px 1fr 280px`), sticky header & footer, mobile `order` reordering |
 | **06** | [`06-complex-saas-dashboard.html`](06-complex-saas-dashboard.html) | 🔴 Very Complex | 12-column grid, persistent sidebar, 4-KPI stat row, asymmetric 2:1 chart (`span 8` + `span 4`), data table |
